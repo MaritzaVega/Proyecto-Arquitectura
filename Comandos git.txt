@@ -1,0 +1,60 @@
+1°. Iniciar un proyecto
+-> git init
+
+ver el estado
+-> git status
+
+Agregar el archivo modificado o nuevo para guardarlos
+-> git add .
+
+Guardado
+-> git commit -m "Descripción"
+
+Saber que rama hay y/o saber las ramas existentes
+->git branch
+
+Crear una nueva rama
+->git branch Nombre
+
+Crear una nueva Rama y entrar en ella
+-> git checkout -b NombredelaRama
+
+Saber las modificaciones de un archivo y quien lo realizo
+-> git log
+o
+-> git log --oneline
+
+Cambiar de rama
+-> git checkout NombreRama
+
+Subir el proyecto nuevo al repositorio creado a traves de la dirección
+-> git remote add origin https://.........
+
+Subir el proyecto
+-> git push -u origin "master" o "main" o "nombreRama"
+
+Combinar los commit de la ramas existntes usando "Mergue"
+git status
+git branch
+git checkout NombredelaRama
+git log --oneline
+
+git checkout master
+git status
+git branch
+git merge NambredelaRama
+
+Clonar proyecto de repositorio
+
+git clone https://......
+
+Como subir un archivo o proyecto?
+git clone
+git checkout -b <nombre de cualquier rama que quieras>
+git add .
+git commit -m 'mensaje que quieras'
+git push --set-upstream origin <nombre de la rama>
+
+
+
+

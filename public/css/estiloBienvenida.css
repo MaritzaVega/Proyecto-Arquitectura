@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    
+    color: #ffff;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    background-image: url("https://www.diariodesevilla.es/2020/05/07/pds/puede-comprar-ropa-tiendas-pequenas_1462365165_121058175_1200x675.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0px 150px; 
+    background-attachment: fixed;
+
+}
+
+/*Cabeceras o header*/
+/*cabecera azul*/
+.cabeceraMy{
+    height: 100px;
+    background-color: #303f9f;
+    text-align: center;
+}
+
+.cabecera1 h2{
+    padding: 30px 30px;
+    color: #ffff;  
+}
+/*cabecera roja*/
+.cabeceraMn{
+    height: 60px;
+    background-color: #7f0000;
+}
+.cabecera2 h3{
+    font-weight: 300;
+    padding: 10px 50px;
+    color: #ffff;
+    text-align: center;
+    
+}
+
+.conecion{
+    text-align: center;
+    position: relative; /* crearcuenta*/
+    background: rgba(65, 71, 161, 0.8); /*color contraste*/
+    width: 100%;
+    max-width: 200px;
+    margin:70px auto;
+    border-radius: 5px;
+    padding: 50px;
+}

@@ -1,0 +1,144 @@
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    
+    color: #ffff;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    background-image: url(https://anayancinangullasmu.com/wp-content/uploads/2016/09/Tienda-de-ropa.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0px 20px; 
+    background-attachment: fixed;
+
+}
+
+body p{
+    font-size: 25px;
+}
+.cabeceraMy{
+    height: 100px;
+    background-color: #303f9f;
+}
+.cabecera1 h2{
+    padding: 30px 30px;
+    color: #ffff;  
+}
+.cabeceraMn{
+    height: 60px;
+    background-color: #7f0000;
+}
+.cabecera2 h3{
+    font-weight: 300;
+    padding: 10px 50px;
+    color: #ffff;
+    
+}
+
+.contenedor-form{
+    position: relative; /* crearcuenta*/
+    background: rgba(65, 71, 161, 0.8); /*color contraste*/
+    width: 100%;
+    max-width: 500px;
+    margin:50px auto;
+    border-radius: 5px;
+    padding: 40px;
+    
+}
+
+.contenedor-form .toggle{
+    position: absolute; /*crearcuenta*/
+    top: 7px;
+    right: 7px;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: center;
+    /*border-top: 2px solid #f44336;
+    border-bottom: 2px solid #f44336;*/
+    transition: all .5s ease;
+    cursor: pointer;
+    
+}
+
+.contenedor-form .toggle span {
+    letter-spacing: 0.5px; /*crearcuenta*/
+}
+
+/*hover cambia algo a la seleccion del puntero*/
+.contenedor-form .toggle:hover{
+    border-top: 2px solid #00bfa5;
+    border-bottom: 2px solid #00bfa5;
+}
+
+.contenedor-form h3{
+    margin: 0 0 30px 0;
+    font-weight: 500;
+    line-height: 1;
+}
+
+/*espacio a la derecha a las cajas de texto*/
+.contenedor-form input[type="text"]{
+    margin-left: 35px;
+}
+.contenedor-form input[type="password"]{
+    margin-left: 10px;
+}
+
+/*forma y color a la caja de texto*/
+.contenedor-form input[type="text"],
+.contenedor-form input[type="password"]{
+    outline: none;
+    background: rgba(0, 0, 0, 0.5);
+    /*display: block; salto usuario-cajatexto y contraseña-cajatexto*/
+    width: 50%;
+    padding: 10px 15px;
+    color: #ffff;
+    border: none;
+    border-radius: 2px;
+    border-bottom: 4px ;
+
+}
+/*Formato de la Imagen*/
+.contenedor-form .formLogin{
+    margin: 0px 0px 0px 20px;
+}
+.contenedor-form .formLogin img{
+    width: 50%;
+    margin: 25px 10px 35px 100px;
+    border-image:auto;
+    border-radius: 5px;
+}
+
+.contenedor-form input[type="submit"]{
+    background-color: #8d3131;
+    color: #ffff;
+    border: none;
+    width:50%;
+    margin: 0px 0px 0px 103px;
+    padding: 10px 0;
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bolder;
+    border-radius: 5px;
+    cursor: pointer;   
+    transition: all .5s ease;
+}
+
+.contenedor-form input[type="submit"]:hover{
+    background: rgba(0, 214, 186, 0.5);
+}
+
+.contenedor-form .formLogin .iconologo {
+    margin: 0px 10px -10px 0px;
+    width: 40px;
+}

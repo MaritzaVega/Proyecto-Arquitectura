@@ -1,19 +1,9 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en">
-=======
 <html lang="es">
->>>>>>> 2efd88ae5a9ace2566adc99baf40f1731fb450aa
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Bienvenido</title>
-</head>
-<body>
-    <h1>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis provident consequuntur culpa impedit ab? Neque, molestias ab totam veniam deserunt officia error nobis quis sapiente dignissimos minus ratione ipsum architecto!</h1>
-=======
     <title>Sistema VeI Americo-Login</title>
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/style.css">
@@ -59,6 +49,5 @@
     </div>
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/mains.js"></script> 
->>>>>>> 2efd88ae5a9ace2566adc99baf40f1731fb450aa
 </body>
 </html>

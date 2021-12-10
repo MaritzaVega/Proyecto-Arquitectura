@@ -1,11 +1,11 @@
 <?php
-    $ruta= !empty($_GET['url']) ? $_GET['url'] : "Home/index"; //captura el url
+    $ruta = !empty($_GET['url']) ? $_GET['url'] : "Home/index"; //captura el url
     $array = explode("/",$ruta);
     $controller = $array[0];
     $metodo = "index";
     $parametro = "";
 
-    //verificar si existe el método
+    // Validaciones para verificar si existe el método
     if(!empty($array[1])){
         if(!empty($array[1] != "")){
             $metodo = $array[1];
@@ -22,20 +22,21 @@
         }
     }
 
+    require_once 'Config/App/autoload.php';
+
+    //RUTAS DE CONTROLADORES
     //almacenamos la ruta de la carpeta controller
-    $dirControllers = "Controllers/".$controller.".php";
-    //Verificar si existe en la carpeta controlador
-    if(file_exists($dirControllers)){
+    $dirControllers = "Controllers/" . $controller . ".php";
+    if (file_exists($dirControllers)) {
         require_once $dirControllers;
         $controller = new $controller();
-
-        if(method_exists($controller,$metodo)){
+        if (method_exists($controller, $metodo)) {
             $controller->$metodo($parametro);
-        }else{
-            echo("No exite el metodo");
+        } else {
+            echo 'No existe el metodo';
         }
-    }else{
-        echo("No exite el controlador");
+    } else {
+        echo 'No existe el controlador';
     }
 
 ?>

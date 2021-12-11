@@ -1,11 +1,7 @@
 <?php
-<<<<<<< HEAD
-require_once "Config/Config.php";
-=======
     require_once "Config/Config.php";
 
 
->>>>>>> 24e8e7d364a7e60b25179b9bb4a74120e8b80151
     $ruta = !empty($_GET['url']) ? $_GET['url'] : "Home/index"; //captura el url
     $array = explode("/",$ruta);
     $controller = $array[0];

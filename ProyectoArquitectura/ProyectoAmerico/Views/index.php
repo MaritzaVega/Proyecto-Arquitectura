@@ -44,12 +44,17 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
+<<<<<<< HEAD
                             <div class="text-muted">Compañia &copy; Americo S.A</div>
                             <div>
                                 <a href="#">Telefono : (01)100 4584</a>
                                 &middot;
                                 <a href="#">Lima &amp; San Juan de Miraflores</a>
                             </div>
+=======
+                            <div class="text-muted">Copyright &copy; Sistema de Ventas Américo <?php echo date("Y")?></div>
+
+>>>>>>> 399ed9d6802ee678ceb7cde555fb400cc3d7b084
                         </div>
                     </div>
                 </footer>

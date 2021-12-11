@@ -4,7 +4,7 @@ const base_url="http://localhost/Proyecto-Arquitectura/ProyectoArquitectura/Proy
 const host="localhost";
 const user= "root";
 const pass ="";
-const db = "bd_sistemaamerico";
+const db = "bdsistemaamerico";
 const charset = "charset=utf8";
 
 ?>

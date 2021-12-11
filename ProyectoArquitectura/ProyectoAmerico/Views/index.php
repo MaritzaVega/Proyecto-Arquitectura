@@ -26,11 +26,11 @@
                                             <div class="form-group">
                                                 <label class="small mb-1 text-white "  for="inputEmailAddress">
                                                     <i class="fas fa-user"></i> Usuario</label>
-                                                <input class="form-control  py-4" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
+                                                <input class="form-control1  py-4" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1 text-white " for="inputPassword"><i class="fas fa-key"></i> Clave</label>
-                                                <input class="form-control py-4" id="clave" name="clave" type="password" placeholder="Ingrese contraseña" />
+                                                <input class="form-control1 py-4" id="clave" name="clave" type="password" placeholder="Ingrese contraseña" />
                                             </div>
                                             <!--Muestra cuando mensaje cuando los datos son invalidos--> 
                                             <div class="alert alert-danger text-center d-none" id="alerta" role="alert">

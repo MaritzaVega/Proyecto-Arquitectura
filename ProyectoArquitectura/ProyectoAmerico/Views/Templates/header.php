@@ -57,8 +57,8 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <div class="small">Sistema de Ventas Américo</div>
+                        Americo S.A
                     </div>
                 </nav>
             </div>

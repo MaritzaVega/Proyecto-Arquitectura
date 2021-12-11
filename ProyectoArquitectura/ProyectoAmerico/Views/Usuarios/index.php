@@ -2,7 +2,7 @@
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Usuarios</li>
 </ol>
-<button class="btn btn-primary mb-5" type="button" onclick="frmUsuario();">Crear</button>
+<button class="btn btn-primary mb-4" type="button" onclick="frmUsuario();">Crear</button>
 <table class="table table-light" id="tblUsuarios">
     <thead class="thead-dark">
         <tr>

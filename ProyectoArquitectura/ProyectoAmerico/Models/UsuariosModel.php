@@ -11,6 +11,13 @@ class UsuariosModel extends Query{
         $data = $this->select($sql);
         return $data; 
     }
+
+    public function getUsuarios()
+    {
+        $sql = "select * from usuarios";
+        $data = $this->selectAll($sql);
+        return $data; 
+    }
 }
 
 

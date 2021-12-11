@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +14,8 @@
 <body>
 
 <!DOCTYPE html>
+=======
+>>>>>>> 24e8e7d364a7e60b25179b9bb4a74120e8b80151
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -20,7 +23,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+<<<<<<< HEAD
         <title>Page Title - SB Admin</title>
+=======
+        <title>Sistema de Ventas Américo</title>
+>>>>>>> 24e8e7d364a7e60b25179b9bb4a74120e8b80151
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -32,6 +39,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
+<<<<<<< HEAD
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
                                         <form>
@@ -51,13 +59,30 @@
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="password.html">Forgot Password?</a>
+=======
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar Sesión</h3></div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputEmailAddress"><i class="fas fa-user"></i> Usuario</label>
+                                                <input class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Ingrese usuario" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputPassword"><i class="fas fa-lry"></i> Contraseña</label>
+                                                <input class="form-control py-4" id="inputPassword" type="password" placeholder="Ingrese contraseña" />
+                                            </div>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+>>>>>>> 24e8e7d364a7e60b25179b9bb4a74120e8b80151
                                                 <a class="btn btn-primary" href="index.html">Login</a>
                                             </div>
                                         </form>
                                     </div>
+<<<<<<< HEAD
                                     <div class="card-footer text-center">
                                         <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
                                     </div>
+=======
+>>>>>>> 24e8e7d364a7e60b25179b9bb4a74120e8b80151
                                 </div>
                             </div>
                         </div>
@@ -78,6 +103,7 @@
                     </div>
                 </footer>
             </div>
+<<<<<<< HEAD
         </div>
         <script src="<?php echo base_url; ?>Assets/js/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -123,3 +149,11 @@
     </div>
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/mains.js"></script> !-->
+=======
+        </div>
+        <script src="<?php echo base_url; ?>Assets/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+        <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
+    </body>
+</html>
+>>>>>>> 24e8e7d364a7e60b25179b9bb4a74120e8b80151

@@ -1,4 +1,4 @@
-let tblUsuario;
+let tblUsuarios;
 document.addEventListener("DOMContentLoaded", function(){
     tblUsuarios = $('#tblUsuarios').DataTable({
         ajax: {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
             'data' :'nombre'
             },
             {
-            'data' :'id_caja;'
+            'data' :'id_caja'
             },
         ]
         

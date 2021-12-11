@@ -1,0 +1,11 @@
+...En .htaccess
+
+--Niega el acceso a las carpeta--
+Options All -Indexes
+--Activar el motor de redicciones--
+RewriteEngine on
+--Verifica si el directorio y archivo es valido por request--
+RewriteCond %[REQUEST_FILENAME] !-d
+RewriteCond %[REQUEST_FILENAME] !-f
+--Almacenarel texto siguiente en una url --
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

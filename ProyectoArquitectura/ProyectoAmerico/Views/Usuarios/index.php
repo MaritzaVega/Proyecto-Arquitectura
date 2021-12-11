@@ -9,7 +9,6 @@
             <th>Usuario</th>
             <th>Nombre</th>
             <th>Caja</th>
-        
         </tr>
     </thead>
     <tbody>

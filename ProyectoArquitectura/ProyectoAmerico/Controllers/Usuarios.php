@@ -12,9 +12,10 @@ class Usuarios extends Controller{
 
     public function listar()
     {
-       $data =  $this->model->getUsuarios();
-       echo json_encode($data, JSON_UNESCAPED_UNICODE);
-       die();
+        //print_r($this->model->getUsuarios());
+        $data =  $this->model->getUsuarios();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
     }
 
     public function validar()

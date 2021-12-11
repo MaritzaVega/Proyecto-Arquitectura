@@ -63,7 +63,7 @@ class Usuarios extends Controller{
 
         if(empty($usuario) || empty($nombre) || empty($clave) || empty($documentos) || empty($numDocumento)){
             $msg="Todos los campos son obligatorios";
-        }else if($clave == $confirmar){
+        }else if($clave != $confirmar){
             $msg="Las contraseñas no coinciden";
         }else{
           $data = $this->model->registrarUsuario($usuario, $nombre, $clave, $documentos, $numDocumento);

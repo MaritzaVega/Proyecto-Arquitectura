@@ -21,7 +21,7 @@ class UsuariosModel extends Query{
     }
     public function getUsuarios()
     {
-        $sql = "select u.*, t.id as id from usuarios u INNER JOIN tipodoc t where u.id_numdoc = t.id";
+        $sql = "select u.*, u.id as id from usuarios u INNER JOIN tipodoc t where u.id_numdoc = t.id";
         $data = $this->selectAll($sql);
         return $data; 
     }
@@ -32,7 +32,7 @@ class UsuariosModel extends Query{
         $this->clave = $clave;
         $this->documentos = $documentos;
         $this->numDocumento = $numDocumento;
-        $sql = "insert into usuarios(usuario, nombre, clave, numdoc, id_numdoc) values(?,?,?,?,?)";
+        $sql = "insert into usuarios(usuario, nombre, clave, id_numdoc,numdoc) values(?,?,?,?,?)";
         $datos = array($this->usuario, $this->nombre, $this->clave, $this->documentos, $this->numDocumento);
         $data=$this->save($sql, $datos);
         if ($data == 1) {

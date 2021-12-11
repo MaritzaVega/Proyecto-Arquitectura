@@ -20,17 +20,17 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar Sesión</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form id="frmLogin">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputEmailAddress"><i class="fas fa-user"></i> Usuario</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Ingrese usuario" />
+                                                <label class="small mb-1" for="usuario"><i class="fas fa-user"></i> Usuario</label>
+                                                <input class="form-control py-4" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputPassword"><i class="fas fa-lry"></i> Contraseña</label>
-                                                <input class="form-control py-4" id="inputPassword" type="password" placeholder="Ingrese contraseña" />
+                                                <label class="small mb-1" for="clave"><i class="fas fa-key"></i> Contraseña</label>
+                                                <input class="form-control py-4" id="clave" name= "clave" type="password" placeholder="Ingrese contraseña" />
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="btn btn-primary" href="index.html">Iniciar Session</a>
+                                                <button class="btn btn-primary" type="submit" onclick="frmLogin(event);">Iniciar Session</button>
                                             </div>
                                         </form>
                                     </div>
@@ -44,17 +44,8 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-<<<<<<< HEAD
-                            <div class="text-muted">Compañia &copy; Americo S.A</div>
-                            <div>
-                                <a href="#">Telefono : (01)100 4584</a>
-                                &middot;
-                                <a href="#">Lima &amp; San Juan de Miraflores</a>
-                            </div>
-=======
                             <div class="text-muted">Copyright &copy; Sistema de Ventas Américo <?php echo date("Y")?></div>
 
->>>>>>> 399ed9d6802ee678ceb7cde555fb400cc3d7b084
                         </div>
                     </div>
                 </footer>
@@ -63,5 +54,6 @@
         <script src="<?php echo base_url; ?>Assets/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
+        <script src="<?php echo base_url; ?>Assets/js/funciones.js"></script>
     </body>
 </html>

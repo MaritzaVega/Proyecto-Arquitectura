@@ -35,6 +35,7 @@ function frmLogin(e){ // detiene que la página se cargue de nuevo
     const clave = document.getElementById("clave");
     //Valida campos vacio
     if(usuario.value ==""){
+        //alertas para llenar datos en los campos y si son los mismo de la bd
         clave.classList.remove("is-invalid");
         usuario.classList.add("is-invalid");
         usuario.focus();
@@ -69,7 +70,7 @@ function frmLogin(e){ // detiene que la página se cargue de nuevo
 function frmUsuario(){
     $("#nuevo-usuario").modal("show"); 
 }
-
+//esta funcion trabaja con ->Usuarios.php
 function registrarUser(e){ // detiene que la página se cargue de nuevo
     e.preventDefault();
     const usuario = document.getElementById("usuario");
@@ -80,6 +81,7 @@ function registrarUser(e){ // detiene que la página se cargue de nuevo
     const numDocumento = document.getElementById("numDocumento");
     //Valida campos vacio
     if(usuario.value == "" || nombre.value == ""|| clave.value == "" || documentos =="" || numDocumento.value == ""){
+       //SwetAlert 
         Swal.fire({
             position: 'top-end',
             icon: 'error',

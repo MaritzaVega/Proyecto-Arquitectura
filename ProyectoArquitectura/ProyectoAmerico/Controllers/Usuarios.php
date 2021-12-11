@@ -51,7 +51,7 @@ class Usuarios extends Controller{
         echo json_encode($msg,JSON_UNESCAPED_UNICODE);
         die();
     }
-
+//video 7
     public function registrar()
     {
         $usuario = $_POST['usuario'];
@@ -63,9 +63,20 @@ class Usuarios extends Controller{
 
         if(empty($usuario) || empty($nombre) || empty($clave) || empty($documentos) || empty($numDocumento)){
             $msg="Todos los campos son obligatorios";
-        }else if($clave == $confirmar){
+        }else if($clave != $confirmar){
             $msg="Las contraseñas no coinciden";
+        }else{
+          $data = $this->model->registrarUsuario($usuario, $nombre, $clave, $documentos, $numDocumento);
+          if ($data == "ok")
+          {
+            $msg = "Usuario registrado con éxito";
+          }else {
+            $msg = "Error al registrar el usuario";
+          }
+
         }
+        echo json_encode($msg,JSON_UNESCAPED_UNICODE);
+        die();
     }
 
 }

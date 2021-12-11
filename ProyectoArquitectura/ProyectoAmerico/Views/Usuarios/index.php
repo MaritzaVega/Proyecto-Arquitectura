@@ -3,6 +3,7 @@
     <li class="breadcrumb-item active">Usuarios</li>
 </ol>
 <button class="btn btn-primary mb-4" type="button" onclick="frmUsuario();">Crear</button>
+
 <table class="table table-light" id="tblUsuarios">
     <thead class="thead-dark">
         <tr>
@@ -52,8 +53,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="doc">Documento</label>
-                        <select id="doc" class="form-control" name="doc">
+                        <label for="documentos">Documento</label>
+                        <select id="documentos" class="form-control" name="documentos">
                             <?php foreach ($data['documentos'] as $row){ ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo $row['doc']; ?></option>
                             <?php } ?>
@@ -61,7 +62,7 @@
                     </div>
                     <div class="form-group">
                         <label for="numDocumento">Número de Documento</label>
-                        <input id="numDocumento" class="form-control" type="text" name="numDocumento" placeholder="N° Documento">
+                        <input id="numDocumento" class="form-control" type="number" min="8" max="12" name="numDocumento" placeholder="N° Documento">
                     </div>
                     <button class="btn btn-primary" type="button" onclick="registrarUser(event);">Registrar</button>
                 </form>

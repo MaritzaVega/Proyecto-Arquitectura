@@ -11,13 +11,20 @@ class UsuariosModel extends Query{
         $data = $this->select($sql);
         return $data; 
     }
-
-    public function getUsuarios()
+    public function getDocumentos()
     {
-        $sql = "select u.*, t.id, t.doc from usuarios u INNER JOIN tipodoc t where u.id_numdoc = t.id";
+        $sql = "select * from tipodoc";
         $data = $this->selectAll($sql);
         return $data; 
     }
+    public function getUsuarios()
+    {
+        $sql = "select u.*, t.id, t.numdoc from usuarios u INNER JOIN tipodoc t where u.id_numdoc = t.id";
+        $data = $this->selectAll($sql);
+        return $data; 
+    }
+
+    
 }
 
 

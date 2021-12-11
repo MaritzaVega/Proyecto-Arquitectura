@@ -79,5 +79,10 @@ git clone https://......
 
 17° Extraer o bajar el archivo con cambios guardado de otra rama
 
+18° Como eliminar un repositorio ya existente
+-> git remote remove origin
+ generamos uno nuevo 
+-> git remote add origin https://github.com/MaritzaVega/ProyectoArquitectura.git
+
 
 

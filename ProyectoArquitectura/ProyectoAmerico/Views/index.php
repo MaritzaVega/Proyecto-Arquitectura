@@ -22,15 +22,33 @@
                                     <div class="card-body">
                                         <form id="frmLogin">
                                             <div class="form-group">
+<<<<<<< HEAD
                                                 <label class="small mb-1" for="usuario"><i class="fas fa-user"></i> Usuario</label>
                                                 <input class="form-control py-4" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="clave"><i class="fas fa-key"></i> Contraseña</label>
                                                 <input class="form-control py-4" id="clave" name= "clave" type="password" placeholder="Ingrese contraseña" />
+=======
+                                                <label class="small mb-1" for="inputEmailAddress"><i class="fas fa-user"></i> Usuario</label>
+                                                <input class="form-control py-4" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
                                             </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputPassword"><i class="fas fa-lry"></i> Clave</label>
+                                                <input class="form-control py-4" id="clave" name="clave" type="password" placeholder="Ingrese contraseña" />
+>>>>>>> 3b370dfe119ceb5570b4a0ffc5346c7b7d687480
+                                            </div>
+                                            <!--Muestra cuando mensaje cuando los datos son invalidos--> 
+                                            <div class="alert alert-danger text-center d-none" id="alerta" role="alert">
+                                                
+                                            </div>
+                                        
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+<<<<<<< HEAD
                                                 <button class="btn btn-primary" type="submit" onclick="frmLogin(event);">Iniciar Session</button>
+=======
+                                                <button class="btn btn-primary" type="submit" onclick="frmLogin(event)">Login</button>
+>>>>>>> 3b370dfe119ceb5570b4a0ffc5346c7b7d687480
                                             </div>
                                         </form>
                                     </div>
@@ -54,6 +72,12 @@
         <script src="<?php echo base_url; ?>Assets/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
+<<<<<<< HEAD
+=======
+        <script>
+            const base_url = "<?php echo base_url;?>";
+        </script>
+>>>>>>> 3b370dfe119ceb5570b4a0ffc5346c7b7d687480
         <script src="<?php echo base_url; ?>Assets/js/funciones.js"></script>
     </body>
 </html>

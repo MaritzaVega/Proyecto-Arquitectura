@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <label for="documentos">Documento</label>
-                        <select id="documentos" class="form-control" name="doc">
+                        <select id="documentos" class="form-control" name="documentos">
                             <?php foreach ($data['documentos'] as $row){ ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo $row['doc']; ?></option>
                             <?php } ?>

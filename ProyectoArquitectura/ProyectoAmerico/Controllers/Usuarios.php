@@ -66,12 +66,12 @@ class Usuarios extends Controller{
         }else if($clave == $confirmar){
             $msg="Las contraseñas no coinciden";
         }else{
-          $data = $this->model->registrarUsuario($usuario,$nombre,$clave, $documentos, $numDocumento);
+          $data = $this->model->registrarUsuario($usuario, $nombre, $clave, $documentos, $numDocumento);
           if ($data == "ok")
           {
             $msg = "Usuario registrado con éxito";
           }else {
-            $msg = "Error al registrat el usuario";
+            $msg = "Error al registrar el usuario";
           }
 
         }

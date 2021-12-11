@@ -23,7 +23,8 @@ class Query extends Conexion{
         return $data;
     }
 
-    public function save(string $sql, array $datos){
+    public function save(string $sql, array $datos)
+    {
         $this->sql = $sql;
         $this->datos = $datos;
         $insert = $this->con->prepare($this->sql);
@@ -34,10 +35,8 @@ class Query extends Conexion{
             $res = 0;
         }
         return $res;
+    }
 
     }
     
-}
- 
- 
 ?>

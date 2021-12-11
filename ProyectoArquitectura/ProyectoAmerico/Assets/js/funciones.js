@@ -110,14 +110,28 @@ function registrarUser(e){ // detiene que la página se cargue de nuevo
         http.send(new FormData(frm));
         http.onreadystatechange = function(){//se ejecutara cada vez que cambia
             if(this.readyState == 4 && this.status == 200){
-                console.log(this.responseText);
-                /*const res = JSON.parse(this.responseText);
-                if(res == "ok"){
-                    window.location = base_url + "Usuarios";
+                const res = JSON.parse(this.responseText);
+                if(res == "si")
+                {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Usuarios registrados con exito',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+
+                    frm.reset();
+                    $("#nuevo_usuario").modal("hide");
                 }else{
-                    document.getElementById("alerta").classList.remove("d-none");
-                    document.getElementById("alerta").innerHTML = res;
-                }*/
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: res,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                }
             } 
         }
             

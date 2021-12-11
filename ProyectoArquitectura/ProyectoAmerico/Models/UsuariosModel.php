@@ -11,6 +11,7 @@ class UsuariosModel extends Query{
         $data = $this->select($sql);
         return $data; 
     }
+    /*caja = documento*/
     public function getDocumentos()
     {
         $sql = "select * from tipodoc";

@@ -9,7 +9,7 @@
             <th>Id</th>
             <th>Usuario</th>
             <th>Nombre</th>
-            <th>Documento</th>
+            <th>N° Documento</th>
             <th>Estado</th>
             <th>Opción</th>
         </tr>
@@ -17,7 +17,7 @@
     <tbody>
     </tbody>
 </table>
-
+<!---MODAL DE CREAR "REGISTRAR NUEVO USUARIO"!-->
 <div id="nuevo-usuario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

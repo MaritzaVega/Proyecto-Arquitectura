@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
             'data' :'nombre'
             },
             {
-            'data' :'doc'
+            'data' :'numdoc'
             },
         ]
         

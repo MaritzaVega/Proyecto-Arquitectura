@@ -116,13 +116,13 @@ function registrarUser(e){ // detiene que la página se cargue de nuevo
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Usuarios registrados con exito',
+                        title: 'Usuario registrado con exito',
                         showConfirmButton: false,
                         timer: 3000
                     })
 
                     frm.reset();
-                    $("#nuevo_usuario").modal("hide");
+                    $("#nuevo-usuario").modal("hide");
                 }else{
                     Swal.fire({
                         position: 'top-end',

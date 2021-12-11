@@ -21,12 +21,12 @@ class UsuariosModel extends Query{
     }
     public function getUsuarios()
     {
-        $sql = "select u.*, t.id as id from usuarios u INNER JOIN tipodoc t where u.id_numdoc = t.id";
+        $sql = "select u.*, u.id as id from usuarios u INNER JOIN tipodoc t where u.id_numdoc = t.id";
         $data = $this->selectAll($sql);
         return $data; 
     }
                                                                 //id_caja = $documentos     
-    public function registrarUsuario(string $usuario, string $nombre, string $clave, int $documentos, int $numDocumento){
+    public function registrarUsuario(string $usuario, string $nombre, string $clave, int $numDocumento, int $documentos){
         $this->usuario = $usuario;
         $this->nombre = $nombre;
         $this->clave = $clave;

@@ -32,13 +32,14 @@
                 <form method="post" id="frmUsuario">
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
+                        <input type="hidden" id="id" name="id">
                         <input id="usuario" class="form-control" type="text" name="usuario" placeholder="usuario">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombres">
                     </div>
-                    <div class="row">
+                    <div class="row" id="claves">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="clave">Contraseña</label>
@@ -64,7 +65,7 @@
                         <label for="numDocumento">Número de Documento</label>
                         <input id="numDocumento" class="form-control" type="number" min="8" max="12" name="numDocumento" placeholder="N° Documento">
                     </div>
-                    <button class="btn btn-primary" type="button" onclick="registrarUser(event);">Registrar</button>
+                    <button class="btn btn-primary" type="button" onclick="registrarUser(event);" id="btnAccion">Registrar</button>
                 </form>
             </div>
         </div>

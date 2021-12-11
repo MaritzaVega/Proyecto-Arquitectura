@@ -49,9 +49,35 @@ class UsuariosModel extends Query{
             $res = "existe";
         }
         return $res;
+    }
 
+    public function modificarUsuario(string $usuario, string $nombre, int $numDocumento,int $documentos, int $id){
+        $this->usuario = $usuario;
+        $this->nombre = $nombre;
+        $this->id = $id;
+        $this->documentos = $documentos;
+        $this->numDocumento = $numDocumento;
 
-}
+        
+            $sql = "update usuarios set usuario=?, nombre=?, numdoc=?,id_numdoc=? where id=?";
+            $datos = array($this->usuario, $this->nombre, $this->documentos, $this->numDocumento, $this->id);
+            $data=$this->save($sql, $datos);
+            if ($data == 1) {
+                $res = "Modificado";
+            }else{
+                $res = "error";
+            }
+        
+        return $res;
+    }
+
+    public function editarUser(int $id)
+    {
+        $sql = "select * from usuarios where id='$id'";
+        $data = $this->select($sql);
+        return $data;
+    }
+    
 }
 
 

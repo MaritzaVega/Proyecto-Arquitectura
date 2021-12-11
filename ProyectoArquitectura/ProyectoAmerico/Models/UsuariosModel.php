@@ -32,7 +32,7 @@ class UsuariosModel extends Query{
         $this->clave = $clave;
         $this->documentos = $documentos;
         $this->numDocumento = $numDocumento;
-        $sql = "insert into usuarios(usuario, nombre, clave, numdoc, id_numdoc) values(?,?,?,?,?)";
+        $sql = "insert into usuarios(usuario, nombre, clave, id_numdoc,numdoc) values(?,?,?,?,?)";
         $datos = array($this->usuario, $this->nombre, $this->clave, $this->documentos, $this->numDocumento);
         $data=$this->save($sql, $datos);
         if ($data == 1) {

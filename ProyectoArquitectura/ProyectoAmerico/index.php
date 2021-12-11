@@ -1,4 +1,5 @@
 <?php
+require_once "Config/Config.php";
     $ruta = !empty($_GET['url']) ? $_GET['url'] : "Home/index"; //captura el url
     $array = explode("/",$ruta);
     $controller = $array[0];

@@ -71,8 +71,9 @@ body {
 }
 .fondo{
   background-image: url('../img/Tienda-de-ropa.jpg');
-  width: 100%;
-  height: 100vh;
+  max-width: 100%;
+  width: auto;
+  height: auto;
   background-size: cover;
   background-position: center;
 }

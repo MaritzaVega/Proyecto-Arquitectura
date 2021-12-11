@@ -26,7 +26,7 @@ class UsuariosModel extends Query{
         return $data; 
     }
                                                                 //id_caja = $documentos     
-    public function registrarUsuario(string $usuario, string $nombre, string $clave, int $numDocumento, int $documentos){
+    public function registrarUsuario(string $usuario, string $nombre, string $clave, int $documentos, int $numDocumento){
         $this->usuario = $usuario;
         $this->nombre = $nombre;
         $this->clave = $clave;

@@ -32,13 +32,21 @@ class UsuariosModel extends Query{
         $this->clave = $clave;
         $this->documentos = $documentos;
         $this->numDocumento = $numDocumento;
-        $sql = "insert into usuarios(usuario, nombre, clave, id_numdoc,numdoc) values(?,?,?,?,?)";
-        $datos = array($this->usuario, $this->nombre, $this->clave, $this->documentos, $this->numDocumento);
-        $data=$this->save($sql, $datos);
-        if ($data == 1) {
-            $res = "ok";
+
+        ///verificamos si existe el usuario
+        $verificar = "select * from usuarios where usuario = '$this->usuario'";
+        $existe = $this->select($verificar);
+        if(empty($existe)){
+            $sql = "insert into usuarios(usuario, nombre, clave, id_numdoc,numdoc) values(?,?,?,?,?)";
+            $datos = array($this->usuario, $this->nombre, $this->clave, $this->documentos, $this->numDocumento);
+            $data=$this->save($sql, $datos);
+            if ($data == 1) {
+                $res = "ok";
+            }else{
+                $res = "error";
+            }
         }else{
-            $res = "error";
+            $res = "existe";
         }
         return $res;
 

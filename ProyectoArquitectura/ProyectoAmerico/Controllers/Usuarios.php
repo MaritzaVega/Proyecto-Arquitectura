@@ -24,7 +24,7 @@ class Usuarios extends Controller{
             }
 
             //Botones modificar y eliminar
-            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button">Editar</button>
+            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarUser();">Editar</button>
             <button class="btn btn-danger" type="button">Eliminar</button></div>'; 
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -67,13 +67,13 @@ class Usuarios extends Controller{
             $msg="Las contraseñas no coinciden";
         }else{
           $data = $this->model->registrarUsuario($usuario, $nombre, $clave, $documentos, $numDocumento);
-          if ($data == "ok")
-          {
+          if ($data == "ok"){
             $msg = "si";
-          }else {
-            $msg = "Error al registrar el usuario";
+          }else if($data == "existe"){
+            $msg = "El usuario ya existe";
+          }else{
+              $msg="Error al registrar el usuario";
           }
-
         }
         echo json_encode($msg,JSON_UNESCAPED_UNICODE);
         die();

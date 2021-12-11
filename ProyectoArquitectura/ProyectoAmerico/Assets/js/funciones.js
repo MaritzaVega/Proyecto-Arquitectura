@@ -67,7 +67,9 @@ function frmLogin(e){ // detiene que la página se cargue de nuevo
 
 }
 
+//abre le modal de los usuarios
 function frmUsuario(){
+    document.getElementById("title").innerHTML = "Registrar Nuevo Usuario";
     $("#nuevo-usuario").modal("show"); 
 }
 //esta funcion trabaja con ->Usuarios.php
@@ -137,7 +139,13 @@ function registrarUser(e){ // detiene que la página se cargue de nuevo
             
     }
 
-}   
+}  
+
+function btnEditarUser(){ // detiene que la página se cargue de nuevo
+   document.getElementById("title").innerHTML = "Actualizar Usuario";
+    $("#nuevo-usuario").modal("show");
+
+} 
 
 
 

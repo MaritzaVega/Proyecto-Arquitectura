@@ -10,7 +10,8 @@
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body class="fondo">
+        
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -18,15 +19,17 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar Sesión</h3></div>
+                                  
+                                    <img src="Assets/img/logo.JPG">
                                     <div class="card-body">
                                         <form id="frmLogin">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputEmailAddress"><i class="fas fa-user"></i> Usuario</label>
-                                                <input class="form-control py-4" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
+                                                <label class="small mb-1 text-white "  for="inputEmailAddress">
+                                                    <i class="fas fa-user"></i> Usuario</label>
+                                                <input class="form-control  py-4" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputPassword"><i class="fas fa-key"></i> Clave</label>
+                                                <label class="small mb-1 text-white " for="inputPassword"><i class="fas fa-key"></i> Clave</label>
                                                 <input class="form-control py-4" id="clave" name="clave" type="password" placeholder="Ingrese contraseña" />
                                             </div>
                                             <!--Muestra cuando mensaje cuando los datos son invalidos--> 
@@ -34,8 +37,8 @@
                                                 
                                             </div>
                                         
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <button class="btn btn-primary" type="submit" onclick="frmLogin(event)">Login</button>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0 ">
+                                                <button class="btn btn-danger2" type="submit" onclick="frmLogin(event)">Login</button>
                                             </div>
                                         </form>
                                     </div>

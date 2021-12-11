@@ -8,7 +8,7 @@
             <th>Id</th>
             <th>Usuario</th>
             <th>Nombre</th>
-            <th>Caja</th>
+            <th>Documento</th>
         </tr>
     </thead>
     <tbody>

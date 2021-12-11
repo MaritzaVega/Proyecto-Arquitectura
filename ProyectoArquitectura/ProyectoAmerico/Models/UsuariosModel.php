@@ -14,7 +14,7 @@ class UsuariosModel extends Query{
 
     public function getUsuarios()
     {
-        $sql = "select * from usuarios";
+        $sql = "select u.*, t.id, t.doc from usuarios u INNER JOIN tipodoc t where u.id_numdoc = t.id";
         $data = $this->selectAll($sql);
         return $data; 
     }

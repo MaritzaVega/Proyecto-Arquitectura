@@ -65,7 +65,6 @@
                         <input id="numDocumento" class="form-control" type="number" minlength="8" maxlength="12" name="numDocumento" placeholder="N° Documento">
                     </div>
                     <button class="btn btn-primary" type="button" onclick="registrarUser(event);">Registrar</button>
-                
                 </form>
             </div>
         </div>

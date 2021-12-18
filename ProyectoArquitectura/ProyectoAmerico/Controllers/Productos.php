@@ -89,7 +89,7 @@ class Productos extends Controller{
                 
                 
             }else{
-                
+                //eliminar foto de la carpeta img
                 $imgDelete =$this->model->editarPro($id);
                 if($imgDelete['foto'] != 'default.jpg' || $imgDelete['foto'] != ""){
                     if(file_exists("Assets/img/" . $imgDelete['foto'])){

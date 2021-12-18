@@ -47,6 +47,7 @@
     <thead class="thead-dark">
         <tr>
             <th>Id</th>
+            <th>Foto</th>
             <th>Codigo</th>
             <th>Descripción</th>
             <th>Cantidad</th>

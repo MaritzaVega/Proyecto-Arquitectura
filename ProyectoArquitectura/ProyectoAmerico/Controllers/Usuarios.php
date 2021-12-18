@@ -24,8 +24,11 @@ class Usuarios extends Controller{
             }
 
             //Botones modificar y eliminar
-            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');">Editar</button>
-            <button class="btn btn-danger" type="button">Eliminar</button></div>'; 
+            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-success" type="button" onclick="btnReingresarUser('.$data[$i]['id'].');">Reingresar</button>
+            </div>'; 
+            
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
@@ -38,7 +41,8 @@ class Usuarios extends Controller{
         }else{
             $usuario = $_POST['usuario'];
             $clave = $_POST['clave'];
-            $data = $this->model->getUsuario($usuario,$clave);
+            //$hash = hash("SHA256", $clave);
+            $data = $this->model->getUsuario($usuario,$clave); //se debe poner $hash en vez de $clave
             if($data){
                 $_SESSION['id_usuario'] = $data['id'];
                 $_SESSION['usuario'] = $data['usuario'];
@@ -101,6 +105,30 @@ class Usuarios extends Controller{
     {
         $data = $this->model->editarUser($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function eliminar(int $id)
+    {
+        $data = $this->model->accionUser(0, $id);
+        if($data==1){
+            $msg = "ok";
+        }else{
+            $msg = "Error al eliminar el usuario";
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function reingresar(int $id)
+    {
+        $data = $this->model->accionUser(1, $id);
+        if($data==1){
+            $msg = "ok";
+        }else{
+            $msg = "Error al reingresar el usuario";
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();
     }
 

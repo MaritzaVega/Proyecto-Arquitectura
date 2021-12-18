@@ -1,6 +1,6 @@
 <?php
 class UsuariosModel extends Query{
-    private $usuario, $nombre, $clave, $documentos, $numDocumento;
+    private $usuario, $nombre, $clave, $documentos, $numDocumento, $id, $estado;
     public function _constructor()
     {
         parent::__construct();
@@ -75,6 +75,16 @@ class UsuariosModel extends Query{
     {
         $sql = "select * from usuarios where id='$id'";
         $data = $this->select($sql);
+        return $data;
+    }
+
+    public function accionUser(int $estado, int $id)
+    {
+        $this -> id = $id;
+        $this -> estado = $estado;
+        $sql = "UPDATE usuarios SET estado = ? WHERE id = ?";
+        $datos = array($this->estado, $this->id);
+        $data = $this->save($sql, $datos);
         return $data;
     }
     

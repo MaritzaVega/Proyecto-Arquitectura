@@ -39,7 +39,7 @@ class Productos extends Controller{
     }
     
     
-//video 7
+//Registrar
     public function registrar()
     {
         $codigo = $_POST['codigo'];

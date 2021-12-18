@@ -38,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function(){
             'data' : 'id'
             },
             {
+            'data' : 'imagen'
+            },
+            {
             'data' : 'codigo'
             },
             {
@@ -263,6 +266,7 @@ function frmProducto(){
     document.getElementById("frmProducto").reset();
     $("#nuevo-producto").modal("show"); 
     document.getElementById("id").value="";
+    deleteImg();
 }
 //esta funcion trabaja con ->Usuarios.php
 function registrarPro(e){ // detiene que la página se cargue de nuevo
@@ -352,8 +356,14 @@ function btnEditarPro(id){ // detiene que la página se cargue de nuevo
             document.getElementById("nombre").value = res.descripcion;
             document.getElementById("precio_compra").value = res.precio_compra;
             document.getElementById("precio_venta").value = res.precio_venta;
+            //foto
+            document.getElementById("img-preview").src = base_url + 'Assets/img/'+res.foto;
+            document.getElementById("icon-cerrar").innerHTML = `<button class="btn btn-danger" onclick="deleteImg()"><i class="fas fa-times"></i></button>`;
+            document.getElementById("icon-image").classList.add("d-none");
+            document.getElementById("foto_actual").value = res.foto;
+            document.getElementById("foto_delete").value = res.foto;
+
             document.getElementById("nivel").value = res.nivel;
-            
             $("#nuevo-producto").modal("show");
         } 
     }
@@ -447,6 +457,21 @@ function btnReingresarPro(id ){
 
 }
 
+function preview(e) {
+    const url = e.target.files[0];
+    const urlTmp = URL.createObjectURL(url);
+    document.getElementById("img-preview").src = urlTmp;
+    document.getElementById("icon-image").classList.add("d-none");
+    document.getElementById("icon-cerrar").innerHTML = `<button class="btn btn-danger" onclick="deleteImg()"><i class="fas fa-times"></i></button> ${url["name"]}`;
+}
+
+function deleteImg() {
+    document.getElementById("icon-cerrar").innerHTML = '';
+    document.getElementById("icon-image").classList.remove("d-none");
+    document.getElementById("img-preview").src = '';
+    document.getElementById("imagen").value = '';
+    document.getElementById("foto_delete").value = '';
+}
 
 
 

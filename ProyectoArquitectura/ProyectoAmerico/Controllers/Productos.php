@@ -53,21 +53,34 @@ class Productos extends Controller{
         $img = $_FILES['imagen'];
         $name = $img['name'];
         $tmpname = $img['tmp_name'];
-        $destino = "Assets/img/".$name;
-        if(empty($name)){
-            $name = "default.jpg";
-        }
 
+        //validación new fecha
+        $fecha = date("YmdHis");
         if(empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta) || empty($nivel)){
             $msg="Todos los campos son obligatorios";
         }else{
+            //la validadcion fecha
+            if (!empty($name)) {
+                $imgNombre =$fecha. ".jpg";
+                $destino = "Assets/img/" .$imgNombre;
+            }else if (!empty($_POST ['foto_actual']) && empty ($name)) {
+                $imgNombre =$_POST['foto_actual'];
+            }else{
+                $imgNombre = 'default.jpg';
+            }
             
-            if($id==""){
-
-                    $data = $this->model->registrarProducto($codigo, $nombre, $precio_compra, $precio_venta,$name, $nivel);
+            if($id == ""){
+                    //metodo
+                    $data = $this->model->registrarProducto($codigo, $nombre, $precio_compra, $precio_venta,$imgNombre, $nivel);
                     if ($data == "ok"){
+
+                          if (!empty($name)) {
+                            move_uploaded_file($tmpname, $destino);
+                             
+                          }  
+
                         $msg = "si";
-                        move_uploaded_file($tmpname, $destino);
+                        
                     }else if($data == "existe"){
                         $msg = "El Producto ya existe";
                     }else{
@@ -76,20 +89,25 @@ class Productos extends Controller{
                 
                 
             }else{
-                if($_POST['foto_actual'] != $_POST['foto_delete']){
-                    $imgDelete =$this->model->editarPro($id);
-                    if($imgDelete['foto'] != 'default.jpg' || $imgDelete['foto'] != ""){
-                        if(file_exists($destino . $imgDelete['foto'])){
-                            unlink($destino . $imgDelete['foto']);
-                        }
+                
+                $imgDelete =$this->model->editarPro($id);
+                if($imgDelete['foto'] != 'default.jpg' || $imgDelete['foto'] != ""){
+                    if(file_exists("Assets/img/" . $imgDelete['foto'])){
+                        unlink("Assets/img/" . $imgDelete['foto']);
                     }
-                    $data = $this->model->modificarProducto($codigo, $nombre, $precio_compra, $precio_venta, $name,$nivel,$id);
-                    if ($data == "Modificado"){
+                }
+                //metodo
+                $data = $this->model->modificarProducto($codigo, $nombre, $precio_compra, $precio_venta, $imgNombre,$nivel,$id);
+                if ($data == "Modificado"){
+
+                    if (!empty($name)) {
                         move_uploaded_file($tmpname, $destino);
-                        $msg = "Modificado";
-                    }else{
-                        $msg="Error al modificar el Producto";
-                    }
+                        
+                      }  
+
+                    $msg = "Modificado";
+                }else{
+                    $msg="Error al modificar el Producto";
                 }
                 
             }

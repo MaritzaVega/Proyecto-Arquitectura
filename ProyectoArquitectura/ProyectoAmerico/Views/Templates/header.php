@@ -51,8 +51,11 @@
                                     <a class="nav-link" href="<?php echo base_url; ?>Usuarios">Usuarios</a>
                                     <!--<a class="nav-link" href="layout-sidenav-light.html">Cajas</a>-->
                                 </nav>
-                            </div>
-                
+                            </div >
+                            <a class="nav-link" href="<?php echo base_url; ?>Productos"> 
+                                 <div class="sb-nav-link-icon"><i class="fab fa-product-hunt text-primary"></i></div>
+                                 Productos
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

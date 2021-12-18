@@ -174,5 +174,92 @@ function btnEditarUser(id){ // detiene que la página se cargue de nuevo
 
 } 
 
+function btnEliminarUser(id ){
+    Swal.fire({
+        title: 'Está seguro de eliminar?',
+        text: "El usuario no se eliminará de forma permanente, solo cambiará su estado a INACTIVO!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+                //mostrar los datos en el modal
+                const url = base_url + "Usuarios/eliminar/"+id;
+                const frm = document.getElementById("frmUsuario");
+                const http = new XMLHttpRequest();
+                http.open("GET", url, true); //ejecutar de forma asincrona
+                http.send();
+                http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                    if(this.readyState == 4 && this.status == 200){
+                        const res = JSON.parse(this.responseText);
+                        if(res == "ok"){
+                            Swal.fire(
+                                'Mensaje!',
+                                'Usuario eliminado con éxito.',
+                                'success'
+                            )
+                            tblUsuarios.ajax.reload();
+                        }else{
+                            Swal.fire(
+                                'Mensaje!',
+                                 res,
+                                'error'
+                            )
+                        }
+                    } 
+                }
+                
+        }
+      })
+
+}
+
+function btnReingresarUser(id ){
+    Swal.fire({
+        title: 'Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+                //mostrar los datos en el modal
+                const url = base_url + "Usuarios/reingresar/"+id;
+                const frm = document.getElementById("frmUsuario");
+                const http = new XMLHttpRequest();
+                http.open("GET", url, true); //ejecutar de forma asincrona
+                http.send();
+                http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                    if(this.readyState == 4 && this.status == 200){
+                        const res = JSON.parse(this.responseText);
+                        if(res == "ok"){
+                            Swal.fire(
+                                'Mensaje!',
+                                'Usuario reingresado con éxito.',
+                                'success'
+                            )
+                            tblUsuarios.ajax.reload();
+                        }else{
+                            Swal.fire(
+                                'Mensaje!',
+                                 res,
+                                'error'
+                            )
+                        }
+                    } 
+                }
+                
+        }
+      })
+
+}
+
+
+
 
 

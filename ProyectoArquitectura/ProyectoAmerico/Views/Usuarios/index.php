@@ -18,12 +18,12 @@
     <tbody>
     </tbody>
 </table>
-<!---MODAL DE CREAR "REGISTRAR NUEVO USUARIO"!-->
+<!---MODAL DE CREAR "REGISTRAR - EDITAR NUEVO USUARIO"!-->
 <div id="nuevo-usuario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="my-modal-title">Registrar Nuevo Usuario</h5>
+                <h5 class="modal-title" id="title">Registrar Nuevo Usuario</h5>
                 <button class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -32,13 +32,14 @@
                 <form method="post" id="frmUsuario">
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
+                        <input type="hidden" id="id" name="id">
                         <input id="usuario" class="form-control" type="text" name="usuario" placeholder="usuario">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombres">
                     </div>
-                    <div class="row">
+                    <div class="row" id="claves">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="clave">Contraseña</label>
@@ -65,6 +66,7 @@
                         <input id="numDocumento" class="form-control" type="number" minlength="8" maxlength="12" name="numDocumento" placeholder="N° Documento">
                     </div>
                     <button class="btn btn-primary" type="button" onclick="registrarUser(event);">Registrar</button>
+                
                 </form>
             </div>
         </div>

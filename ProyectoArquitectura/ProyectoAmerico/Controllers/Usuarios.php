@@ -38,6 +38,7 @@ class Usuarios extends Controller{
         die();
     }
     
+
     public function validar()
     {
         if(empty($_POST['usuario']) || empty($_POST['clave'])){
@@ -60,6 +61,8 @@ class Usuarios extends Controller{
         echo json_encode($msg,JSON_UNESCAPED_UNICODE);
         die();
     }
+
+
 //video 7
     public function registrar()
     {
@@ -73,6 +76,7 @@ class Usuarios extends Controller{
 
         //variable para encriptar las contraseñas
         $hash = hash("SHA256", $clave);
+        $hash = password_hash($clave, PASSWORD_DEFAULT);
 
         if(empty($usuario) || empty($nombre) || empty($documentos) || empty($numDocumento)){
             $msg="Todos los campos son obligatorios";

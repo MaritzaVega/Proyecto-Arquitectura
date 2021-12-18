@@ -69,21 +69,12 @@ function frmLogin(e){ // detiene que la página se cargue de nuevo
 
 //abre le modal de los usuarios
 function frmUsuario(){
-<<<<<<< HEAD
-        document.getElementById("title").innerHTML = "Registrar Nuevo Usuario";
-        document.getElementById("btnAccion").innerHTML = "Registrar";
-        document.getElementById("claves").classList.remove("d-none");
-        document.getElementById("frmUsuario").reset();
-        $("#nuevo-usuario").modal("show"); 
-        document.getElementById("id").value="";
-=======
     document.getElementById("title").innerHTML = "Registrar Nuevo Usuario";
     document.getElementById("btnAccion").innerHTML = "Registrar";
     document.getElementById("claves").classList.remove("d-none");
     document.getElementById("frmUsuario").reset();
     $("#nuevo-usuario").modal("show"); 
     document.getElementById("id").value="";
->>>>>>> Marlene
 }
 //esta funcion trabaja con ->Usuarios.php
 function registrarUser(e){ // detiene que la página se cargue de nuevo

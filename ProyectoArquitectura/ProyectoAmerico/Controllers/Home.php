@@ -3,7 +3,7 @@
         public function __construct() {
             session_start();
             if( !empty($_SESSION["activo"])){ //!empty 
-                header("location: ".base_url. "Usuarios"); 
+                header("location: ".base_url."Usuarios"); 
             }
             parent::__construct();
         }

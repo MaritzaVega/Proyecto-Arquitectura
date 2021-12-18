@@ -21,7 +21,7 @@
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                   
-                                    <img src="Assets/img/logo.jpg">
+                                    <img src="Assets/imagenes/logo.jpg">
                                     <div class="card-body">
                                         <form id="frmLogin">
                                             <div class="form-group">

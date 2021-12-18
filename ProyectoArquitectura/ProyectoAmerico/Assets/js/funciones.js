@@ -472,5 +472,49 @@ function deleteImg() {
     document.getElementById("foto_actual").value = '';
 }
 
+//Buscar codigo
+function buscarCodigo(e){
+    e.preventDefault();
+    if(e.which == 13){
+        const cod = document.getElementById("codigo").value;
+        const url = base_url + "Compras/buscarCodigo/"+cod;
+        const http = new XMLHttpRequest();
+        http.open("GET", url, true); //ejecutar de forma asincrona
+        http.send();
+        http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+             if(this.readyState == 4 && this.status == 200){
+                const res = JSON.parse(this.responseText);
+                if(res){
+                    document.getElementById("nombre").value = res.descripcion;
+                document.getElementById("precio").value = res.precio_compra;
+                document.getElementById("id").value = res.id;
+                document.getElementById("cantidad").focus();
+                }else{
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Producto no existente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    document.getElementById("codigo").value = '';
+                    document.getElementById("codigo").focus();
+                }
+            }
+        }
+    }
+
+}
+
+function calcularPrecio(e){
+    {
+        e.preventDefault();
+        const cant = document.getElementById("cantidad").value;
+        const precio = document.getElementById("precio").value;
+        document.getElementById("sub_total").value = precio * cant;
+
+    }
+}
+
 
 

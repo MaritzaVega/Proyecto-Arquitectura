@@ -42,7 +42,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tools text-primary"></i></div>
                                  Configuración
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -55,6 +55,10 @@
                             <a class="nav-link" href="<?php echo base_url; ?>Productos"> 
                                  <div class="sb-nav-link-icon"><i class="fab fa-product-hunt text-primary"></i></div>
                                  Productos
+                            </a>
+                            <a class="nav-link" href="<?php echo base_url; ?>Compras"> 
+                                 <div class="sb-nav-link-icon"><i class="fa fa-cart-plus text-primary"></i></div>
+                                 Compras
                             </a>
                         </div>
                     </div>

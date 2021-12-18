@@ -29,10 +29,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Activity Log</a>
+                        <a class="dropdown-item" href="#">Perfil</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="<?php echo base_url; ?>Usuarios/salir">Cerrar Sesión</a> <!-- Método salir-->
                     </div>
                 </li>
             </ul>
@@ -43,8 +42,8 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Configuración
+                                <div class="sb-nav-link-icon"><i class="fas fa-tools text-primary"></i></div>
+                                 Configuración
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -52,8 +51,15 @@
                                     <a class="nav-link" href="<?php echo base_url; ?>Usuarios">Usuarios</a>
                                     <!--<a class="nav-link" href="layout-sidenav-light.html">Cajas</a>-->
                                 </nav>
-                            </div>
-                
+                            </div >
+                            <a class="nav-link" href="<?php echo base_url; ?>Productos"> 
+                                 <div class="sb-nav-link-icon"><i class="fab fa-product-hunt text-primary"></i></div>
+                                 Productos
+                            </a>
+                            <a class="nav-link" href="<?php echo base_url; ?>Compras"> 
+                                 <div class="sb-nav-link-icon"><i class="fa fa-cart-plus text-primary"></i></div>
+                                 Compras
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

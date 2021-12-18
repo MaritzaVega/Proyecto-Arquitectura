@@ -3,10 +3,14 @@ class Usuarios extends Controller{
 
     public function __construct() {
         session_start();
+       
         parent::__construct();
     }
     public function index()
     {
+        if(empty($_SESSION["activo"])){
+            header("location: ".base_url);
+        }
         $data['documentos'] = $this->model->getDocumentos();
         $this->views->getView($this, "index", $data);
     }
@@ -24,13 +28,17 @@ class Usuarios extends Controller{
             }
 
             //Botones modificar y eliminar
-            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');">Editar</button>
-            <button class="btn btn-danger" type="button">Eliminar</button></div>'; 
+            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-success" type="button" onclick="btnReingresarUser('.$data[$i]['id'].');">Reingresar</button>
+            </div>'; 
+            
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
     
+
     public function validar()
     {
         if(empty($_POST['usuario']) || empty($_POST['clave'])){
@@ -38,11 +46,13 @@ class Usuarios extends Controller{
         }else{
             $usuario = $_POST['usuario'];
             $clave = $_POST['clave'];
-            $data = $this->model->getUsuario($usuario,$clave);
+            $hash = hash("SHA256", $clave);
+            $data = $this->model->getUsuario($usuario,$hash); //se debe poner $hash en vez de $clave
             if($data){
                 $_SESSION['id_usuario'] = $data['id'];
                 $_SESSION['usuario'] = $data['usuario'];
                 $_SESSION['nombre'] = $data['nombre'];
+                $_SESSION['activo'] = true;
                 $msg = "ok";
             }else{
                 $msg = "Uusario o constraseña incorrecta";
@@ -51,6 +61,8 @@ class Usuarios extends Controller{
         echo json_encode($msg,JSON_UNESCAPED_UNICODE);
         die();
     }
+
+
 //video 7
     public function registrar()
     {
@@ -64,6 +76,7 @@ class Usuarios extends Controller{
 
         //variable para encriptar las contraseñas
         $hash = hash("SHA256", $clave);
+        $hash = password_hash($clave, PASSWORD_DEFAULT);
 
         if(empty($usuario) || empty($nombre) || empty($documentos) || empty($numDocumento)){
             $msg="Todos los campos son obligatorios";
@@ -102,6 +115,36 @@ public function editar(int $id)
         $data = $this->model->editarUser($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
+    }
+
+    public function eliminar(int $id)
+    {
+        $data = $this->model->accionUser(0, $id);
+        if($data==1){
+            $msg = "ok";
+        }else{
+            $msg = "Error al eliminar el usuario";
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function reingresar(int $id)
+    {
+        $data = $this->model->accionUser(1, $id);
+        if($data==1){
+            $msg = "ok";
+        }else{
+            $msg = "Error al reingresar el usuario";
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function salir()
+    {
+        session_destroy();
+        header("location: ".base_url);
     }
 
 }

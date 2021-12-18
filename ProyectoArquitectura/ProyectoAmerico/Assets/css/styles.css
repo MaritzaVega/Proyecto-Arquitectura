@@ -70,7 +70,7 @@ body {
   background-color: #fff;
 }
 .fondo{
-  background-image: url('../img/Tienda-de-ropa.jpg');
+  background-image: url('../imagenes/Tienda-de-ropa.jpg');
   max-width: 100%;
   width: auto;
   height: auto;
@@ -554,7 +554,8 @@ pre code {
 }
 
 .container {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
   margin-right: auto;
@@ -562,7 +563,7 @@ pre code {
 }
 @media (min-width: 576px) {
   .container {
-    max-width: 540px;
+    max-width: 100%;
   }
 }
 @media (min-width: 768px) {
@@ -4391,6 +4392,30 @@ input[type=button].btn-block {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
   background: rgba(60, 66, 150, 0.8);
+}
+.card-m{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(1, 1, 1, 0.125);
+  border-radius: 0.25rem;
+  
+}
+.cardcampo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  background: #fff;
 }
 .card > hr {
   margin-right: 0;

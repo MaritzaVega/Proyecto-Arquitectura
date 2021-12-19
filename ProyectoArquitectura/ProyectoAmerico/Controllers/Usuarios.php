@@ -55,7 +55,7 @@ class Usuarios extends Controller{
                 $_SESSION['activo'] = true;
                 $msg = "ok";
             }else{
-                $msg = "Uusario o constraseña incorrecta";
+                $msg = "Usario o constraseña incorrecta";
             }   
         }
         echo json_encode($msg,JSON_UNESCAPED_UNICODE);

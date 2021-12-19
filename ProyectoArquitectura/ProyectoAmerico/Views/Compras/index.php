@@ -71,11 +71,7 @@
                 <div class="form-group">
                     <label for="total " class="font-weight-blod">Total</label>
                     <input id="total" class="form-control" type="number" name="total" placeholder="Total" disabled >
-<<<<<<< HEAD
-                    <button type="button" class="btn btn-primaryR mt-2 btn-block">Generar Compra</button>
-=======
                     <button type="button" class="btn btn-compra mt-2 btn-block">Generar Compra</button>
->>>>>>> 5fa9ceaa8806a80cbe075a4279b160c5a1e768a0
                 </div>
                 
         </div>

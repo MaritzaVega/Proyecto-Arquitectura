@@ -505,9 +505,9 @@ function buscarCodigo(e){
     }
 
 }
-
+////vista compra
 function calcularPrecio(e){
-    {
+
         e.preventDefault();
         const cant = document.getElementById("cantidad").value;
         const precio = document.getElementById("precio").value;
@@ -522,8 +522,23 @@ function calcularPrecio(e){
                 http.send(new FormData(frm));
                 http.onreadystatechange = function(){//se ejecutara cada vez que cambia
                     if(this.readyState == 4 && this.status == 200){
+                        console.log(this.responseText);
                         const res = JSON.parse(this.responseText);
-                        if(res == "ok"){
+                        if (res == 'ok'){
+                                Swal.fire(
+                                    'Mensaje!',
+                                    'Compra generada.',
+                                    'success'
+                                    )
+                            frm.reset();
+                            cargarDetalle();
+                        }else if(res == 'Producto Modificado'){
+                    
+                            Swal.fire(
+                                'Mensaje!',
+                                 res,
+                                'success'
+                            )
                             frm.reset();
                             cargarDetalle();
                         }
@@ -534,7 +549,7 @@ function calcularPrecio(e){
             }
         }
 
-    }
+    
 }
 cargarDetalle();
 function cargarDetalle(){
@@ -595,6 +610,44 @@ function deleteDetalle(id){
         }
     }
 }  
+function generarCompra(){
+    Swal.fire({
+        title: 'Está seguro de realizar la compra?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+                //mostrar los datos en el modal
+                const url = base_url + "Compras/registrarCompra/";
+                const http = new XMLHttpRequest();
+                http.open("GET", url, true); //ejecutar de forma asincrona
+                http.send();
+                http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                    if(this.readyState == 4 && this.status == 200){
+                        const res = JSON.parse(this.responseText);
+                        if(res == "ok"){
+                            Swal.fire(
+                                'Mensaje!',
+                                'Compra generada.',
+                                'success'
+                            )
+                        }else{
+                            Swal.fire(
+                                'Mensaje!',
+                                 res,
+                                'error'
+                            )
+                        }
+                    } 
+                }
+                
+        }
+      })
+}
 
 
 

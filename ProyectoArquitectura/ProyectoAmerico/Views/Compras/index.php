@@ -47,16 +47,13 @@
     <thead class="thead-dark">
         <tr>
             <th>Id</th>
-            <th>Foto</th>
-            <th>Codigo</th>
             <th>Descripción</th>
             <th>Cantidad</th>
             <th>Precio</th>
             <th>Sub Total</th>
-            <th>Opción</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tblDetalle">
         <tr>
             <td scope="row"></td>
             <td></td>

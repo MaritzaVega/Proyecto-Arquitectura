@@ -5,7 +5,7 @@
 <button class="btn btn-primary mb-4" type="button" onclick="frmUsuario();">Nuevo <i class="fas fa-plus"></i></button>
 
 <table class="table table-light" id="tblUsuarios">
-    <thead class="thead-dark">
+    <thead class="thead-darkR">
         <tr>
             <th>Id</th>
             <th>Usuario</th>

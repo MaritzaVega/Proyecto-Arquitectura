@@ -1698,6 +1698,7 @@ pre code {
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
+  /* D4ABAB  ---*/
 }
 .table th,
 .table td {
@@ -1929,6 +1930,11 @@ pre code {
   color: #495057;
   background-color: #e9ecef;
   border-color: #dee2e6;
+}
+
+.table .thead-darkR{
+  color: #fff;
+  background-color: #8B0000;
 }
 
 .table-dark {
@@ -2500,6 +2506,13 @@ textarea.form-control {
 a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none;
+}
+/*BOTONES DE COLORES Y DISEÑO*/
+
+.btn-compra {
+  color: #fff;
+  background-color: #33579C;
+  border-color: #33579C;
 }
 
 .btn-primary {
@@ -4393,18 +4406,7 @@ input[type=button].btn-block {
   border-radius: 0.25rem;
   background: rgba(60, 66, 150, 0.8);
 }
-.card-m{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(1, 1, 1, 0.125);
-  border-radius: 0.25rem;
-  
-}
+
 .cardcampo {
   position: relative;
   display: flex;
@@ -6230,7 +6232,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #222967 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -10267,6 +10269,11 @@ body {
 .sb-sidenav .sb-sidenav-footer {
   padding: 0.75rem;
   flex-shrink: 0;
+}
+
+.sb-sidenav-darkB {
+  background-color: #222967;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .sb-sidenav-dark {

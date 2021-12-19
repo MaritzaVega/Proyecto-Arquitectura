@@ -76,7 +76,7 @@ class Usuarios extends Controller{
 
         //variable para encriptar las contraseñas
         $hash = hash("SHA256", $clave);
-        $hash = password_hash($clave, PASSWORD_DEFAULT);
+        //$hash = password_hash($clave, PASSWORD_DEFAULT);
 
         if(empty($usuario) || empty($nombre) || empty($documentos) || empty($numDocumento)){
             $msg="Todos los campos son obligatorios";

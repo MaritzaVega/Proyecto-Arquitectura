@@ -2,7 +2,7 @@
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Nueva Compra</li>
 </ol>
-    <div class="card-m">
+    <div class="cardcampo">
         <div class="card-body">
             <form id="frmCompra">
                 <div class="row">
@@ -44,7 +44,7 @@
         </div>
     </div>
 <table class="table table-light">
-    <thead class="thead-dark">
+    <thead class="thead-darkR">
         <tr>
             <th>Id</th>
             <th>Codigo</th>
@@ -73,7 +73,7 @@
                 <div class="form-group">
                     <label for="total " class="font-weight-blod">Total</label>
                     <input id="total" class="form-control" type="number" name="total" placeholder="Total" disabled >
-                    <button type="button" class="btn btn-primary mt-2 btn-block">Generar Compra</button>
+                    <button type="button" class="btn btn-compra mt-2 btn-block">Generar Compra</button>
                 </div>
                 
         </div>

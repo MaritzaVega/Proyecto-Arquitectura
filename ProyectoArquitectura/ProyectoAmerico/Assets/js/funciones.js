@@ -536,7 +536,7 @@ function calcularPrecio(e){
 
     }
 }
-
+cargarDetalle();
 function cargarDetalle(){
     const url = base_url + "Compras/listar/";
     const http = new XMLHttpRequest();
@@ -546,20 +546,55 @@ function cargarDetalle(){
         if(this.readyState == 4 && this.status == 200){
             const res = JSON.parse(this.responseText);
             let html = '';
-            res.forEach(row => {
+            res.detalle.forEach(row => {
                 html += `<tr> 
                 <td>${row['id']}</td>
                 <td>${row['descripcion']}</td>
                 <td>${row['cantidad']}</td>
                 <td>${row['precio']}</td>
                 <td>${row['sub_total']}</td>
+                <td>
+                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']})">
+                <i class="fas fa-trash-alt"></i></button>
+                </td>
                 </tr>`;
             });
             document.getElementById("tblDetalle").innerHTML=html;
+            document.getElementById("total").value=res.total_pagar.total;
         }
     }
        
 }
+function deleteDetalle(id){
+    const url = base_url + "Compras/delete/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true); //ejecutar de forma asincrona
+    http.send();
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            if (res == 'ok') {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Producto eliminado',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                cargarDetalle();
+            }else{
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Error al eliminar el producto',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
+
+        }
+    }
+}  
 
 
 

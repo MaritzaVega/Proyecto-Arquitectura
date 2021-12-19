@@ -36,9 +36,26 @@ class ComprasModel extends Query{
     
     public function getDetalle(int $id)
     {
-        $sql ="SELECT d.*, p.id, p.descripcion from detalle d INNER JOIN productos p ON d.id_producto = p.id where d.id_usuario = $id";
+        $sql ="SELECT d.*, p.id AS id_pro, p.descripcion from detalle d INNER JOIN productos p ON d.id_producto = p.id where d.id_usuario = $id";
         $data = $this->selectAll($sql);
         return $data; 
+    }
+    public function calcularCompra(int $id_usuario)
+    {
+        $sql ="SELECT sub_total, SUM(sub_total) AS total FROM detalle WHERE id_usuario = $id_usuario";
+        $data = $this->select($sql);
+        return $data; 
+    }
+    public function deleteDetalle(int $id){
+        $sql ="DELETE FROM detalle WHERE id= ?";
+        $datos = array($id);
+        $data = $this->save($sql, $datos);
+        if ($data == 1) {
+            $res = "ok";
+        }else{
+            $res = "error";
+        }
+        return $res;
     }
 }
 

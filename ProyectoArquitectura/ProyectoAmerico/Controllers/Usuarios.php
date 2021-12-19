@@ -106,11 +106,11 @@ class Usuarios extends Controller{
             }
             
         }
-        echo json_encode($msg,JSON_UNESCAPED_UNICODE);
-        die();
-    }
+    echo json_encode($msg,JSON_UNESCAPED_UNICODE);
+    die();
+}
 
-    public function editar(int $id)
+public function editar(int $id)
     {
         $data = $this->model->editarUser($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);

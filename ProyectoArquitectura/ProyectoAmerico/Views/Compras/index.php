@@ -2,13 +2,13 @@
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Nueva Compra</li>
 </ol>
-    <div class="card-m">
+    <div class="cardcampo">
         <div class="card-body">
             <form id="frmCompra">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="codigo">Codigo de barras</label>
+                            <label for="codigo"><i class="fas fa-barcode"></i> Código de barras</label>
                            <input type="hidden" id="id" name="id">
                             <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Codigo de Barras" onkeyup="buscarCodigo(event)">
                             
@@ -71,7 +71,11 @@
                 <div class="form-group">
                     <label for="total " class="font-weight-blod">Total</label>
                     <input id="total" class="form-control" type="number" name="total" placeholder="Total" disabled >
+<<<<<<< HEAD
                     <button type="button" class="btn btn-primaryR mt-2 btn-block">Generar Compra</button>
+=======
+                    <button type="button" class="btn btn-compra mt-2 btn-block">Generar Compra</button>
+>>>>>>> 5fa9ceaa8806a80cbe075a4279b160c5a1e768a0
                 </div>
                 
         </div>

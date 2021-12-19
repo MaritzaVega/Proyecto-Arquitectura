@@ -21,6 +21,7 @@
     <tbody>
     </tbody>
 </table>
+
 <!---MODAL DE CREAR "REGISTRAR - EDITAR NUEVO Producto"!-->
 <div id="nuevo-producto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">

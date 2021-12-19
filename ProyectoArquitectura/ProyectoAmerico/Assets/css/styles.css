@@ -6220,7 +6220,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #971204 !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -6230,7 +6230,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #212967 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -9946,7 +9946,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-muted {
-  color: #6c757d !important;
+  color: #fff !important;
 }
 
 .text-black-50 {
@@ -10270,7 +10270,7 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #212529;
+  background-color: #212967;
   color: rgba(255, 255, 255, 0.5);
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
@@ -10295,7 +10295,7 @@ body {
   color: #fff;
 }
 .sb-sidenav-dark .sb-sidenav-footer {
-  background-color: #343a40;
+  background-color: #212967;
 }
 
 .sb-sidenav-light {

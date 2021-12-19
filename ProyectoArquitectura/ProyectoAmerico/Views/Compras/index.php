@@ -47,15 +47,17 @@
     <thead class="thead-darkR">
         <tr>
             <th>Id</th>
+<<<<<<< HEAD
             <th>Codigo</th>
+=======
+>>>>>>> Marlene
             <th>Descripción</th>
             <th>Cantidad</th>
             <th>Precio</th>
             <th>Sub Total</th>
-            <th>Opción</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tblDetalle">
         <tr>
             <td scope="row"></td>
             <td></td>

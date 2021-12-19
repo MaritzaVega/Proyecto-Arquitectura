@@ -41,17 +41,18 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools text-primary"></i></div>
-                                 Configuración
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            
+                                <a href="#" align="center">
+                                    
+                                    <img  src=".../../Assets/imagenes/logo.jpg" width= "100%">
+                                    <br>
+                                </a>
+                            
+                        
+                            <a class="nav-link" href="<?php echo base_url; ?>Usuarios"> 
+                                 <div class="sb-nav-link-icon"><i class="fas fa-tools text-primary"></i></div>
+                                 Usuarios
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<?php echo base_url; ?>Usuarios">Usuarios</a>
-                                    <!--<a class="nav-link" href="layout-sidenav-light.html">Cajas</a>-->
-                                </nav>
-                            </div >
                             <a class="nav-link" href="<?php echo base_url; ?>Productos"> 
                                  <div class="sb-nav-link-icon"><i class="fab fa-product-hunt text-primary"></i></div>
                                  Productos

@@ -1920,6 +1920,12 @@ pre code {
   background-color: rgba(0, 0, 0, 0.075);
 }
 
+table .thead-darkR th {
+  color: #fff;
+  background-color: #8B0000;
+  border-color: #8B0000;
+}
+
 .table .thead-dark th {
   color: #fff;
   background-color: #343a40;
@@ -1936,10 +1942,6 @@ pre code {
   background-color: #343a40;
 }
 
-.table-darkR {
-  color: #fff;
-  background-color: #343a40;
-}
 .table-dark th,
 .table-dark td,
 .table-dark thead th {

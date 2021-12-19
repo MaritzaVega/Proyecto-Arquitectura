@@ -44,9 +44,22 @@ class Compras extends Controller{
     public function listar()
     {
         $id_usuario = $_SESSION['id_usuario'];
-        $data = $this->model->getDetalle($id_usuario);
+        $data['detalle'] = $this->model->getDetalle($id_usuario);
+        $data['total_pagar'] = $this->model->calcularCompra($id_usuario);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
+    }
+    public function delete($id)
+    {
+        $data = $this->model->deleteDetalle($id);
+        if ($data == 'ok') {
+            $msg = 'ok';
+        }else {
+            $msg = 'error';
+        }
+        echo json_encode($msg);
+        die();
+ 
     }
 
    

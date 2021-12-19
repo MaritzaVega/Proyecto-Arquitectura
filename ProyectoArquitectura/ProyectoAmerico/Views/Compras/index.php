@@ -51,6 +51,7 @@
             <th>Cantidad</th>
             <th>Precio</th>
             <th>Sub Total</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="tblDetalle">

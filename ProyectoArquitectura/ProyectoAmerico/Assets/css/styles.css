@@ -1935,6 +1935,11 @@ pre code {
   color: #fff;
   background-color: #343a40;
 }
+
+.table-darkR {
+  color: #fff;
+  background-color: #343a40;
+}
 .table-dark th,
 .table-dark td,
 .table-dark thead th {

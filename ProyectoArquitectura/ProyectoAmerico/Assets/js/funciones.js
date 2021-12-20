@@ -525,20 +525,24 @@ function calcularPrecio(e){
                         console.log(this.responseText);
                         const res = JSON.parse(this.responseText);
                         if (res == 'ok'){
-                                Swal.fire(
-                                    'Mensaje!',
-                                    'Compra generada.',
-                                    'success'
-                                    )
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Producto Ingresado',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                })
                             frm.reset();
                             cargarDetalle();
-                        }else if(res == 'Producto Modificado'){
-                    
+                        }else if(res == 'modificado'){
                             Swal.fire(
-                                'Mensaje!',
-                                 res,
-                                'success'
-                            )
+                               {
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Producto Actualizado',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                })
                             frm.reset();
                             cargarDetalle();
                         }
@@ -629,12 +633,18 @@ function generarCompra(){
                 http.onreadystatechange = function(){//se ejecutara cada vez que cambia
                     if(this.readyState == 4 && this.status == 200){
                         const res = JSON.parse(this.responseText);
-                        if(res == "ok"){
+                        if(res.msg == "ok"){
                             Swal.fire(
                                 'Mensaje!',
                                 'Compra generada.',
                                 'success'
                             )
+                            const ruta = base_url + 'Compras/generarPdf/'+ res.id_compra;
+                            window.open(ruta);
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 300);
+
                         }else{
                             Swal.fire(
                                 'Mensaje!',

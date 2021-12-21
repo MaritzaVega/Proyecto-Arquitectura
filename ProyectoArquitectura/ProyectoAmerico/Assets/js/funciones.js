@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
         
     });
+    
     //Fin de tabla ususarios
     tblProductosReporte = $('#tblProductosReporte').DataTable({
         ajax: {

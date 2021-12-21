@@ -79,29 +79,30 @@ class Usuarios extends Controller{
         //$hash = password_hash($clave, PASSWORD_DEFAULT);
 
         if(empty($usuario) || empty($nombre) || empty($documentos) || empty($numDocumento)){
-            $msg="Todos los campos son obligatorios";
+            $msg= array('msg'=> 'Todos los campos son obligatorios','icono' => 'Warning');
+          
         }else{
             if($id==""){
 
                 if($clave != $confirmar){
-                    $msg = "Las contraseñas con coinciden";
+                    $msg= array('msg'=> 'Las contraseñas no coinciden','icono' => 'Warning');
                 }else{
                     $data = $this->model->registrarUsuario($usuario, $nombre, $hash, $documentos, $numDocumento);
                     if ($data == "ok"){
-                        $msg = "si";
+                        $msg= array('msg'=> 'Usuario registrado con èxito','icono' => 'success');
                     }else if($data == "existe"){
-                        $msg = "El usuario ya existe";
+                        $msg= array('msg'=> 'El usuario ya existe','icono' => 'Warning');
                     }else{
-                        $msg="Error al registrar el usuario";
+                        $msg= array('msg'=> 'Error al registrar el usuario','icono' => 'error');
                     }
                 }
                 
             }else{
                 $data = $this->model->modificarUsuario($usuario, $nombre, $documentos, $numDocumento,$id);
                     if ($data == "Modificado"){
-                        $msg = "Modificado";
+                        $msg= array('msg'=> 'Usuario modificado con èxito','icono' => 'success');
                     }else{
-                        $msg="Error al modificar el usuario";
+                        $msg= array('msg'=> 'Error al modificar el usuario','icono' => 'error');
                     }
             }
             
@@ -110,7 +111,7 @@ class Usuarios extends Controller{
     die();
 }
 
-public function editar(int $id)
+    public function editar(int $id)
     {
         $data = $this->model->editarUser($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -121,9 +122,9 @@ public function editar(int $id)
     {
         $data = $this->model->accionUser(0, $id);
         if($data==1){
-            $msg = "ok";
+            $msg= array('msg'=> 'Usuario dado de baja','icono' => 'success');
         }else{
-            $msg = "Error al eliminar el usuario";
+            $msg= array('msg'=> 'Error al eliminar el usuario','icono' => 'error');
         }
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();
@@ -133,9 +134,9 @@ public function editar(int $id)
     {
         $data = $this->model->accionUser(1, $id);
         if($data==1){
-            $msg = "ok";
+            $msg= array('msg'=> 'Usuario reingresado con èxito','icono' => 'success');
         }else{
-            $msg = "Error al reingresar el usuario";
+            $msg= array('msg'=> 'Error al reingresar el usuario','icono' => 'error');
         }
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();

@@ -68,10 +68,6 @@ document.addEventListener("DOMContentLoaded", function(){
         language: {
             "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
         }
-<<<<<<< HEAD
- 
-=======
->>>>>>> bb2ad5a09f287132422f849b0c66125f8f7835a4
     });
     //Fin de Producto
     $('#t_reporte_c').DataTable({
@@ -133,15 +129,6 @@ document.addEventListener("DOMContentLoaded", function(){
         language: {
             "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
         },
-<<<<<<< HEAD
-        dom: 'Bfrtip',
-        buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
-        ]
-=======
         dom: "<'row'<'col-sm-4'l><'col-sm-3 text-center'B><'col-sm-4'f>>" +
              "<'row'<'col-sm-12'tr>>" +
              "<'row'<'col-sm-5'i><'col-sm-7'p>>",
@@ -201,7 +188,6 @@ document.addEventListener("DOMContentLoaded", function(){
             }*/
         ]
            
->>>>>>> bb2ad5a09f287132422f849b0c66125f8f7835a4
     });
 })
 

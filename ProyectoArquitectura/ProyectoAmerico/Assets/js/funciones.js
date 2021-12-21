@@ -255,8 +255,6 @@ function btnEditarUser(id){ // detiene que la página se cargue de nuevo
         } 
     }
 
-    
-
 } 
 
 function btnEliminarUser(id ){

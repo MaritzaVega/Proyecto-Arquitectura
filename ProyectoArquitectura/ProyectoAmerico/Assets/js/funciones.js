@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function(){
             'data' : 'acciones'
             }
         ]
-        
     });
     //Fin de Producto
     $('#t_reporte_c').DataTable({
@@ -121,8 +120,6 @@ document.addEventListener("DOMContentLoaded", function(){
         
     });
 })
-
-
 
 //abre le modal de los usuarios
 function frmUsuario(){

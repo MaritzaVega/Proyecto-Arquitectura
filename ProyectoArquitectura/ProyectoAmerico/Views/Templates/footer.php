@@ -17,8 +17,8 @@
         <script src="<?php echo base_url; ?>Assets/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
-        <script src="<?php echo base_url; ?>Assets/DataTables/datatables.min.css" crossorigin="anonymous"></script>
-        
+        <script src="<?php echo base_url; ?>Assets/DataTables/datatables.min.js" crossorigin="anonymous"></script>
+        <!--https://datatables.net/download/-!-->
 
         <script>
             const base_url = "<?php echo base_url; ?>";

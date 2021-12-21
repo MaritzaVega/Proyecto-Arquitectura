@@ -64,6 +64,28 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
         
     });
+    //Fin de Producto
+    $('#t_reporte_c').DataTable({
+        ajax: {
+            url: base_url + "Compras/listar_reporte",
+            dataSrc:''
+        },
+        columns:[
+            {
+            'data' : 'id'
+            },
+            {
+            'data' : 'total'
+            },
+            {
+            'data' : 'fecha'
+            },
+            {
+            'data' : 'acciones'
+            }
+        ]
+        
+    });
 })
 
 
@@ -658,6 +680,7 @@ function generarCompra(){
         }
       })
 }
+
 
 
 

@@ -57,10 +57,23 @@
                                  <div class="sb-nav-link-icon"><i class="fab fa-product-hunt text-primary"></i></div>
                                  Productos
                             </a>
-                            <a class="nav-link" href="<?php echo base_url; ?>Compras"> 
-                                 <div class="sb-nav-link-icon"><i class="fa fa-cart-plus text-primary"></i></div>
+                            <!--<a class="nav-link" href="<?//php echo base_url; ?>Compras"> 
+                                 <div class="sb-nav-link-icon"></div>
                                  Compras
+                            </a>!-->
+
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
+                                <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart text-primary"></i></div>
+                                Entradas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="collapseCompras" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fa fa-cart-plus mr-2 text-primary"></i> Nueva Compra</a> 
+                                <!---Compras/historial!--->
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Compras</a>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

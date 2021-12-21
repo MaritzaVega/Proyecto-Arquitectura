@@ -84,7 +84,7 @@
                             </a>
                             <div class="collapse" id="collapseReporte" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Compras</a>
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-file-text-o mr-2 text-primary"></i> Reporte Compras</a>
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Ventas</a> 
                                 <a class="nav-link" href="<?php echo base_url; ?>ProductosReporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Inventario</a>
                                 </nav>

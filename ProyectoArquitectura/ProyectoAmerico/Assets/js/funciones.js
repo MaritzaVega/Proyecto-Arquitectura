@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", function(){
             {
             'data' : 'acciones'
             }
-        ]
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        }
         
     });
     //Fin de tabla ususarios
@@ -61,7 +64,10 @@ document.addEventListener("DOMContentLoaded", function(){
             {
             'data' : 'acciones'
             }
-        ]
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        }
     });
     //Fin de Producto
     $('#t_reporte_c').DataTable({
@@ -82,7 +88,10 @@ document.addEventListener("DOMContentLoaded", function(){
             {
             'data' : 'acciones'
             }
-        ]
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        }
         
     });
     //Fin de tabla ususarios
@@ -116,6 +125,16 @@ document.addEventListener("DOMContentLoaded", function(){
             {
             'data' : 'estado'
             }
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
         ]
         
     });

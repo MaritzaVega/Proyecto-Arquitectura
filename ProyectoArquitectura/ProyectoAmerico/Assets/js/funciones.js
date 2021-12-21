@@ -565,7 +565,7 @@ function buscarCodigo(e){
     }
 
 }
-////vista compra
+////vista compra--
 function calcularPrecio(e){
 
         e.preventDefault();

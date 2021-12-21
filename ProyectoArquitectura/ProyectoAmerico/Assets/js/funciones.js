@@ -1,4 +1,4 @@
-let tblUsuarios,tblProductos;
+let tblUsuarios,tblProductos,tblProductosReporte;
 document.addEventListener("DOMContentLoaded", function(){
     tblUsuarios = $('#tblUsuarios').DataTable({
         ajax: {
@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", function(){
             {
             'data' : 'acciones'
             }
-        ]
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        }
         
     });
     //Fin de tabla ususarios
@@ -61,8 +64,10 @@ document.addEventListener("DOMContentLoaded", function(){
             {
             'data' : 'acciones'
             }
-        ]
-        
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        }
     });
     //Fin de Producto
     $('#t_reporte_c').DataTable({
@@ -83,12 +88,108 @@ document.addEventListener("DOMContentLoaded", function(){
             {
             'data' : 'acciones'
             }
-        ]
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        }
         
     });
+    //Fin de tabla ususarios
+    tblProductosReporte = $('#tblProductosReporte').DataTable({
+        ajax: {
+            url: base_url + "ProductosReporte/listar",
+            dataSrc:''
+        },
+        columns:[
+            {
+            'data' : 'id'
+            },
+            {
+            'data' : 'imagen'
+            },
+            {
+            'data' : 'codigo'
+            },
+            {
+            'data' :'descripcion'
+            },
+            {
+            'data' :'precio_venta'
+            },
+            {
+            'data' : 'cantidad'
+            },
+            {
+            'data' : 'nivel'
+            },
+            {
+            'data' : 'estado'
+            }
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-3 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+             
+        buttons : [
+            //Botón para Excel
+            {
+                extend: 'excelHtml5',
+                footer: true,
+                title: 'Archivo',
+                filename: 'Export_File',
+ 
+                //Aquí es donde generas el botón personalizado
+                text: '<span class="badge badge-success"><i class="fas fa-file-excel"></i></span>'
+            },
+            //Botón para PDF
+            {
+                extend: 'pdfHtml5',
+                download: 'open',
+                footer: true,
+                title: 'Reporte de usuarios',
+                filename: 'Reporte de usuarios',
+                text: '<span class="badge  badge-danger"><i class="fas fa-file-pdf"></i></span>',
+                exportOptions: {
+                    columns: [0, ':visible']
+                }
+            },
+            //Botón para copiar
+            {
+                extend: 'copyHtml5',
+                footer: true,
+                title: 'Reporte de usuarios',
+                filename: 'Reporte de usuarios',
+                text: '<span class="badge  badge-primary"><i class="fas fa-copy"></i></span>',
+                exportOptions: {
+                    columns: [0, ':visible']
+                }
+            },
+            //Botón para print
+            {
+                extend: 'print',
+                footer: true,
+                filename: 'Export_File_print',
+                text: '<span class="badge badge-light"><i class="fas fa-print"></i></span>'
+            },
+            //Botón para cvs
+            {
+                extend: 'csvHtml5',
+                footer: true,
+                filename: 'Export_File_csv',
+                text: '<span class="badge  badge-success"><i class="fas fa-file-csv"></i></span>'
+            },
+            /*{
+                extend: 'colvis',
+                text: '<span class="badge  badge-info"><i class="fas fa-columns"></i></span>',
+                postfixButtons: ['colvisRestore']
+            }*/
+        ]
+           
+    });
 })
-
-
 
 //abre le modal de los usuarios
 function frmUsuario(){
@@ -104,22 +205,12 @@ function registrarUser(e){ // detiene que la página se cargue de nuevo
     e.preventDefault();
     const usuario = document.getElementById("usuario");
     const nombre = document.getElementById("nombre");
-    const clave = document.getElementById("clave");
-    const confirmar = document.getElementById("confirmar");
     const documentos = document.getElementById("documentos");
     const numDocumento = document.getElementById("numDocumento");
     //Valida campos vacio
     if(usuario.value == "" || nombre.value == "" || documentos =="" || numDocumento.value == ""){
        //SwetAlert 
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Todos los campos son obligatorios',
-            showConfirmButton: false,
-            timer: 3000,
-            position: 'center'
-            
-          })
+       alertas('Todos los campos son obligatorios','warning');
     }else{
         //peticion
         const url = base_url + "Usuarios/registrar";
@@ -130,38 +221,9 @@ function registrarUser(e){ // detiene que la página se cargue de nuevo
         http.onreadystatechange = function(){//se ejecutara cada vez que cambia
             if(this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if(res == "si")
-                {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Usuario registrado con exito',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-
-                    frm.reset();
-                    $("#nuevo-usuario").modal("hide");
-                    tblUsuarios.ajax.reload();
-                }else if(res=="Modificado"){
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Usuario modificado con exito',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $("#nuevo-usuario").modal("hide");
-                    tblUsuarios.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                }
+                $("#nuevo-usuario").modal("hide");
+                alertas(res.msg, res.icono);
+                tblUsuarios.ajax.reload();
             } 
         }
             
@@ -193,8 +255,6 @@ function btnEditarUser(id){ // detiene que la página se cargue de nuevo
         } 
     }
 
-    
-
 } 
 
 function btnEliminarUser(id ){
@@ -218,20 +278,8 @@ function btnEliminarUser(id ){
                 http.onreadystatechange = function(){//se ejecutara cada vez que cambia
                     if(this.readyState == 4 && this.status == 200){
                         const res = JSON.parse(this.responseText);
-                        if(res == "ok"){
-                            Swal.fire(
-                                'Mensaje!',
-                                'Usuario eliminado con éxito.',
-                                'success'
-                            )
-                            tblUsuarios.ajax.reload();
-                        }else{
-                            Swal.fire(
-                                'Mensaje!',
-                                 res,
-                                'error'
-                            )
-                        }
+                        alertas(res.msg, res.icono);
+                        tblUsuarios.ajax.reload();
                     } 
                 }
                 
@@ -260,20 +308,8 @@ function btnReingresarUser(id ){
                 http.onreadystatechange = function(){//se ejecutara cada vez que cambia
                     if(this.readyState == 4 && this.status == 200){
                         const res = JSON.parse(this.responseText);
-                        if(res == "ok"){
-                            Swal.fire(
-                                'Mensaje!',
-                                'Usuario reingresado con éxito.',
-                                'success'
-                            )
-                            tblUsuarios.ajax.reload();
-                        }else{
-                            Swal.fire(
-                                'Mensaje!',
-                                 res,
-                                'error'
-                            )
-                        }
+                        tblUsuarios.ajax.reload();
+                        alertas(res.msg, res.icono);
                     } 
                 }
                 
@@ -497,33 +533,32 @@ function deleteImg() {
 //Buscar codigo
 function buscarCodigo(e){
     e.preventDefault();
-    if(e.which == 13){
-        const cod = document.getElementById("codigo").value;
-        const url = base_url + "Compras/buscarCodigo/"+cod;
-        const http = new XMLHttpRequest();
-        http.open("GET", url, true); //ejecutar de forma asincrona
-        http.send();
-        http.onreadystatechange = function(){//se ejecutara cada vez que cambia
-             if(this.readyState == 4 && this.status == 200){
-                const res = JSON.parse(this.responseText);
-                if(res){
-                    document.getElementById("nombre").value = res.descripcion;
-                document.getElementById("precio").value = res.precio_compra;
-                document.getElementById("id").value = res.id;
-                document.getElementById("cantidad").focus();
-                }else{
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: 'Producto no existente',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                    document.getElementById("codigo").value = '';
-                    document.getElementById("codigo").focus();
+    const cod = document.getElementById("codigo").value;
+    if (cod != '') {
+        if(e.which == 13){
+            const url = base_url + "Compras/buscarCodigo/"+cod;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true); //ejecutar de forma asincrona
+            http.send();
+            http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                 if(this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    if(res){
+                        document.getElementById("nombre").value = res.descripcion;
+                    document.getElementById("precio").value = res.precio_compra;
+                    document.getElementById("id").value = res.id;
+                    document.getElementById("cantidad").removeAttribute('disabled');
+                    document.getElementById("cantidad").focus();
+                    }else{
+                        alertas('Producto no existente', 'warning');
+                        document.getElementById("codigo").value = '';
+                        document.getElementById("codigo").focus();
+                    }
                 }
             }
         }
+    } else{
+        alertas('Ingrese el còdigo', 'warning');
     }
 
 }
@@ -544,30 +579,12 @@ function calcularPrecio(e){
                 http.send(new FormData(frm));
                 http.onreadystatechange = function(){//se ejecutara cada vez que cambia
                     if(this.readyState == 4 && this.status == 200){
-                        console.log(this.responseText);
                         const res = JSON.parse(this.responseText);
-                        if (res == 'ok'){
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: 'Producto Ingresado',
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                })
-                            frm.reset();
-                            cargarDetalle();
-                        }else if(res == 'modificado'){
-                            Swal.fire(
-                               {
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: 'Producto Actualizado',
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                })
-                            frm.reset();
-                            cargarDetalle();
-                        }
+                        alertas(res.msg, res.icono);
+                        frm.reset();
+                        cargarDetalle();
+                        document.getElementById('cantidad').setAttribute('disabled','disabled');
+                        document.getElementById('codigo').focus();
                         
                     }
                 }
@@ -577,7 +594,10 @@ function calcularPrecio(e){
 
     
 }
-cargarDetalle();
+
+if(document.getElementById('tblDetalle')){
+    cargarDetalle();
+}
 function cargarDetalle(){
     const url = base_url + "Compras/listar/";
     const http = new XMLHttpRequest();
@@ -679,6 +699,39 @@ function generarCompra(){
                 
         }
       })
+}
+
+function modificarEmpresa() {
+    const frm = document.getElementById('frmEmpresa');
+
+    const url = base_url + "Administracion/modificar";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send(new FormData(frm));
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            if(res == 'ok'){
+                //alert('Modificado');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Modificado exitosamente',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
+        } 
+    }
+}
+function alertas(mensaje, icono){
+         Swal.fire({
+             position: 'center',
+             icon: icono,
+             title: mensaje,
+             showConfirmButton: false,
+             timer: 3000
+         })
 }
 
 

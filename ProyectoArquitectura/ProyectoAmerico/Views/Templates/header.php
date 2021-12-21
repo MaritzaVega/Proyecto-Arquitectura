@@ -46,6 +46,11 @@
                                 <img  src=".../../Assets/imagenes/logo.jpg" width= "100%">
                             </a>
 
+                            <a class="nav-link" href="<?php echo base_url; ?>Administracion"> 
+                                 <div class="sb-nav-link-icon"><i class="fas fa-university text-primary"></i></div>
+                                 Institución
+                            </a>
+                            
                             <a class="nav-link" href="<?php echo base_url; ?>Usuarios"> 
                                  <div class="sb-nav-link-icon"><i class="fas fa-tools text-primary"></i></div>
                                  Usuarios
@@ -61,14 +66,27 @@
 
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
                                 <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart text-primary"></i></div>
-                                Entradas
+                                Operaciones
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseCompras" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Compra</a> 
                                 <!---Compras/historial!--->
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Compras</a>
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a>
+                                </nav>
+                            </div>
+
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReporte" aria-expanded="false" aria-controls="collapseCompras">
+                                <div class="sb-nav-link-icon"><i class="fa fa-file text-primary"></i></div>
+                                Reportes
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseReporte" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Compras</a>
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fas fa-file mr-2 text-primary"></i> Reporte Ventas</a> 
+                                <a class="nav-link" href="<?php echo base_url; ?>ProductosReporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Inventario</a>
                                 </nav>
                             </div>
                         </div>

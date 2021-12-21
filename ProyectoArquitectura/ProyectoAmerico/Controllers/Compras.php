@@ -37,18 +37,18 @@ class Compras extends Controller{
             $sub_total = $precio * $cantidad;
             $data = $this->model->registrarDetalle($id_producto, $id_usuario, $precio, $cantidad, $sub_total);
             if ($data == "ok") {
-                $msg = "ok";
+                $msg = array('msg'=> 'Producto ingresado a la compra', 'icono'=> 'success');
             }else{
-                $msg = "Error al ingresar el producto";
+                $msg = array('msg'=> 'Error al ingresar el producto a la compra', 'icono'=> 'error');
             }
         }else{
             $total_cantidad = $comprobar['cantidad'] + $cantidad;
             $sub_total = $total_cantidad * $precio;
             $data = $this->model->actualizarDetalle($precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
             if ($data == "modificado") {
-                $msg = "modificado";
+                $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
             }else{
-                $msg = "Error al modificar el producto";
+                $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
             }
         }
         
@@ -91,6 +91,12 @@ class Compras extends Controller{
                 $id_pro = $row['id_producto'];
                 $sub_total = $cantidad * $precio;
                 $this->model->registrarDetalleCompra($id_compra['id'], $id_pro, $cantidad, $precio, $sub_total);
+                
+                //ACTUALIZAR EL STOCK DE LOS PRODUCTOS
+                $stock_actual = $this->model->getProductos($id_pro);
+                $stock = $stock_actual['cantidad'] + $cantidad;
+                $this->model->actualizarStock($stock, $id_pro); //Adquirir de los proveedores
+
             }
             $vaciar = $this->model->vaciarDetalle($id_usuario);
             if ($vaciar == 'ok') {

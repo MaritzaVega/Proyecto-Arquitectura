@@ -1,5 +1,4 @@
-<?php include "Views/Templates/header.php";?>
-
+<?php include "Views/Templates/headermetodo.php";?>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Nueva Compra</li>
 </ol>

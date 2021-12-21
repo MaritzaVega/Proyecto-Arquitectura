@@ -91,6 +91,7 @@ class Compras extends Controller{
                 $id_pro = $row['id_producto'];
                 $sub_total = $cantidad * $precio;
                 $this->model->registrarDetalleCompra($id_compra['id'], $id_pro, $cantidad, $precio, $sub_total);
+                
             }
             $vaciar = $this->model->vaciarDetalle($id_usuario);
             if ($vaciar == 'ok') {

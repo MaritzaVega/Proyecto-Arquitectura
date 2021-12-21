@@ -8,7 +8,7 @@
             <th>#</th>
             <th>Total</th>
             <th>Fecha de Compra </th>
-            <th></th>
+            <th>Reporte</th>
         </tr>
         </thead>
         <tbody>

@@ -1,4 +1,4 @@
-let tblUsuarios,tblProductos;
+let tblUsuarios,tblProductos,tblProductosReporte;
 document.addEventListener("DOMContentLoaded", function(){
     tblUsuarios = $('#tblUsuarios').DataTable({
         ajax: {
@@ -82,6 +82,40 @@ document.addEventListener("DOMContentLoaded", function(){
             },
             {
             'data' : 'acciones'
+            }
+        ]
+        
+    });
+    //Fin de tabla ususarios
+    tblProductosReporte = $('#tblProductosReporte').DataTable({
+        ajax: {
+            url: base_url + "ProductosReporte/listar",
+            dataSrc:''
+        },
+        columns:[
+            {
+            'data' : 'id'
+            },
+            {
+            'data' : 'imagen'
+            },
+            {
+            'data' : 'codigo'
+            },
+            {
+            'data' :'descripcion'
+            },
+            {
+            'data' :'precio_venta'
+            },
+            {
+            'data' : 'cantidad'
+            },
+            {
+            'data' : 'nivel'
+            },
+            {
+            'data' : 'estado'
             }
         ]
         

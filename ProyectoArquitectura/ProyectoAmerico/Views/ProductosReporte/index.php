@@ -15,7 +15,6 @@
             <th>Stock</th>
             <th>Nivel</th>
             <th>Estado</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>

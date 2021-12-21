@@ -92,6 +92,11 @@ class Compras extends Controller{
                 $sub_total = $cantidad * $precio;
                 $this->model->registrarDetalleCompra($id_compra['id'], $id_pro, $cantidad, $precio, $sub_total);
                 
+                //ACTUALIZAR EL STOCK DE LOS PRODUCTOS
+                $stock_actual = $this->model->getProductos($id_pro);
+                $stock = $stock_actual['cantidad'] + $cantidad;
+                $this->model->actualizarStock($stock, $id_pro); //Adquirir de los proveedores
+
             }
             $vaciar = $this->model->vaciarDetalle($id_usuario);
             if ($vaciar == 'ok') {

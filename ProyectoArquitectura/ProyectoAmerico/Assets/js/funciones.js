@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         
     });
-    
     //Fin de tabla ususarios
     tblProductosReporte = $('#tblProductosReporte').DataTable({
         ajax: {
@@ -191,8 +190,6 @@ document.addEventListener("DOMContentLoaded", function(){
            
     });
 })
-
-
 
 //abre le modal de los usuarios
 function frmUsuario(){
@@ -565,7 +562,7 @@ function buscarCodigo(e){
     }
 
 }
-////vista compra--
+////vista compra
 function calcularPrecio(e){
 
         e.preventDefault();

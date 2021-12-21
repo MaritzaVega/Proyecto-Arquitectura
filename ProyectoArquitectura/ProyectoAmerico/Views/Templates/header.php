@@ -42,13 +42,10 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             
-                                <a href="#" align="center">
-                                    
-                                    <img  src=".../../Assets/imagenes/logo.jpg" width= "100%">
-                                    <br>
-                                </a>
-                            
-                        
+                            <a href="#">
+                                <img  src=".../../Assets/imagenes/logo.jpg" width= "100%">
+                            </a>
+
                             <a class="nav-link" href="<?php echo base_url; ?>Usuarios"> 
                                  <div class="sb-nav-link-icon"><i class="fas fa-tools text-primary"></i></div>
                                  Usuarios
@@ -69,9 +66,9 @@
                             </a>
                             <div class="collapse" id="collapseCompras" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fa fa-cart-plus mr-2 text-primary"></i> Nueva Compra</a> 
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Compra</a> 
                                 <!---Compras/historial!--->
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Compras</a>
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Compras</a>
                                 </nav>
                             </div>
                         </div>

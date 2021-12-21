@@ -10,9 +10,8 @@
             <th>Fecha de Compra </th>
             <th>Reporte</th>
         </tr>
-        </thead>
-        <tbody>
-        </tbody>
+    </thead>
+    <tbody>
+    </tbody>
 </table>
-
 <?php include "Views/Templates/footer.php";?>

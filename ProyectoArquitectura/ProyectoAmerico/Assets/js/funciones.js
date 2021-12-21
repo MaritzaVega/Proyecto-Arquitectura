@@ -62,13 +62,7 @@ document.addEventListener("DOMContentLoaded", function(){
             'data' : 'acciones'
             }
 <<<<<<< HEAD
-        ],
-        language: {
-            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-        } 
-=======
         ]
->>>>>>> 3f4cdbe8eaf9b9ebcafae5cce806d906e362f732
     });
     //Fin de Producto
     $('#t_reporte_c').DataTable({

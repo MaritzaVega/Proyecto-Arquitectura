@@ -175,7 +175,6 @@ class Compras extends Controller{
         $pdf->Output();
     }
 
-    
     ///ReporteCompras donde ..Historial... = Reporte
     public function reporte()
     {

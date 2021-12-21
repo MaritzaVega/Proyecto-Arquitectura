@@ -72504,6 +72504,7 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 		}
 	};
 	
+	
 	var __details_events = function ( settings )
 	{
 		var api = new _Api( settings );

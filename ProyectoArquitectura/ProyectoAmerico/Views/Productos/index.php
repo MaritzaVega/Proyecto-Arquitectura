@@ -83,4 +83,7 @@
         </div>
     </div>
 </div>
+<br>
+<br>
+<br>
 <?php include "Views/Templates/footer.php";?>

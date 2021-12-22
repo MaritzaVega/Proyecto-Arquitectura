@@ -20,6 +20,7 @@
     <tbody>
     </tbody>
 </table>
-
-
+<br>
+<br>
+<br>
 <?php include "Views/Templates/footer.php";?>

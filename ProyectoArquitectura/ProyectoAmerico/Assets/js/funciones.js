@@ -771,6 +771,75 @@ function alertas(mensaje, icono){
          })
 }
 
+///VENTAS//
+
+//Buscar codigo
+function buscarCodigoVenta(e){
+    e.preventDefault();
+    const cod = document.getElementById("codigo").value;
+    if (cod != '') {
+        if(e.which == 13){
+            const url = base_url + "Ventas/buscarCodigo/"+cod;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true); //ejecutar de forma asincrona
+            http.send();
+            http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                 if(this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    if(res){
+                        document.getElementById("nombre").value = res.descripcion;
+                    document.getElementById("precio").value = res.precio_venta;
+                    document.getElementById("id").value = res.id;
+                    document.getElementById("cantidad").removeAttribute('disabled');
+                    document.getElementById("cantidad").focus();
+                    }else{
+                        alertas('Producto no existente', 'warning');
+                        document.getElementById("codigo").value = '';
+                        document.getElementById("codigo").focus();
+                    }
+                }
+            }
+        }
+    } else{
+        alertas('Ingrese el còdigo', 'warning');
+    }
+
+}
+
+function calcularPrecioVenta(e){
+    e.preventDefault();
+    const cant = document.getElementById("cantidad").value;
+    const precio = document.getElementById("precio").value;
+    document.getElementById("sub_total").value = precio * cant;
+
+    if(e.which == 13){ //tecla ENTER = 13
+        if(cant>0){
+            const url = base_url + "Compras/ingresarVenta";
+            const frm = document.getElementById("frmVenta");
+            const http = new XMLHttpRequest();
+            http.open("POST", url, true); //ejecutar de forma asincrona
+            http.send(new FormData(frm));
+            http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                if(this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    alertas(res.msg, res.icono);
+                    frm.reset();
+                    document.getElementById('cantidad').setAttribute('disabled','disabled');
+                    document.getElementById('codigo').focus();
+                    
+                }
+            }
+
+        }
+    }
+
+
+}
+    
+
+
+
+
 
 
 

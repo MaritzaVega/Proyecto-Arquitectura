@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Usuario">
+                        <input id="usuario" class="form-control" type="text" name="usuario" placeholder="usuario">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="numDocumento">Número de Documento</label>
-                        <input id="numDocumento" class="form-control" type="number" name="numDocumento" placeholder="N° Documento">
+                        <input id="numDocumento" class="form-control" type="number" minlength="8" maxlength="12" name="numDocumento" placeholder="N° Documento">
                     </div>
                     <button class="btn btn-primary" type="button" onclick="registrarUser(event);" id="btnAccion">Registrar</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>

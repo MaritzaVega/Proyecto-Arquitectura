@@ -5,7 +5,7 @@
 <table class="table table-light" id="t_reporte_c">
     <thead class="thead-darkR">
         <tr>
-            <th>Id</th>
+            <th>#</th>
             <th>Total</th>
             <th>Fecha de Compra </th>
             <th>Reporte</th>
@@ -14,4 +14,5 @@
     <tbody>
     </tbody>
 </table>
+
 <?php include "Views/Templates/footer.php";?>

@@ -70,7 +70,7 @@ body {
   background-color: #fff;
 }
 .fondo{
-  background-image: url('../img/Tienda-de-ropa.jpg');
+  background-image: url('../imagenes/Tienda-de-ropa.jpg');
   max-width: 100%;
   width: auto;
   height: auto;
@@ -554,7 +554,8 @@ pre code {
 }
 
 .container {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
   margin-right: auto;
@@ -562,7 +563,7 @@ pre code {
 }
 @media (min-width: 576px) {
   .container {
-    max-width: 540px;
+    max-width: 100%;
   }
 }
 @media (min-width: 768px) {
@@ -1697,6 +1698,7 @@ pre code {
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
+  /* D4ABAB  ---*/
 }
 .table th,
 .table td {
@@ -1919,6 +1921,12 @@ pre code {
   background-color: rgba(0, 0, 0, 0.075);
 }
 
+table .thead-darkR th {
+  color: #fff;
+  background-color: #8B0000;
+  border-color: #8B0000;
+}
+
 .table .thead-dark th {
   color: #fff;
   background-color: #343a40;
@@ -1930,10 +1938,16 @@ pre code {
   border-color: #dee2e6;
 }
 
+.table .thead-darkR{
+  color: #fff;
+  background-color: #8B0000;
+}
+
 .table-dark {
   color: #fff;
   background-color: #343a40;
 }
+
 .table-dark th,
 .table-dark td,
 .table-dark thead th {
@@ -2500,12 +2514,25 @@ a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none;
 }
+/*BOTONES DE COLORES Y DISEÑO*/
+
+.btn-compra {
+  color: #fff;
+  background-color: #33579C;
+  border-color: #33579C;
+}
 
 .btn-primary {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
 }
+.btn-primaryR {
+  color: #fff;
+  background-color: #2e57a5;
+  border-color: #2e57a5;
+}
+
 .btn-danger2 {
   color: #fff;
   background-color: #971204;
@@ -4392,6 +4419,19 @@ input[type=button].btn-block {
   border-radius: 0.25rem;
   background: rgba(60, 66, 150, 0.8);
 }
+
+.cardcampo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  background: #fff;
+}
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -6195,7 +6235,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #971204 !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -6205,7 +6245,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #212967 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -9921,7 +9961,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-muted {
-  color: #6c757d !important;
+  color: #fff !important;
 }
 
 .text-black-50 {
@@ -10244,8 +10284,13 @@ body {
   flex-shrink: 0;
 }
 
+.sb-sidenav-darkB {
+  background-color: #222967;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .sb-sidenav-dark {
-  background-color: #212529;
+  background-color: #212967;
   color: rgba(255, 255, 255, 0.5);
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
@@ -10270,7 +10315,7 @@ body {
   color: #fff;
 }
 .sb-sidenav-dark .sb-sidenav-footer {
-  background-color: #343a40;
+  background-color: #212967;
 }
 
 .sb-sidenav-light {

@@ -3,10 +3,14 @@ class Usuarios extends Controller{
 
     public function __construct() {
         session_start();
+       
         parent::__construct();
     }
     public function index()
     {
+        if(empty($_SESSION["activo"])){
+            header("location: ".base_url);
+        }
         $data['documentos'] = $this->model->getDocumentos();
         $this->views->getView($this, "index", $data);
     }
@@ -24,13 +28,17 @@ class Usuarios extends Controller{
             }
 
             //Botones modificar y eliminar
-            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button">Editar</button>
-            <button class="btn btn-danger" type="button">Eliminar</button></div>'; 
+            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-success" type="button" onclick="btnReingresarUser('.$data[$i]['id'].');">Reingresar</button>
+            </div>'; 
+            
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
     
+
     public function validar()
     {
         if(empty($_POST['usuario']) || empty($_POST['clave'])){
@@ -38,19 +46,23 @@ class Usuarios extends Controller{
         }else{
             $usuario = $_POST['usuario'];
             $clave = $_POST['clave'];
-            $data = $this->model->getUsuario($usuario,$clave);
+            $hash = hash("SHA256", $clave);
+            $data = $this->model->getUsuario($usuario,$hash); //se debe poner $hash en vez de $clave
             if($data){
                 $_SESSION['id_usuario'] = $data['id'];
                 $_SESSION['usuario'] = $data['usuario'];
                 $_SESSION['nombre'] = $data['nombre'];
+                $_SESSION['activo'] = true;
                 $msg = "ok";
             }else{
-                $msg = "Uusario o constraseña incorrecta";
+                $msg = "Usario o constraseña incorrecta";
             }   
         }
         echo json_encode($msg,JSON_UNESCAPED_UNICODE);
         die();
     }
+
+
 //video 7
     public function registrar()
     {
@@ -60,23 +72,109 @@ class Usuarios extends Controller{
         $confirmar = $_POST['confirmar'];
         $documentos = $_POST['documentos'];
         $numDocumento = $_POST['numDocumento'];
+        $id = $_POST['id'];
 
-        if(empty($usuario) || empty($nombre) || empty($clave) || empty($documentos) || empty($numDocumento)){
-            $msg="Todos los campos son obligatorios";
-        }else if($clave != $confirmar){
-            $msg="Las contraseñas no coinciden";
+        //variable para encriptar las contraseñas
+        $hash = hash("SHA256", $clave);
+        //$hash = password_hash($clave, PASSWORD_DEFAULT);
+
+        if(empty($usuario) || empty($nombre) || empty($documentos) || empty($numDocumento)){
+            $msg= array('msg'=> 'Todos los campos son obligatorios','icono' => 'Warning');
+          
         }else{
-          $data = $this->model->registrarUsuario($usuario, $nombre, $clave, $documentos, $numDocumento);
-          if ($data == "ok")
-          {
-            $msg = "si";
-          }else {
-            $msg = "Error al registrar el usuario";
-          }
+            if($id==""){
 
+                if($clave != $confirmar){
+                    $msg= array('msg'=> 'Las contraseñas no coinciden','icono' => 'Warning');
+                }else{
+                    $data = $this->model->registrarUsuario($usuario, $nombre, $hash, $documentos, $numDocumento);
+                    if ($data == "ok"){
+                        $msg= array('msg'=> 'Usuario registrado con èxito','icono' => 'success');
+                    }else if($data == "existe"){
+                        $msg= array('msg'=> 'El usuario ya existe','icono' => 'Warning');
+                    }else{
+                        $msg= array('msg'=> 'Error al registrar el usuario','icono' => 'error');
+                    }
+                }
+                
+            }else{
+                $data = $this->model->modificarUsuario($usuario, $nombre, $documentos, $numDocumento,$id);
+                    if ($data == "Modificado"){
+                        $msg= array('msg'=> 'Usuario modificado con èxito','icono' => 'success');
+                    }else{
+                        $msg= array('msg'=> 'Error al modificar el usuario','icono' => 'error');
+                    }
+            }
+            
         }
-        echo json_encode($msg,JSON_UNESCAPED_UNICODE);
+    echo json_encode($msg,JSON_UNESCAPED_UNICODE);
+    die();
+}
+
+    public function editar(int $id)
+    {
+        $data = $this->model->editarUser($id);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
+    }
+
+    public function eliminar(int $id)
+    {
+        $data = $this->model->accionUser(0, $id);
+        if($data==1){
+            $msg= array('msg'=> 'Usuario dado de baja','icono' => 'success');
+        }else{
+            $msg= array('msg'=> 'Error al eliminar el usuario','icono' => 'error');
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function reingresar(int $id)
+    {
+        $data = $this->model->accionUser(1, $id);
+        if($data==1){
+            $msg= array('msg'=> 'Usuario reingresado con èxito','icono' => 'success');
+        }else{
+            $msg= array('msg'=> 'Error al reingresar el usuario','icono' => 'error');
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function cambiarPass(){
+        $actual = $_POST['clave_actual'];
+        $nueva = $_POST['clave_nueva'];
+        $confirmar = $_POST['confirmar_clave'];
+        if (empty($actual) || empty($nueva) || empty($confirmar)) {
+            $mensaje = array('msg' => 'Todos los campos son obligatorios', 'icono' => 'warning');
+        }else{
+            if ($nueva != $confirmar) {
+                $mensaje = array('msg' => 'Las contraseñas no coinciden', 'icono' => 'warning');
+            }else{
+                $id = $_SESSION['id_usuario'];
+                $hash = hash("SHA256", $actual);
+                $data = $this->model->getPass($hash, $id);
+                if (!empty($data)) {                    
+                    $verificar = $this->model->modificarPass(hash("SHA256", $nueva), $id);
+                    if ($verificar == 1) {
+                        $mensaje = array('msg' => 'Contraseña modificada con éxito', 'icono' => 'success');
+                    }else{
+                        $mensaje = array('msg' => 'Error al modificar la contraseña', 'icono' => 'error');
+                    }
+                }else{
+                    $mensaje = array('msg' => 'La contraseña actual es incorrecta', 'icono' => 'warning');
+                }
+            }
+        }
+        echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function salir()
+    {
+        session_destroy();
+        header("location: ".base_url);
     }
 
 }

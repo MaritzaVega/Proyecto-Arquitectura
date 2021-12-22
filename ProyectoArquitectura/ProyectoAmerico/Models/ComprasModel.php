@@ -33,6 +33,7 @@ class ComprasModel extends Query{
         }
         return $res;
     }
+<<<<<<< HEAD
     public function getDetalle(string $table, int $id)
     {
         $sql ="SELECT d.*, p.id AS id_pro, p.descripcion FROM $table d INNER JOIN productos p ON d.id_producto = p.id where d.id_usuario = $id";
@@ -40,6 +41,16 @@ class ComprasModel extends Query{
         return $data; 
     }
     public function calcularCompra(String $table, int $id_usuario)
+=======
+    
+    public function getDetalle(string $table,int $id)
+    {
+        $sql ="SELECT d.*, p.id AS id_pro, p.descripcion from $table d INNER JOIN productos p ON d.id_producto = p.id where d.id_usuario = $id";
+        $data = $this->selectAll($sql);
+        return $data; 
+    }
+    public function calcularCompra(string $table,int $id_usuario)
+>>>>>>> ce05f365e5b40d7f6890c1532e38e05b9c6567b2
     {
         $sql ="SELECT sub_total, SUM(sub_total) AS total FROM $table WHERE id_usuario = $id_usuario";
         $data = $this->select($sql);
@@ -58,14 +69,22 @@ class ComprasModel extends Query{
     }
 
     ///metodo para aumentar la cant de un producto - NuevaCompra
+<<<<<<< HEAD
     public function consultarDetalle(String $table, int $id_producto, int $id_usuario)
+=======
+    public function consultarDetalle(string $table,int $id_producto, int $id_usuario)
+>>>>>>> ce05f365e5b40d7f6890c1532e38e05b9c6567b2
     {
         $sql =" SELECT * FROM $table WHERE id_producto = $id_producto AND id_usuario = $id_usuario ";
         $data = $this->select($sql);
         return $data; 
     }
 
+<<<<<<< HEAD
     public function actualizarDetalle(String $table, String $precio, int $cantidad, String $sub_total, int $id_producto, int $id_usuario)
+=======
+    public function actualizarDetalle(String $table,String $precio, int $cantidad, String $sub_total, int $id_producto, int $id_usuario)
+>>>>>>> ce05f365e5b40d7f6890c1532e38e05b9c6567b2
     {
         $sql ="UPDATE $table SET precio = ?, cantidad = ?, sub_total = ? WHERE id_producto = ? AND id_usuario = ?";
         $datos = array($precio, $cantidad, $sub_total, $id_producto, $id_usuario);

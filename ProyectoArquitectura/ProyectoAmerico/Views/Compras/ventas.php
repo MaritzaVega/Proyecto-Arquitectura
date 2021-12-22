@@ -9,8 +9,12 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="codigo"><i class="fas fa-barcode"></i> Código de barras</label>
+<<<<<<< HEAD
                             <input type="hidden" id="id" name="id">
                              <!---buscarCodigoVenta esta en funciones.js!-->
+=======
+                           <input type="hidden" id="id" name="id">
+>>>>>>> ce05f365e5b40d7f6890c1532e38e05b9c6567b2
                             <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Codigo de Barras" onkeyup="buscarCodigoVenta(event)">
                             
                         </div>
@@ -30,7 +34,11 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="precio">Precio</label>
+<<<<<<< HEAD
                             <input id="precio" class="form-control" type="number" name="precio" placeholder="Precio Venta" disabled >
+=======
+                            <input id="precio" class="form-control" type="number" name="precio" placeholder="Precio venta" disabled >
+>>>>>>> ce05f365e5b40d7f6890c1532e38e05b9c6567b2
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -69,6 +77,7 @@
     </tbody>
 </table>
 <div class="row">
+<<<<<<< HEAD
     <!---/////////CLIENTE-!-->
         <div class="col-md-3">
             <div class="form-group">
@@ -96,6 +105,32 @@
                     <label for="total " class="font-weight-blod">Total</label>
                     <input id="total" class="form-control" type="number" name="total" placeholder="Total" disabled >
                      <!---generarVenta esta en funciones.js!-->
+=======
+        <div class="col-md-3">
+                <div class="form-group">
+                    <label for="cliente"><i class="fas fa-users"></i>Buscar cliente</label>
+                    <input id="cliente" class="form-control" type="text" name="cliente"placeHolder="Nombre">
+                    <input type="hidden" id="id" name="id">
+                </div>
+                
+        </div>
+        <div class="col-md-3">
+                <div class="form-group">
+                    <label for="cliente"><i class="fas fa-phone"></i>Telèfono</label>
+                    <input id="cliente" class="form-control" type="text" name="Telèfono" placeHolder="Telefono" disabled>
+                </div>
+        </div>
+        <div class="col-md-3">
+                <div class="form-group">
+                    <label for="cliente"><i class="fas fa-home"></i>Direcciòn</label>
+                    <input id="cliente" class="form-control" type="text" name="telefono"placeHolder="Direcciòn" disabled>
+                </div>
+        </div>
+        <div class="col-md-3">
+                <div class="form-group">
+                    <label for="total " class="font-weight-blod">Total a pagar</label>
+                    <input id="total" class="form-control" type="number" name="total" placeholder="Total" disabled >
+>>>>>>> ce05f365e5b40d7f6890c1532e38e05b9c6567b2
                     <button type="button" class="btn btn-compra mt-2 btn-block" onclick="generarVenta()">Generar Venta</button>
                 </div>
                 

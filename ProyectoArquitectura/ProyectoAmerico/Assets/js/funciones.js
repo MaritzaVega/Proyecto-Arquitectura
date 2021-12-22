@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         
     });
-    
     //Fin de tabla ususarios
     tblProductosReporte = $('#tblProductosReporte').DataTable({
         ajax: {
@@ -599,6 +598,38 @@ function buscarCodigo(e){
     }
 
 }
+//Buscar codigoventa
+function buscarCodigoVenta(e){
+    e.preventDefault();
+    const cod = document.getElementById("codigo").value;
+    if (cod != '') {
+        if(e.which == 13){
+            const url = base_url + "Compras/buscarCodigo/"+cod;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true); //ejecutar de forma asincrona
+            http.send();
+            http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                 if(this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    if(res){
+                        document.getElementById("nombre").value = res.descripcion;
+                    document.getElementById("precio").value = res.precio_venta;
+                    document.getElementById("id").value = res.id;
+                    document.getElementById("cantidad").removeAttribute('disabled');
+                    document.getElementById("cantidad").focus();
+                    }else{
+                        alertas('Producto no existente', 'warning');
+                        document.getElementById("codigo").value = '';
+                        document.getElementById("codigo").focus();
+                    }
+                }
+            }
+        }
+    } else{
+        alertas('Ingrese el còdigo', 'warning');
+    }
+
+}
 ////vista compra
 function calcularPrecio(e){
 
@@ -631,7 +662,7 @@ function calcularPrecio(e){
 
     
 }
-////venta
+//
 function calcularPrecioVenta(e){
 
     e.preventDefault();
@@ -641,7 +672,7 @@ function calcularPrecioVenta(e){
 
     if(e.which == 13){ //tecla ENTER = 13
         if(cant>0){
-            const url = base_url + "Compras/ingresarVenta";
+            const url = base_url + "Compras/ingresarVenta/";
             const frm = document.getElementById("frmVenta");
             const http = new XMLHttpRequest();
             http.open("POST", url, true); //ejecutar de forma asincrona
@@ -663,12 +694,12 @@ function calcularPrecioVenta(e){
 
 
 }
-if(document.getElementById('tblDetalle')){  
+if(document.getElementById('tblDetalle')){
+    cargarDetalle();
 }
-if(document.getElementById('tblDetalleVenta')){  
+if(document.getElementById('tblDetalleVenta')){
     cargarDetalleVenta();
 }
-
 function cargarDetalle(){
     const url = base_url + "Compras/listar/detalle";
     const http = new XMLHttpRequest();
@@ -697,8 +728,6 @@ function cargarDetalle(){
     }
        
 }
-
-////Venta
 function cargarDetalleVenta(){
     const url = base_url + "Compras/listar/detalle_temp";
     const http = new XMLHttpRequest();
@@ -727,7 +756,6 @@ function cargarDetalleVenta(){
     }
        
 }
-
 function deleteDetalle(id){
     const url = base_url + "Compras/delete/"+id;
     const http = new XMLHttpRequest();

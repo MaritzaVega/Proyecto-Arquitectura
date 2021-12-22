@@ -73,7 +73,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Compra</a> 
                                 <!---Compras/historial!--->
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a>
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a>
                                 </nav>
                             </div>
 
@@ -84,7 +84,7 @@
                             </a>
                             <div class="collapse" id="collapseVenta" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras/ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a> 
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a> 
                                 <!---Compras/historial!--->
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte_ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Ventas</a>
                                 </nav>

@@ -1,4 +1,4 @@
-<?php include "Views/Templates/header.php";?>
+<?php include "Views/Templates/headermetodo.php";?>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Nueva Venta</li>
 </ol>
@@ -55,7 +55,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody id="tblDetalle">
+    <tbody id="tblDetalleVenta">
         <tr>
             <td scope="row"></td>
             <td></td>

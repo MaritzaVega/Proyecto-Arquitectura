@@ -74,7 +74,7 @@
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Compra</a> 
                                 <!---Compras/historial!--->
                                 <!----NUEVA VENTA!--->
-                                <a class="nav-link" href="<?php echo base_url; ?>Ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a>
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a>
                                 </nav>
                             </div>
 
@@ -87,7 +87,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <!--REPORTE VENTA-!-->
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Compras</a>
-                                <a class="nav-link" href="<?php echo base_url; ?>Venta/reporte_venta"><i class="fas fa-file mr-2 text-primary"></i> Reporte Ventas</a> 
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte_venta"><i class="fas fa-file mr-2 text-primary"></i> Reporte Ventas</a> 
                                 <a class="nav-link" href="<?php echo base_url; ?>ProductosReporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Inventario</a>
                                 </nav>
                             </div>

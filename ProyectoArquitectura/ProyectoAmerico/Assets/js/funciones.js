@@ -631,12 +631,46 @@ function calcularPrecio(e){
 
     
 }
+////venta
+function calcularPrecioVenta(e){
 
-if(document.getElementById('tblDetalle')){
-    cargarDetalle();
+    e.preventDefault();
+    const cant = document.getElementById("cantidad").value;
+    const precio = document.getElementById("precio").value;
+    document.getElementById("sub_total").value = precio * cant;
+
+    if(e.which == 13){ //tecla ENTER = 13
+        if(cant>0){
+            const url = base_url + "Compras/ingresarVenta";
+            const frm = document.getElementById("frmVenta");
+            const http = new XMLHttpRequest();
+            http.open("POST", url, true); //ejecutar de forma asincrona
+            http.send(new FormData(frm));
+            http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                if(this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    alertas(res.msg, res.icono);
+                    frm.reset();
+                    cargarDetalleVenta();
+                    document.getElementById('cantidad').setAttribute('disabled','disabled');
+                    document.getElementById('codigo').focus();
+                    
+                }
+            }
+
+        }
+    }
+
+
 }
+if(document.getElementById('tblDetalle')){  
+}
+if(document.getElementById('tblDetalleVenta')){  
+    cargarDetalleVenta();
+}
+
 function cargarDetalle(){
-    const url = base_url + "Compras/listar/";
+    const url = base_url + "Compras/listar/detalle";
     const http = new XMLHttpRequest();
     http.open("GET", url, true); //ejecutar de forma asincrona
     http.send();
@@ -663,6 +697,37 @@ function cargarDetalle(){
     }
        
 }
+
+////Venta
+function cargarDetalleVenta(){
+    const url = base_url + "Compras/listar/detalle_temp";
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true); //ejecutar de forma asincrona
+    http.send();
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            let html = '';
+            res.detalle.forEach(row => {
+                html += `<tr> 
+                <td>${row['id']}</td>
+                <td>${row['descripcion']}</td>
+                <td>${row['cantidad']}</td>
+                <td>${row['precio']}</td>
+                <td>${row['sub_total']}</td>
+                <td>
+                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']})">
+                <i class="fas fa-trash-alt"></i></button>
+                </td>
+                </tr>`;
+            });
+            document.getElementById("tblDetalleVenta").innerHTML=html;
+            document.getElementById("total").value=res.total_pagar.total;
+        }
+    }
+       
+}
+
 function deleteDetalle(id){
     const url = base_url + "Compras/delete/"+id;
     const http = new XMLHttpRequest();
@@ -779,7 +844,7 @@ function buscarCodigoVenta(e){
     const cod = document.getElementById("codigo").value;
     if (cod != '') {
         if(e.which == 13){
-            const url = base_url + "Ventas/buscarCodigo/"+cod;
+            const url = base_url + "Compras/buscarCodigo/"+cod;
             const http = new XMLHttpRequest();
             http.open("GET", url, true); //ejecutar de forma asincrona
             http.send();

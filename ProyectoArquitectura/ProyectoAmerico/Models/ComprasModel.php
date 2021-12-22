@@ -21,9 +21,9 @@ class ComprasModel extends Query{
         return $data;
     }
     
-    public function registrarDetalle(int $id_producto, int $id_usuario, String $precio, int $cantidad, String $sub_total)
+    public function registrarDetalle(string $table, int $id_producto, int $id_usuario, String $precio, int $cantidad, String $sub_total)
     {
-        $sql ="INSERT INTO detalle(id_producto, id_usuario, precio, cantidad, sub_total) VALUES (?,?,?,?,?)";
+        $sql ="INSERT INTO $table (id_producto, id_usuario, precio, cantidad, sub_total) VALUES (?,?,?,?,?)";
         $datos = array($id_producto, $id_usuario, $precio, $cantidad, $sub_total);
         $data = $this->save($sql,$datos);
         if ($data == 1) {
@@ -34,15 +34,15 @@ class ComprasModel extends Query{
         return $res;
     }
     
-    public function getDetalle(int $id)
+    public function getDetalle(string $table,int $id)
     {
-        $sql ="SELECT d.*, p.id AS id_pro, p.descripcion from detalle d INNER JOIN productos p ON d.id_producto = p.id where d.id_usuario = $id";
+        $sql ="SELECT d.*, p.id AS id_pro, p.descripcion from $table d INNER JOIN productos p ON d.id_producto = p.id where d.id_usuario = $id";
         $data = $this->selectAll($sql);
         return $data; 
     }
-    public function calcularCompra(int $id_usuario)
+    public function calcularCompra(string $table,int $id_usuario)
     {
-        $sql ="SELECT sub_total, SUM(sub_total) AS total FROM detalle WHERE id_usuario = $id_usuario";
+        $sql ="SELECT sub_total, SUM(sub_total) AS total FROM $table WHERE id_usuario = $id_usuario";
         $data = $this->select($sql);
         return $data; 
     }
@@ -59,16 +59,16 @@ class ComprasModel extends Query{
     }
 
     ///metodo para aumentar la cant de un producto - NuevaCompra
-    public function consultarDetalle(int $id_producto, int $id_usuario)
+    public function consultarDetalle(string $table,int $id_producto, int $id_usuario)
     {
-        $sql =" SELECT * FROM detalle WHERE id_producto = $id_producto AND id_usuario = $id_usuario ";
+        $sql =" SELECT * FROM $table WHERE id_producto = $id_producto AND id_usuario = $id_usuario ";
         $data = $this->select($sql);
         return $data; 
     }
 
-    public function actualizarDetalle(String $precio, int $cantidad, String $sub_total, int $id_producto, int $id_usuario)
+    public function actualizarDetalle(String $table,String $precio, int $cantidad, String $sub_total, int $id_producto, int $id_usuario)
     {
-        $sql ="UPDATE detalle SET precio = ?, cantidad = ?, sub_total = ? WHERE id_producto = ? AND id_usuario = ?";
+        $sql ="UPDATE $table SET precio = ?, cantidad = ?, sub_total = ? WHERE id_producto = ? AND id_usuario = ?";
         $datos = array($precio, $cantidad, $sub_total, $id_producto, $id_usuario);
         $data = $this->save($sql,$datos);
         if ($data == 1) {

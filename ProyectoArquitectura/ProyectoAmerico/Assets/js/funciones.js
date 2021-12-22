@@ -138,8 +138,8 @@ document.addEventListener("DOMContentLoaded", function(){
             {
                 extend: 'excelHtml5',
                 footer: true,
-                title: 'Archivo',
-                filename: 'Export_File',
+                title: 'Reporte de Inventario',
+                filename: 'Reporte_Inventario',
  
                 //Aquí es donde generas el botón personalizado
                 text: '<span class="badge badge-success"><i class="fas fa-file-excel"></i></span>'
@@ -149,8 +149,8 @@ document.addEventListener("DOMContentLoaded", function(){
                 extend: 'pdfHtml5',
                 download: 'open',
                 footer: true,
-                title: 'Reporte de usuarios',
-                filename: 'Reporte de usuarios',
+                title: 'Reporte de Inventario',
+                filename: 'Reporte_Inventario',
                 text: '<span class="badge  badge-danger"><i class="fas fa-file-pdf"></i></span>',
                 exportOptions: {
                     columns: [0, ':visible']
@@ -160,8 +160,8 @@ document.addEventListener("DOMContentLoaded", function(){
             {
                 extend: 'copyHtml5',
                 footer: true,
-                title: 'Reporte de usuarios',
-                filename: 'Reporte de usuarios',
+                title: 'Reporte de Inventario',
+                filename: 'Reporte_Inventario',
                 text: '<span class="badge  badge-primary"><i class="fas fa-copy"></i></span>',
                 exportOptions: {
                     columns: [0, ':visible']
@@ -171,25 +171,61 @@ document.addEventListener("DOMContentLoaded", function(){
             {
                 extend: 'print',
                 footer: true,
-                filename: 'Export_File_print',
+                title: 'Reporte de Inventario',
+                filename: 'Reporte_Inventario',
                 text: '<span class="badge badge-light"><i class="fas fa-print"></i></span>'
             },
             //Botón para cvs
             {
                 extend: 'csvHtml5',
                 footer: true,
-                filename: 'Export_File_csv',
+                title: 'Reporte de Inventario',
+                filename: 'Reporte_Inventario',
                 text: '<span class="badge  badge-success"><i class="fas fa-file-csv"></i></span>'
-            },
-            /*{
+            }
+            /*,{
                 extend: 'colvis',
-                text: '<span class="badge  badge-info"><i class="fas fa-columns"></i></span>',
+                text: '<span class="badge badge-info"><i class="fas fa-columns"></i></span>',
                 postfixButtons: ['colvisRestore']
             }*/
         ]
            
     });
 })
+
+//Cambiar password perfil
+function frmCambiarPass(e){
+    e.preventDefault();
+    const actual = document.getElementById('clave_actual').value;
+    const nueva = document.getElementById('clave_nueva').value;
+    const confirmar = document.getElementById('confirmar_clave').value;
+    if(actual=='' || nueva=='' || confirmar==''){
+        alertas('Todos los campos son obligatorios', 'warning');
+        return false;
+    }else{
+        if (nueva != confirmar) {
+            alertas('Las contraseñas no coinciden', 'warning');
+            return false;
+        }else{
+            const url = base_url + "Usuarios/cambiarPass";
+            const frm = document.getElementById("frmCambiarPass");
+            const http = new XMLHttpRequest();
+            http.open("POST", url, true); //ejecutar de forma asincrona
+            http.send(new FormData(frm));
+            http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                if(this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    alertas(res.msg, res.icono);
+                    $("#cambiarPass").modal("hide");
+                    frm.reset();
+                } 
+            }
+        }
+    }
+
+}
+
+
 
 //abre le modal de los usuarios
 function frmUsuario(){

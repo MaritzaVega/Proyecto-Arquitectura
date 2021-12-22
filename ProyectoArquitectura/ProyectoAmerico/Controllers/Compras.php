@@ -10,6 +10,10 @@ class Compras extends Controller{
     {
         $this->views->getView($this, "index");
     }
+    public function ventas ()
+    {
+        $this->views->getView($this, "ventas");
+    }
 
     public function buscarCodigo($cod)
     {
@@ -32,10 +36,10 @@ class Compras extends Controller{
         $cantidad = $_POST['cantidad'];
         
         ///variable para aumentar la cant de un producto NuevaCompra
-        $comprobar = $this->model->consultarDetalle($id_producto,$id_usuario);
+        $comprobar = $this->model->consultarDetalle('detalle',$id_producto,$id_usuario);
         if (empty($comprobar)) {
             $sub_total = $precio * $cantidad;
-            $data = $this->model->registrarDetalle($id_producto, $id_usuario, $precio, $cantidad, $sub_total);
+            $data = $this->model->registrarDetalle('detalle',$id_producto, $id_usuario, $precio, $cantidad, $sub_total);
             if ($data == "ok") {
                 $msg = array('msg'=> 'Producto ingresado a la compra', 'icono'=> 'success');
             }else{
@@ -44,7 +48,7 @@ class Compras extends Controller{
         }else{
             $total_cantidad = $comprobar['cantidad'] + $cantidad;
             $sub_total = $total_cantidad * $precio;
-            $data = $this->model->actualizarDetalle($precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
+            $data = $this->model->actualizarDetalle('detalle',$precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
             if ($data == "modificado") {
                 $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
             }else{
@@ -56,11 +60,46 @@ class Compras extends Controller{
         die();
     }
 
-    public function listar()
+    public function ingresarVenta()
+    {
+        //print_r($_POST);
+        $id = $_POST['id'];
+        $datos = $this->model->getProductos($id);
+        //print_r($datos);
+        $id_producto = $datos['id'];
+        $id_usuario = $_SESSION['id_usuario'];
+        $precio = $datos['precio_venta'];
+        $cantidad = $_POST['cantidad'];
+        
+        ///variable para aumentar la cant de un producto NuevaCompra
+        $comprobar = $this->model->consultarDetalle('detalle_temp',$id_producto,$id_usuario);
+        if (empty($comprobar)) {
+            $sub_total = $precio * $cantidad;
+            $data = $this->model->registrarDetalle('detalle_temp',$id_producto, $id_usuario, $precio, $cantidad, $sub_total);
+            if ($data == "ok") {
+                $msg = array('msg'=> 'Producto ingresado a la venta', 'icono'=> 'success');
+            }else{
+                $msg = array('msg'=> 'Error al ingresar el producto a la venta', 'icono'=> 'error');
+            }
+        }else{
+            $total_cantidad = $comprobar['cantidad'] + $cantidad;
+            $sub_total = $total_cantidad * $precio;
+            $data = $this->model->actualizarDetalle('detalle_temp',$precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
+            if ($data == "modificado") {
+                $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
+            }else{
+                $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
+            }
+        }
+        
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+    public function listar($table)
     {
         $id_usuario = $_SESSION['id_usuario'];
-        $data['detalle'] = $this->model->getDetalle($id_usuario);
-        $data['total_pagar'] = $this->model->calcularCompra($id_usuario);
+        $data['detalle'] = $this->model->getDetalle($table,$id_usuario);
+        $data['total_pagar'] = $this->model->calcularCompra($table,$id_usuario);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
@@ -80,10 +119,10 @@ class Compras extends Controller{
     public function registrarCompra()
     {
         $id_usuario = $_SESSION['id_usuario'];
-        $total= $this->model->calcularCompra($id_usuario);
+        $total= $this->model->calcularCompra('detalle',$id_usuario);
         $data = $this->model->registrarCompra($total['total']);  
         if ($data == 'ok') {
-            $detalle = $this->model->getDetalle($id_usuario);
+            $detalle = $this->model->getDetalle('detalle',$id_usuario);
             $id_compra = $this->model->id_compra();
             foreach($detalle as $row){
                 $cantidad = $row['cantidad'];

@@ -194,6 +194,38 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 })
 
+//Cambiar password perfil
+function frmCambiarPass(e){
+    e.preventDefault();
+    const actual = document.getElementById('clave_actual').value;
+    const nueva = document.getElementById('clave_nueva').value;
+    const confirmar = document.getElementById('confirmar_clave').value;
+    if(actual=='' || nueva=='' || confirmar==''){
+        alertas('Todos los campos son obligatorios', 'warning');
+        return false;
+    }else{
+        if (nueva != confirmar) {
+            alertas('Las contraseñas no coinciden', 'warning');
+            return false;
+        }else{
+            const url = base_url + "Usuarios/cambiarPass";
+            const frm = document.getElementById("frmCambiarPass");
+            const http = new XMLHttpRequest();
+            http.open("POST", url, true); //ejecutar de forma asincrona
+            http.send(new FormData(frm));
+            http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                if(this.readyState == 4 && this.status == 200){
+                    const res = JSON.parse(this.responseText);
+                    alertas(res.msg, res.icono);
+                    $("#cambiarPass").modal("hide");
+                    frm.reset();
+                } 
+            }
+        }
+    }
+
+}
+
 
 
 //abre le modal de los usuarios

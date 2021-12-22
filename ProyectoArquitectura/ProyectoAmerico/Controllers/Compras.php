@@ -6,6 +6,7 @@ class Compras extends Controller{
         parent::__construct();
 
     }
+
     public function index ()
     {
         $this->views->getView($this, "index");
@@ -218,7 +219,7 @@ class Compras extends Controller{
     public function reporte()
     {
         $this->views->getView($this, "reporte");
-    }
+    } 
 
     public function listar_reporte()
     {
@@ -232,5 +233,7 @@ class Compras extends Controller{
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
+
 }
+
 ?>

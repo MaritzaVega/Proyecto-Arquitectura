@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Panel de Administración</title>
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
-        <link href="<?php echo base_url; ?>Assets/DataTable/datatables.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <link href="<?php echo base_url; ?>Assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -78,15 +78,15 @@
                             </div>
 
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReporte" aria-expanded="false" aria-controls="collapseCompras">
-                                <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart text-primary"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa fa-file text-primary"></i></div>
                                 Reportes
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseReporte" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Compras</a>
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Ventas</a> 
-                                <a class="nav-link" href="<?php echo base_url; ?>ProductosReporte"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Inventario</a>
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Compras</a>
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras"><i class="fas fa-file mr-2 text-primary"></i> Reporte Ventas</a> 
+                                <a class="nav-link" href="<?php echo base_url; ?>ProductosReporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Inventario</a>
                                 </nav>
                             </div>
                         </div>

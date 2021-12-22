@@ -1,4 +1,4 @@
-let tblUsuarios,tblProductos,tblProductosReporte;
+let tblUsuarios,tblClientes, tblProductos,tblProductosReporte;
 document.addEventListener("DOMContentLoaded", function(){
     tblUsuarios = $('#tblUsuarios').DataTable({
         ajax: {
@@ -31,6 +31,40 @@ document.addEventListener("DOMContentLoaded", function(){
         
     });
     //Fin de tabla ususarios
+    tblClientes = $('#tblClientes').DataTable({
+        ajax: {
+            url: base_url + "Clientes/listar",
+            dataSrc:''
+        },
+        columns:[
+            {
+            'data' : 'id'
+            },
+            {
+            'data' : 'dni'
+            },
+            {
+            'data' :'nombre'
+            },
+            {
+            'data' :'telefono'
+            },
+            {
+            'data' :'direccion'
+            },
+            {
+            'data' : 'estado'
+            },
+            {
+            'data' : 'acciones'
+            }
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        }
+        
+    });
+    //Fin de tabla clientes
     tblProductos = $('#tblProductos').DataTable({
         ajax: {
             url: base_url + "Productos/listar",
@@ -355,6 +389,136 @@ function btnReingresarUser(id ){
 
 }
 //Fin usuario
+
+
+
+
+//abre le modal de los Clientes
+function frmCliente(){
+    document.getElementById("title").innerHTML = "Registrar Nuevo Cliente";
+    document.getElementById("btnAccion").innerHTML = "Registrar";
+    document.getElementById("frmCliente").reset();
+    $("#nuevo-cliente").modal("show"); 
+    document.getElementById("id").value="";
+}
+//esta funcion trabaja con ->Clientes.php
+function registrarCli(e){ // detiene que la página se cargue de nuevo
+    e.preventDefault();
+    const dni = document.getElementById("dni");
+    const nombre = document.getElementById("nombre");
+    const telefono = document.getElementById("telefono");
+    const direccion = document.getElementById("direccion");
+    //Valida campos vacio
+    if(dni.value == "" || nombre.value == "" || telefono.value =="" || direccion.value == ""){
+       //SwetAlert 
+       alertas('Todos los campos son obligatorios','warning');
+    }else{
+        //peticion
+        const url = base_url + "Clientes/registrar";
+        const frm = document.getElementById("frmCliente");
+        const http = new XMLHttpRequest();
+        http.open("POST", url, true); //ejecutar de forma asincrona
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+            if(this.readyState == 4 && this.status == 200){
+                const res = JSON.parse(this.responseText);
+                $("#nuevo-cliente").modal("hide");
+                alertas(res.msg, res.icono);
+                tblClientes.ajax.reload();
+            } 
+        }
+            
+    }
+
+}  
+
+function btnEditarCli(id){ // detiene que la página se cargue de nuevo
+   document.getElementById("title").innerHTML = "Actualizar Cliente";
+   document.getElementById("btnAccion").innerHTML = "Modificar";
+
+    //mostrar los datos en el modal
+    const url = base_url + "Clientes/editar/"+id;
+    const frm = document.getElementById("frmCliente");
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true); //ejecutar de forma asincrona
+    http.send();
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+
+            document.getElementById("id").value = res.id;
+            document.getElementById("dni").value = res.dni;
+            document.getElementById("nombre").value = res.nombre;
+            document.getElementById("telefono").value = res.telefono;
+            document.getElementById("direccion").value = res.direccion;
+            $("#nuevo-cliente").modal("show");
+        } 
+    }
+
+} 
+
+function btnEliminarCli(id ){
+    Swal.fire({
+        title: 'Está seguro de eliminar?',
+        text: "El cliente no se eliminará de forma permanente, solo cambiará su estado a INACTIVO!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+                //mostrar los datos en el modal
+                const url = base_url + "Clientes/eliminar/"+id;
+                const frm = document.getElementById("frmCliente");
+                const http = new XMLHttpRequest();
+                http.open("GET", url, true); //ejecutar de forma asincrona
+                http.send();
+                http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                    if(this.readyState == 4 && this.status == 200){
+                        const res = JSON.parse(this.responseText);
+                        alertas(res.msg, res.icono);
+                        tblClientes.ajax.reload();
+                    } 
+                }
+                
+        }
+      })
+
+}
+
+function btnReingresarCli(id ){
+    Swal.fire({
+        title: 'Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+                //mostrar los datos en el modal
+                const url = base_url + "Clientes/reingresar/"+id;
+                const frm = document.getElementById("frmCliente");
+                const http = new XMLHttpRequest();
+                http.open("GET", url, true); //ejecutar de forma asincrona
+                http.send();
+                http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+                    if(this.readyState == 4 && this.status == 200){
+                        const res = JSON.parse(this.responseText);
+                        tblClientes.ajax.reload();
+                        alertas(res.msg, res.icono);
+                    } 
+                }
+                
+        }
+      })
+
+}
+//Fin Cliente
+
 function frmProducto(){
     document.getElementById("title").innerHTML = "Nuevo Producto";
     document.getElementById("btnAccion").innerHTML = "Registrar";

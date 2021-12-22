@@ -91,7 +91,7 @@ class Usuarios extends Controller{
                     if ($data == "ok"){
                         $msg= array('msg'=> 'Usuario registrado con èxito','icono' => 'success');
                     }else if($data == "existe"){
-                        $msg= array('msg'=> 'El usuario ya existe','icono' => 'Warning');
+                        $msg= array('msg'=> 'El usuario ya existe','icono' => 'warning');
                     }else{
                         $msg= array('msg'=> 'Error al registrar el usuario','icono' => 'error');
                     }

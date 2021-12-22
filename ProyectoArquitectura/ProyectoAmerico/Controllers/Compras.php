@@ -16,11 +16,6 @@ class Compras extends Controller{
         $this->views->getView($this, "ventas");
     }
 
-    public function ventas ()
-    {
-        $this->views->getView($this, "ventas");
-    }
-
     public function buscarCodigo($cod)
     {
         //saber si captura el codigo
@@ -29,16 +24,8 @@ class Compras extends Controller{
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
-<<<<<<< HEAD
-    
-    public function listar($table)
-    {
-        $id_usuario = $_SESSION['id_usuario'];
-        $data['detalle'] = $this->model->getDetalle($table, $id_usuario);
-        $data['total_pagar'] = $this->model->calcularCompra($table, $id_usuario);
-=======
 
-    public function ingresar()
+    /*public function ingresar()
     {
         //print_r($_POST);
         $id = $_POST['id'];
@@ -108,13 +95,12 @@ class Compras extends Controller{
         
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();
-    }
+    }*/
     public function listar($table)
     {
         $id_usuario = $_SESSION['id_usuario'];
         $data['detalle'] = $this->model->getDetalle($table,$id_usuario);
         $data['total_pagar'] = $this->model->calcularCompra($table,$id_usuario);
->>>>>>> ce05f365e5b40d7f6890c1532e38e05b9c6567b2
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
@@ -134,17 +120,10 @@ class Compras extends Controller{
     public function registrarCompra()
     {
         $id_usuario = $_SESSION['id_usuario'];
-<<<<<<< HEAD
-        $total= $this->model->calcularCompra('detalle', $id_usuario);
-        $data = $this->model->registrarCompra($total['total']);  
-        if ($data == 'ok') {
-            $detalle = $this->model->getDetalle('detalle', $id_usuario);
-=======
         $total= $this->model->calcularCompra('detalle',$id_usuario);
         $data = $this->model->registrarCompra($total['total']);  
         if ($data == 'ok') {
             $detalle = $this->model->getDetalle('detalle',$id_usuario);
->>>>>>> ce05f365e5b40d7f6890c1532e38e05b9c6567b2
             $id_compra = $this->model->id_compra();
             foreach($detalle as $row){
                 $cantidad = $row['cantidad'];

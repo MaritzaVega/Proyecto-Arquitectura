@@ -25,7 +25,7 @@ class Compras extends Controller{
         die();
     }
 
-    /*public function ingresar()
+    public function ingresar()
     {
         //print_r($_POST);
         $id = $_POST['id'];
@@ -95,7 +95,7 @@ class Compras extends Controller{
         
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();
-    }*/
+    }
     public function listar($table)
     {
         $id_usuario = $_SESSION['id_usuario'];
@@ -220,79 +220,6 @@ class Compras extends Controller{
     {
         $this->views->getView($this, "reporte");
     } 
-    
-    public function ingresar()
-    {
-        //print_r($_POST);
-        $id = $_POST['id'];
-        $datos = $this->model->getProductos($id);
-        //print_r($datos);
-        $id_producto = $datos['id'];
-        $id_usuario = $_SESSION['id_usuario'];
-        $precio = $datos['precio_compra'];
-        $cantidad = $_POST['cantidad'];
-        
-        ///variable para aumentar la cant de un producto NuevaCompra
-        $comprobar = $this->model->consultarDetalle('detalle', $id_producto,$id_usuario);
-        if (empty($comprobar)) {
-            $sub_total = $precio * $cantidad;
-            $data = $this->model->registrarDetalle('detalle', $id_producto, $id_usuario, $precio, $cantidad, $sub_total);
-            if ($data == "ok") {
-                $msg = array('msg'=> 'Producto ingresado a la compra', 'icono'=> 'success');
-            }else{
-                $msg = array('msg'=> 'Error al ingresar el producto a la compra', 'icono'=> 'error');
-            }
-        }else{
-            $total_cantidad = $comprobar['cantidad'] + $cantidad;
-            $sub_total = $total_cantidad * $precio;
-            $data = $this->model->actualizarDetalle('detalle', $precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
-            if ($data == "modificado") {
-                $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
-            }else{
-                $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
-            }
-        }
-        
-        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
-        die();
-    }
-
-    ///venta
-    public function ingresarVenta()
-    {
-        //print_r($_POST);
-        $id = $_POST['id'];
-        $datos = $this->model->getProductos($id);
-        //print_r($datos);
-        $id_producto = $datos['id'];
-        $id_usuario = $_SESSION['id_usuario'];
-        $precio = $datos['precio_venta'];
-        $cantidad = $_POST['cantidad'];
-        
-        ///variable para aumentar la cant de un producto NuevaCompra
-        $comprobar = $this->model->consultarDetalle('detalle_temp', $id_producto,$id_usuario);
-        if (empty($comprobar)) {
-            $sub_total = $precio * $cantidad;
-            $data = $this->model->registrarDetalle('detalle_temp', $id_producto, $id_usuario, $precio, $cantidad, $sub_total);
-            if ($data == "ok") {
-                $msg = array('msg'=> 'Producto ingresado a la venta', 'icono'=> 'success');
-            }else{
-                $msg = array('msg'=> 'Error al ingresar a la venta', 'icono'=> 'error');
-            }
-        }else{
-            $total_cantidad = $comprobar['cantidad'] + $cantidad;
-            $sub_total = $total_cantidad * $precio;
-            $data = $this->model->actualizarDetalle('detalle_temp', $precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
-            if ($data == "modificado") {
-                $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
-            }else{
-                $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
-            }
-        }
-        
-        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
-        die();
-    }
 
     public function listar_reporte()
     {

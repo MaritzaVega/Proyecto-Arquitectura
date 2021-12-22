@@ -14,4 +14,5 @@
     <tbody>
     </tbody>
 </table>
+
 <?php include "Views/Templates/footer.php";?>

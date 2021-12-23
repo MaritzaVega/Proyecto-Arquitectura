@@ -14,6 +14,10 @@ class Compras extends Controller{
     {
         $this->views->getView($this, "ventas");
     }
+    public function reporte_ventas ()
+    {
+        $this->views->getView($this, "reporte_ventas");
+    }
 
     public function buscarCodigo($cod)
     {

@@ -67,7 +67,6 @@
                                  <div class="sb-nav-link-icon"></div>
                                  Compras
                             </a>!-->
-
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
                                 <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart text-primary"></i></div>
                                 Operaciones

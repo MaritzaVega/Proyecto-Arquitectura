@@ -758,6 +758,7 @@ function cargarDetalleVenta(){
        
 }
 function deleteDetalle(id, accion){
+    let url;
     if (accion == 1) {
         url = base_url + "Compras/delete/"+id;
     }else{

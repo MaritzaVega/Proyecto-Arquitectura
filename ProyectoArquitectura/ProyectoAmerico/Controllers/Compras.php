@@ -140,7 +140,7 @@ class Compras extends Controller{
         $data = $this->model->registrarCompra($total['total']);  
         if ($data == 'ok') {
             $detalle = $this->model->getDetalle('detalle',$id_usuario);
-            $id_compra = $this->model->getId();
+            $id_compra = $this->model->getId('compras');
             foreach($detalle as $row){
                 $cantidad = $row['cantidad'];
                 $precio = $row['precio'];
@@ -179,7 +179,7 @@ class Compras extends Controller{
                 $precio = $row['precio'];
                 $id_pro = $row['id_producto'];
                 $sub_total = $cantidad * $precio;
-                $this->model->registrarDetalleVentas($id_venta['id'], $id_pro, $cantidad, $precio, $sub_total);
+                $this->model->registrarDetalleVenta($id_venta['id'], $id_pro, $cantidad, $precio, $sub_total);
                 
                 //ACTUALIZAR EL STOCK DE LOS PRODUCTOS
                 $stock_actual = $this->model->getProductos($id_pro);
@@ -286,7 +286,7 @@ class Compras extends Controller{
     public function generarPdfVenta($id_venta)
     {
         $empresa = $this->model->getEmpresa();
-        $productos = $this->model->getProCompra($id_venta);
+        $productos = $this->model->getProVenta($id_venta);
 
         require('Libraries/fpdf/fpdf.php');
 
@@ -321,6 +321,23 @@ class Compras extends Controller{
         $pdf->Cell(18, 7, $id_venta, 0, 1, 'L');
         $pdf->Ln();
 
+        //Encabezado de clientes
+        $pdf->SetFillColor(133, 0, 0);
+        $pdf->SetTextColor(255, 255, 255);
+        $pdf->SetFont('Arial','B',7);
+        $pdf->Cell(25, 5, 'Nombre', 0, 0, 'L', true);
+        $pdf->Cell(20, 5, utf8_decode('Teléfono'), 0, 0, 'L', true);
+        $pdf->Cell(25, 5, utf8_decode('Dirección'), 0, 1, 'L', true);
+        $pdf->SetTextColor(0, 0, 0);
+        $clientes=$this->model->clientesVenta($id_venta);
+        $pdf->SetFont('Arial','',7);
+                        
+            $pdf->Cell(25, 5, utf8_decode($clientes['nombre']), 0, 0, 'L');
+            $pdf->Cell(20, 5, utf8_decode($clientes['telefono']), 0, 0, 'L');
+            $pdf->Cell(25, 5, utf8_decode($clientes['direccion']), 0, 1, 'L');
+
+
+        $pdf->Ln();
         // GENERANDO PDF parte 2
         //Encabezado de productos
         $pdf->SetFillColor(133, 0, 0);

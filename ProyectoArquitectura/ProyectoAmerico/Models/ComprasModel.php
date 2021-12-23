@@ -154,6 +154,13 @@ class ComprasModel extends Query{
         return $data;
 
     }
+    public function getProVenta(int $id_venta )
+    {
+        $sql = "SELECT v.*, d.*, p.id, p.descripcion FROM ventas v INNER JOIN detalle_ventas d ON v.id = d.id_venta INNER JOIN productos p ON p.id = d.id_producto WHERE v.id = $id_venta";
+        $data = $this->selectAll($sql);
+        return $data;
+
+    }
     public function getReportecompras()
     {
         $sql = "SELECT * FROM compras";
@@ -180,6 +187,13 @@ class ComprasModel extends Query{
             $res = "error";
         }
         return $res;
+    }
+
+    public function clientesVenta($id)
+    {
+        $sql = "SELECT v.id, v.id_cliente, c.* FROM ventas v INNER JOIN clientes c ON c.id = v.id_cliente WHERE v.id = $id";
+        $data = $this->select($sql);
+        return $data;
     }
 
 }

@@ -7,6 +7,12 @@ class ComprasModel extends Query{
         parent::__construct();
 
     }
+    public function getClientes()
+    {
+        $sql ="select * from clientes where estado = 1";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
     public function getProCod(string $cod)
     {
         $sql ="select * from productos where codigo = '$cod'";
@@ -46,8 +52,8 @@ class ComprasModel extends Query{
         $data = $this->select($sql);
         return $data; 
     }
-    public function deleteDetalle(int $id){
-        $sql ="DELETE FROM detalle WHERE id= ?";
+    public function deleteDetalle(string $table, int $id){
+        $sql ="DELETE FROM $table WHERE id= ?";
         $datos = array($id);
         $data = $this->save($sql, $datos);
         if ($data == 1) {
@@ -91,8 +97,9 @@ class ComprasModel extends Query{
         }
         return $res;
     }
-    public function id_compra() {
-        $sql = "SELECT MAX(id) AS id FROM compras";
+
+    public function getId(string $table) {
+        $sql = "SELECT MAX(id) AS id FROM $table";
         $data = $this->select($sql);
         return $data;
     }
@@ -108,6 +115,18 @@ class ComprasModel extends Query{
         }
         return $res;
     }
+    public function registrarDetalleVenta(int $id_venta, int $id_producto, int $cantidad, string $precio, string $sub_total)
+    {
+        $sql ="INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio, sub_total) VALUES (?, ?, ?, ?, ?)";
+        $datos = array($id_venta, $id_producto, $cantidad, $precio, $sub_total);
+        $data = $this->save($sql,$datos);
+        if ($data == 1) {
+            $res = "ok";
+        }else{
+            $res = "error";
+        }
+        return $res;
+    }
     public function getEmpresa()
     {
         $sql = "SELECT * FROM configuracion";
@@ -115,9 +134,9 @@ class ComprasModel extends Query{
         return $data;
     }
 
-    public function vaciarDetalle(int $id_usuario)
+    public function vaciarDetalle(string $table, int $id_usuario)
     {
-        $sql ="DELETE FROM detalle WHERE id_usuario = ?";
+        $sql ="DELETE FROM $table WHERE id_usuario = ?";
         $datos = array($id_usuario);
         $data = $this->save($sql,$datos);
         if ($data == 1) {
@@ -131,6 +150,13 @@ class ComprasModel extends Query{
     public function getProCompra(int $id_compra )
     {
         $sql = "SELECT c.*, d.*, p.id, p.descripcion FROM compras c INNER JOIN detalle_compras d ON c.id = d.id_compra INNER JOIN productos p ON p.id = d.id_producto WHERE c.id = $id_compra";
+        $data = $this->selectAll($sql);
+        return $data;
+
+    }
+    public function getProVenta(int $id_venta )
+    {
+        $sql = "SELECT v.*, d.*, p.id, p.descripcion FROM ventas v INNER JOIN detalle_ventas d ON v.id = d.id_venta INNER JOIN productos p ON p.id = d.id_producto WHERE v.id = $id_venta";
         $data = $this->selectAll($sql);
         return $data;
 
@@ -150,6 +176,25 @@ class ComprasModel extends Query{
         return $data;
     }
 
+    public function registrarVenta(int $id_cliente, string $total)
+    {
+        $sql ="INSERT INTO ventas (id_cliente, total) VALUES (?,?)";
+        $datos = array($id_cliente, $total);
+        $data = $this->save($sql,$datos);
+        if ($data == 1) {
+            $res = "ok";
+        }else{
+            $res = "error";
+        }
+        return $res;
+    }
+
+    public function clientesVenta($id)
+    {
+        $sql = "SELECT v.id, v.id_cliente, c.* FROM ventas v INNER JOIN clientes c ON c.id = v.id_cliente WHERE v.id = $id";
+        $data = $this->select($sql);
+        return $data;
+    }
 
 }
 

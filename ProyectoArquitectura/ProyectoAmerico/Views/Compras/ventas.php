@@ -68,33 +68,24 @@
     </tbody>
 </table>
 <div class="row">
-        <div class="col-md-3">
-                <div class="form-group">
-                    <label for="cliente"><i class="fas fa-users"></i>Buscar cliente</label>
-                    <input id="cliente" class="form-control" type="text" name="cliente"placeHolder="Nombre">
-                    <input type="hidden" id="id" name="id">
-                </div>
-                
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="cliente">Seleccionar Cliente</label>
+                <select id="cliente" class="form-control" name="cliente">
+                    <?php foreach ($data as $row) { ?>
+                        <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
         </div>
-        <div class="col-md-3">
-                <div class="form-group">
-                    <label for="cliente"><i class="fas fa-phone"></i>Telèfono</label>
-                    <input id="cliente" class="form-control" type="text" name="Telèfono" placeHolder="Telefono" disabled>
-                </div>
-        </div>
-        <div class="col-md-3">
-                <div class="form-group">
-                    <label for="cliente"><i class="fas fa-home"></i>Direcciòn</label>
-                    <input id="cliente" class="form-control" type="text" name="telefono"placeHolder="Direcciòn" disabled>
-                </div>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-3 ml-auto">
                 <div class="form-group">
                     <label for="total " class="font-weight-blod">Total a pagar</label>
                     <input id="total" class="form-control" type="number" name="total" placeholder="Total" disabled >
-                    <button type="button" class="btn btn-compra mt-2 btn-block" onclick="generarVenta()">Generar Venta</button>
+                    <button type="button" class="btn btn-compra mt-2 btn-block" onclick="procesar(0)">Generar Venta</button>
                 </div>
                 
         </div>
 </div>
 <?php include "Views/Templates/footer.php";?>
+

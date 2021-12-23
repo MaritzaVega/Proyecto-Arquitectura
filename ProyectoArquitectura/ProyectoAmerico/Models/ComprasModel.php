@@ -133,7 +133,7 @@ class ComprasModel extends Query{
         $data = $this->select($sql);
         return $data;
     }
-
+//..
     public function vaciarDetalle(string $table, int $id_usuario)
     {
         $sql ="DELETE FROM $table WHERE id_usuario = ?";

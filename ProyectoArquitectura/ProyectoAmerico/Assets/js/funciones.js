@@ -1,5 +1,6 @@
 let tblUsuarios,tblProductos,tblProductosReporte;
 document.addEventListener("DOMContentLoaded", function(){
+    $('#cliente').select2();
     tblUsuarios = $('#tblUsuarios').DataTable({
         ajax: {
             url: base_url + "Usuarios/listar",
@@ -190,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function(){
             }*/
         ]
            
-    });
+    });    
 })
 
 //Cambiar password perfil
@@ -717,7 +718,7 @@ function cargarDetalle(){
                 <td>${row['precio']}</td>
                 <td>${row['sub_total']}</td>
                 <td>
-                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']})">
+                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']}, 1)">
                 <i class="fas fa-trash-alt"></i></button>
                 </td>
                 </tr>`;
@@ -745,7 +746,7 @@ function cargarDetalleVenta(){
                 <td>${row['precio']}</td>
                 <td>${row['sub_total']}</td>
                 <td>
-                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']})">
+                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']}, 2)">
                 <i class="fas fa-trash-alt"></i></button>
                 </td>
                 </tr>`;
@@ -756,8 +757,12 @@ function cargarDetalleVenta(){
     }
        
 }
-function deleteDetalle(id){
-    const url = base_url + "Compras/delete/"+id;
+function deleteDetalle(id, accion){
+    if (accion == 1) {
+        url = base_url + "Compras/delete/"+id;
+    }else{
+        url = base_url + "Compras/deleteVenta/"+id;
+    }    
     const http = new XMLHttpRequest();
     http.open("GET", url, true); //ejecutar de forma asincrona
     http.send();
@@ -772,7 +777,11 @@ function deleteDetalle(id){
                     showConfirmButton: false,
                     timer: 3000
                 })
-                cargarDetalle();
+                if (accion == 1) {
+                    cargarDetalle();
+                }else{
+                    cargarDetalleVenta();
+                }  
             }else{
                 Swal.fire({
                     position: 'center',
@@ -786,7 +795,7 @@ function deleteDetalle(id){
         }
     }
 }  
-function generarCompra(){
+function procesar(accion){
     Swal.fire({
         title: 'Está seguro de realizar la compra?',
         icon: 'warning',
@@ -797,21 +806,33 @@ function generarCompra(){
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
-                //mostrar los datos en el modal
-                const url = base_url + "Compras/registrarCompra/";
+                let url;
+                if (accion == 1) {
+                    url = base_url + "Compras/registrarCompra/";
+                }else{
+                    const id_cliente = document.getElementById('cliente').value;
+                    url = base_url + "Compras/registrarVenta/" + id_cliente;
+                }
+                //mostrar los datos en el modal                
                 const http = new XMLHttpRequest();
                 http.open("GET", url, true); //ejecutar de forma asincrona
                 http.send();
                 http.onreadystatechange = function(){//se ejecutara cada vez que cambia
                     if(this.readyState == 4 && this.status == 200){
                         const res = JSON.parse(this.responseText);
+                        console.log(res);
                         if(res.msg == "ok"){
                             Swal.fire(
                                 'Mensaje!',
                                 'Compra generada.',
                                 'success'
                             )
-                            const ruta = base_url + 'Compras/generarPdf/'+ res.id_compra;
+                            let ruta;
+                            if (accion == 1) {
+                                ruta = base_url + 'Compras/generarPdf/'+ res.id_compra;
+                            }else{
+                                ruta = base_url + 'Compras/generarPdfVenta/'+ res.id_venta;
+                            }                            
                             window.open(ruta);
                             setTimeout(() => {
                                 window.location.reload();

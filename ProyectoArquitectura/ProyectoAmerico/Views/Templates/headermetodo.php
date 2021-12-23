@@ -64,6 +64,10 @@
                                  <div class="sb-nav-link-icon"></div>
                                  Compras
                             </a>!-->
+                            <a class="nav-link" href="<?php echo base_url; ?>Clientes"> 
+                                 <div class="sb-nav-link-icon"><i class="fas fa-users text-primary"></i></div>
+                                 Clientes
+                            </a>
 
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
                                 <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart text-primary"></i></div>
@@ -99,7 +103,7 @@
                             <div class="collapse" id="collapseReporte" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Compras</a>
-                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Ventas</a> 
+                                <a class="nav-link" href="<?php echo base_url; ?>Compras/reporte_venta"><i class="fas fa-file mr-2 text-primary"></i> Reporte Ventas</a> 
                                 <a class="nav-link" href="<?php echo base_url; ?>ProductosReporte"><i class="fas fa-file mr-2 text-primary"></i> Reporte Inventario</a>
                                 </nav>
                             </div>

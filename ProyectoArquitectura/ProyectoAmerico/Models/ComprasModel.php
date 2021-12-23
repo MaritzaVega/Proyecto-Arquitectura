@@ -168,6 +168,13 @@ class ComprasModel extends Query{
         return $data;
     }
 
+    public function getReporteVentas()
+    { 
+        $sql = "SELECT c.id, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON v.id_cliente = c.id";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+
     public function actualizarStock(int $cantidad, int $id_pro)
     {
         $sql ="update productos set cantidad = ? where id=?";

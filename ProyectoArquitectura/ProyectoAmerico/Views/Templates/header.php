@@ -59,6 +59,10 @@
                                  <div class="sb-nav-link-icon"><i class="fab fa-product-hunt text-primary"></i></div>
                                  Productos
                             </a>
+                            <a class="nav-link" href="<?php echo base_url; ?>Clientes"> 
+                                 <div class="sb-nav-link-icon"><i class="fas fa-users text-primary"></i></div>
+                                 Clientes
+                            </a>
                             <!--<a class="nav-link" href="<?//php echo base_url; ?>Compras"> 
                                  <div class="sb-nav-link-icon"></div>
                                  Compras

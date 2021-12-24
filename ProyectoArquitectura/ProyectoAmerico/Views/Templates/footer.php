@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-
+        
         <script src="<?php echo base_url; ?>Assets/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
@@ -58,6 +58,7 @@
         </script>
         <script src="<?php echo base_url; ?>Assets/js/sweetalert2.all.min.js"></script>        
         <script src="<?php echo base_url; ?>Assets/js/select2.min.js"></script>
+        <script src="<?php echo base_url; ?>Assets/js/chart.min.js"></script>
         <script src="<?php echo base_url; ?>Assets/js/funciones.js"></script>
     </body>
 </html>

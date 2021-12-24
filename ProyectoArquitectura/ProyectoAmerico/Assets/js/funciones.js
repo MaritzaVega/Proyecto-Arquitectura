@@ -1182,7 +1182,6 @@ function procesar(accion){
 
 function modificarEmpresa() {
     const frm = document.getElementById('frmEmpresa');
-
     const url = base_url + "Administracion/modificar";
     const http = new XMLHttpRequest();
     http.open("POST", url, true); //ejecutar de forma asincrona
@@ -1212,6 +1211,74 @@ function alertas(mensaje, icono){
              timer: 3000
          })
 }
+//Reporte stock Minimo
+reporteStock();
+productosVendidos();
+function reporteStock(){
+    const url = base_url + "Administracion/reporteStock";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send();
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            let nombre = [];
+            let cantidad = [];
+            for (let i = 0; i < res.length; i++) {
+                nombre.push(res[i]['descripcion']);
+                cantidad.push(res[i]['cantidad']);
+                
+            }
+            // Grafico Circular
+            var ctx = document.getElementById("stockMinimo");
+            var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: nombre,
+                datasets: [{
+                data: cantidad,
+                backgroundColor: ['#f44336', '#7e57c2', '#2196f3', '#009688','#99aa00','#ff9800','#707070','#e91e63','#3f51b5','#00bcd4'],
+    }],
+  },
+});
+        } 
+    }
+}
+
+function productosVendidos(){
+    const url = base_url + "Administracion/productosVendidos";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send();
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            let nombre = [];
+            let cantidad = [];
+            for (let i = 0; i < res.length; i++) {
+                nombre.push(res[i]['descripcion']);
+                cantidad.push(res[i]['total']);  
+            }
+            // Grafico Corona 
+            var ctx = document.getElementById("ProductosVendidos");
+            var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: nombre,
+                datasets: [{
+                data: cantidad,
+                backgroundColor: ['#f44336', '#7e57c2', '#2196f3', '#009688','#99aa00','#ff9800','#707070','#e91e63','#3f51b5','#00bcd4'], /**/
+    }],
+  },
+});
+
+        }
+    }
+}
+    
+
+
+
 
 
 

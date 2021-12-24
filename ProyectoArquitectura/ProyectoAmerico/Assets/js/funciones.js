@@ -1,5 +1,6 @@
 let tblUsuarios,tblClientes, tblProductos,tblProductosReporte;
 document.addEventListener("DOMContentLoaded", function(){
+    $('#cliente').select2();
     tblUsuarios = $('#tblUsuarios').DataTable({
         ajax: {
             url: base_url + "Usuarios/listar",
@@ -104,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
     //Fin de Producto
+    //REPORTES COMPRAS
     $('#t_reporte_c').DataTable({
         ajax: {
             url: base_url + "Compras/listar_reporte",
@@ -125,7 +127,173 @@ document.addEventListener("DOMContentLoaded", function(){
         ],
         language: {
             "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
-        }
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-3 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+             
+        buttons : [
+            //Botón para Excel
+            {
+                extend: 'excelHtml5',
+                footer: true,
+                title: 'Reporte de Compra',
+                filename: 'Reporte_Compra',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                },
+                //Aquí es donde generas el botón personalizado
+                text: '<span class="badge badge-success"><i class="fas fa-file-excel"></i></span>'
+            },
+            //Botón para PDF
+            {
+                extend: 'pdfHtml5',
+                download: 'open',
+                footer: true,
+                title: 'Reporte de Compra',
+                filename: 'Reporte_Compra',
+                text: '<span class="badge  badge-danger"><i class="fas fa-file-pdf"></i></span>',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            //Botón para copiar
+            {
+                extend: 'copyHtml5',
+                footer: true,
+                title: 'Reporte de Compra',
+                filename: 'Reporte_Compra',
+                text: '<span class="badge  badge-primary"><i class="fas fa-copy"></i></span>',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            //Botón para print
+            {
+                extend: 'print',
+                footer: true,
+                title: 'Reporte de Compra',
+                filename: 'Reporte_Compra',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                },
+                text: '<span class="badge badge-light"><i class="fas fa-print"></i></span>'
+            },
+            //Botón para cvs
+            {
+                extend: 'csvHtml5',
+                footer: true,
+                title: 'Reporte de Compra',
+                filename: 'Reporte_Compra',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                },
+                text: '<span class="badge  badge-success"><i class="fas fa-file-csv"></i></span>'
+            },
+            /*{
+                extend: 'colvis',
+                text: '<span class="badge badge-info"><i class="fas fa-columns"></i></span>',
+                postfixButtons: ['colvisRestore']
+            }*/
+        ]
+        
+    });
+    //
+
+    ////REPORTES VENTA
+    $('#t_reporte_v').DataTable({
+        ajax: {
+            url: base_url + "Compras/listar_reporte_venta",
+            dataSrc:''
+        },
+        columns:[
+            {
+            'data' : 'id'
+            },
+            {
+            'data' : 'nombre'
+            },
+            {
+            'data' : 'total'
+            },
+            {
+            'data' : 'fecha'
+            },
+            {
+            'data' : 'acciones'
+            }
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-3 text-center'B><'col-sm-4'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+             
+        buttons : [
+            //Botón para Excel
+            {
+                extend: 'excelHtml5',
+                footer: true,
+                title: 'Reporte de Venta',
+                filename: 'Reporte_Venta',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                },
+                //Aquí es donde generas el botón personalizado
+                text: '<span class="badge badge-success"><i class="fas fa-file-excel"></i></span>'
+            },
+            //Botón para PDF
+            {
+                extend: 'pdfHtml5',
+                download: 'open',
+                footer: true,
+                title: 'Reporte de Venta',
+                filename: 'Reporte_Venta',
+                text: '<span class="badge  badge-danger"><i class="fas fa-file-pdf"></i></span>',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            //Botón para copiar
+            {
+                extend: 'copyHtml5',
+                footer: true,
+                title: 'Reporte de Venta',
+                filename: 'Reporte_Venta',
+                text: '<span class="badge  badge-primary"><i class="fas fa-copy"></i></span>',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            //Botón para print
+            {
+                extend: 'print',
+                footer: true,
+                title: 'Reporte de Venta',
+                filename: 'Reporte_Venta',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                },
+                text: '<span class="badge badge-light"><i class="fas fa-print"></i></span>'
+            },
+            //Botón para cvs
+            {
+                extend: 'csvHtml5',
+                footer: true,
+                title: 'Reporte de Venta',
+                filename: 'Reporte_Venta',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                },
+                text: '<span class="badge  badge-success"><i class="fas fa-file-csv"></i></span>'
+            },
+            /*{
+                extend: 'colvis',
+                text: '<span class="badge badge-info"><i class="fas fa-columns"></i></span>',
+                postfixButtons: ['colvisRestore']
+            }*/
+        ]
         
     });
     //Fin de tabla ususarios
@@ -224,7 +392,9 @@ document.addEventListener("DOMContentLoaded", function(){
             }*/
         ]
            
-    });
+    });    
+
+
 })
 
 //Cambiar password perfil
@@ -258,9 +428,6 @@ function frmCambiarPass(e){
     }
 
 }
-
-
-
 //abre le modal de los usuarios
 function frmUsuario(){
     document.getElementById("title").innerHTML = "Registrar Nuevo Usuario";
@@ -388,9 +555,6 @@ function btnReingresarUser(id ){
 
 }
 //Fin usuario
-
-
-
 
 //abre le modal de los Clientes
 function frmCliente(){
@@ -881,7 +1045,7 @@ function cargarDetalle(){
                 <td>${row['precio']}</td>
                 <td>${row['sub_total']}</td>
                 <td>
-                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']})">
+                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']}, 1)">
                 <i class="fas fa-trash-alt"></i></button>
                 </td>
                 </tr>`;
@@ -909,7 +1073,7 @@ function cargarDetalleVenta(){
                 <td>${row['precio']}</td>
                 <td>${row['sub_total']}</td>
                 <td>
-                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']})">
+                <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']}, 2)">
                 <i class="fas fa-trash-alt"></i></button>
                 </td>
                 </tr>`;
@@ -920,8 +1084,13 @@ function cargarDetalleVenta(){
     }
        
 }
-function deleteDetalle(id){
-    const url = base_url + "Compras/delete/"+id;
+function deleteDetalle(id, accion){
+    let url;
+    if (accion == 1) {
+        url = base_url + "Compras/delete/"+id;
+    }else{
+        url = base_url + "Compras/deleteVenta/"+id;
+    }    
     const http = new XMLHttpRequest();
     http.open("GET", url, true); //ejecutar de forma asincrona
     http.send();
@@ -936,7 +1105,11 @@ function deleteDetalle(id){
                     showConfirmButton: false,
                     timer: 3000
                 })
-                cargarDetalle();
+                if (accion == 1) {
+                    cargarDetalle();
+                }else{
+                    cargarDetalleVenta();
+                }  
             }else{
                 Swal.fire({
                     position: 'center',
@@ -950,7 +1123,7 @@ function deleteDetalle(id){
         }
     }
 }  
-function generarCompra(){
+function procesar(accion){
     Swal.fire({
         title: 'Está seguro de realizar la compra?',
         icon: 'warning',
@@ -961,21 +1134,33 @@ function generarCompra(){
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
-                //mostrar los datos en el modal
-                const url = base_url + "Compras/registrarCompra/";
+                let url;
+                if (accion == 1) {
+                    url = base_url + "Compras/registrarCompra/";
+                }else{
+                    const id_cliente = document.getElementById('cliente').value;
+                    url = base_url + "Compras/registrarVenta/" + id_cliente;
+                }
+                //mostrar los datos en el modal                
                 const http = new XMLHttpRequest();
                 http.open("GET", url, true); //ejecutar de forma asincrona
                 http.send();
                 http.onreadystatechange = function(){//se ejecutara cada vez que cambia
                     if(this.readyState == 4 && this.status == 200){
                         const res = JSON.parse(this.responseText);
+                        console.log(res);
                         if(res.msg == "ok"){
                             Swal.fire(
                                 'Mensaje!',
                                 'Compra generada.',
                                 'success'
                             )
-                            const ruta = base_url + 'Compras/generarPdf/'+ res.id_compra;
+                            let ruta;
+                            if (accion == 1) {
+                                ruta = base_url + 'Compras/generarPdf/'+ res.id_compra;
+                            }else{
+                                ruta = base_url + 'Compras/generarPdfVenta/'+ res.id_venta;
+                            }                            
                             window.open(ruta);
                             setTimeout(() => {
                                 window.location.reload();
@@ -997,7 +1182,6 @@ function generarCompra(){
 
 function modificarEmpresa() {
     const frm = document.getElementById('frmEmpresa');
-
     const url = base_url + "Administracion/modificar";
     const http = new XMLHttpRequest();
     http.open("POST", url, true); //ejecutar de forma asincrona
@@ -1027,6 +1211,74 @@ function alertas(mensaje, icono){
              timer: 3000
          })
 }
+//Reporte stock Minimo
+reporteStock();
+productosVendidos();
+function reporteStock(){
+    const url = base_url + "Administracion/reporteStock";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send();
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            let nombre = [];
+            let cantidad = [];
+            for (let i = 0; i < res.length; i++) {
+                nombre.push(res[i]['descripcion']);
+                cantidad.push(res[i]['cantidad']);
+                
+            }
+            // Grafico Circular
+            var ctx = document.getElementById("stockMinimo");
+            var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: nombre,
+                datasets: [{
+                data: cantidad,
+                backgroundColor: ['#f44336', '#7e57c2', '#2196f3', '#009688','#99aa00','#ff9800','#707070','#e91e63','#3f51b5','#00bcd4'],
+    }],
+  },
+});
+        } 
+    }
+}
+
+function productosVendidos(){
+    const url = base_url + "Administracion/productosVendidos";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send();
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            let nombre = [];
+            let cantidad = [];
+            for (let i = 0; i < res.length; i++) {
+                nombre.push(res[i]['descripcion']);
+                cantidad.push(res[i]['total']);  
+            }
+            // Grafico Corona 
+            var ctx = document.getElementById("ProductosVendidos");
+            var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: nombre,
+                datasets: [{
+                data: cantidad,
+                backgroundColor: ['#f44336', '#7e57c2', '#2196f3', '#009688','#99aa00','#ff9800','#707070','#e91e63','#3f51b5','#00bcd4'], /**/
+    }],
+  },
+});
+
+        }
+    }
+}
+    
+
+
+
 
 
 

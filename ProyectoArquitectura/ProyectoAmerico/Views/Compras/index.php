@@ -72,7 +72,7 @@
                 <div class="form-group">
                     <label for="total " class="font-weight-blod">Total</label>
                     <input id="total" class="form-control" type="number" name="total" placeholder="Total" disabled >
-                    <button type="button" class="btn btn-compra mt-2 btn-block" onclick="generarCompra()">Generar Compra</button>
+                    <button type="button" class="btn btn-compra mt-2 btn-block" onclick="procesar(1)">Generar Compra</button>
                 </div>
                 
         </div>

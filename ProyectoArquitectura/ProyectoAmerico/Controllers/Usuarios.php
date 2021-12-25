@@ -28,7 +28,9 @@ class Usuarios extends Controller{
             }
 
             //Botones modificar y eliminar
-            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+            $data[$i]['acciones'] = '<div>
+            <a class="btn btn-dark" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'" ><i class="fas fa-key"></i></a>
+            <button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
             <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
             <button class="btn btn-success" type="button" onclick="btnReingresarUser('.$data[$i]['id'].');">Reingresar</button>
             </div>'; 
@@ -62,8 +64,6 @@ class Usuarios extends Controller{
         die();
     }
 
-
-//video 7
     public function registrar()
     {
         $usuario = $_POST['usuario'];
@@ -107,9 +107,9 @@ class Usuarios extends Controller{
             }
             
         }
-    echo json_encode($msg,JSON_UNESCAPED_UNICODE);
-    die();
-}
+        echo json_encode($msg,JSON_UNESCAPED_UNICODE);
+        die();
+    }
 
     public function editar(int $id)
     {
@@ -171,12 +171,28 @@ class Usuarios extends Controller{
         die();
     }
 
-    public function salir()
+    
+
+    public function permisos($id)
     {
-        session_destroy();
-        header("location: ".base_url);
+        if(empty($_SESSION['activo'])){
+            header("location: ".base_url);
+        }
+        $data['datos'] = $this->model->getPermisos();
+        $data['id_usuario'] = $id;
+        $this->views->getView($this, "permisos", $data);
     }
 
+    public function registrarPermiso()
+    {
+        print_r($_POST);
+    }
+
+    public function salir()
+        {
+            session_destroy();
+            header("location: ".base_url);
+        }
 }
 
 ?>

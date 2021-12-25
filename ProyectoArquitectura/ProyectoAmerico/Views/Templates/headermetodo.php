@@ -8,6 +8,7 @@
         <meta name="author" content="" />
         <title>Panel de Administración</title>
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
+        <link href="<?php echo base_url; ?>Assets/css/estilos.css" rel="stylesheet" />     
         <link href="<?php echo base_url; ?>Assets/css/select2.min.css" rel="stylesheet"/>  
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
         <link href="<?php echo base_url; ?>Assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -46,7 +47,7 @@
                             <a href="#">
                                 <img  src=".../../../Assets/imagenes/logo.jpg" width= "100%">
                             </a>
-
+                            
                             <a class="nav-link" href="<?php echo base_url; ?>Administracion/Home"> 
                                  <div class="sb-nav-link-icon"><i class="fas fa-home text-primary"></i></div>
                                  Inicio

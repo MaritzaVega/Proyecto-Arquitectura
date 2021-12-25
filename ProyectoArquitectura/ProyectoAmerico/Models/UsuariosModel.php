@@ -102,6 +102,12 @@ class UsuariosModel extends Query{
         return $data;
     }
     
+    public function getPermisos()
+    {
+        $sql = "select * from permisos";
+        $data = $this->selectAll($sql);
+        return $data; 
+    }
 }
 
 

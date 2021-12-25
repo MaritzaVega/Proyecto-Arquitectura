@@ -47,6 +47,11 @@
                                 <img  src=".../../Assets/imagenes/logo.jpg" width= "100%">
                             </a>
 
+                            <a class="nav-link" href="<?php echo base_url; ?>Administracion/Home"> 
+                                 <div class="sb-nav-link-icon"><i class="fas fa-home text-primary"></i></div>
+                                 Inicio
+                            </a>
+
                             <a class="nav-link" href="<?php echo base_url; ?>Administracion"> 
                                  <div class="sb-nav-link-icon"><i class="fas fa-university text-primary"></i></div>
                                  Institución
@@ -80,19 +85,6 @@
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras/ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a>
                                 </nav>
                             </div>
-
-                            <!---<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta" aria-expanded="false" aria-controls="collapseVenta">
-                                <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart text-primary"></i></div>
-                                Operaciones2
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseVenta" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<//?php echo base_url; ?>Compras/ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a> 
-                                !--><!---Compras/historial!
-                                <a class="nav-link" href="<//?php echo base_url; ?>Compras/reporte_ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Ventas</a>
-                                </nav>
-                            </div> !-->
 
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReporte" aria-expanded="false" aria-controls="collapseCompras">
                                 <div class="sb-nav-link-icon"><i class="fa fa-file text-primary"></i></div>

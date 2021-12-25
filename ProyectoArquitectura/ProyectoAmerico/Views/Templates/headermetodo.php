@@ -47,6 +47,11 @@
                                 <img  src=".../../../Assets/imagenes/logo.jpg" width= "100%">
                             </a>
 
+                            <a class="nav-link" href="<?php echo base_url; ?>Administracion/Home"> 
+                                 <div class="sb-nav-link-icon"><i class="fas fa-home text-primary"></i></div>
+                                 Inicio
+                            </a>
+
                             <a class="nav-link" href="<?php echo base_url; ?>Administracion"> 
                                  <div class="sb-nav-link-icon"><i class="fas fa-university text-primary"></i></div>
                                  Institución

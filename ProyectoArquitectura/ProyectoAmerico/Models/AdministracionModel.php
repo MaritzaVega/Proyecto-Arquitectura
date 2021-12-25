@@ -19,6 +19,13 @@ class AdministracionModel extends Query{
         $data = $this->select($sql);
         return $data; 
     }
+
+    public function getVentas()
+    {
+        $sql = "SELECT count(*) AS total FROM ventas WHERE fecha > CURDATE()";
+        $data = $this->select($sql);
+        return $data; 
+    }
     
     public function modificar(string $nombre, string $telefono, string $dir, string $mensaje, int $id)
     {

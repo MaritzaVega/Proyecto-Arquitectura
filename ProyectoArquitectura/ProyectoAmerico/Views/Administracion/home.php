@@ -37,6 +37,18 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="cardcampo bg-warning">
+            <div class="card-body d-flex text-white">
+                Venta del Día
+               <i class="fas fa-cash-register fa-2x ml-auto"></i>
+            </div>
+            <div class="card-footer d-flex align-item-center justify-content-between">
+                <a href="<?php echo base_url; ?>Compras/historial_ventas" class="text-white">Ver Detalle</a>
+                <span class="text-white"><?php echo $data['ventas']['total'];?></span>
+            </div>
+        </div>
+    </div>
 </div>
 <!--Reporte grafico!-->
 <div class="row mt-3">

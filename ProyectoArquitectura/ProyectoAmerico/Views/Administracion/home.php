@@ -44,7 +44,7 @@
                <i class="fas fa-cash-register fa-2x ml-auto"></i>
             </div>
             <div class="card-footer d-flex align-item-center justify-content-between">
-                <a href="<?php echo base_url; ?>Compras/historial_ventas" class="text-white">Ver Detalle</a>
+                <a href="<?php echo base_url; ?>Compras/reporte_venta" class="text-white">Ver Detalle</a>
                 <span class="text-white"><?php echo $data['ventas']['total'];?></span>
             </div>
         </div>

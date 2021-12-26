@@ -8,11 +8,19 @@ class Productos extends Controller{
     }
     public function index()
     {
-        if(empty($_SESSION["activo"])){
-            header("location: ".base_url);
+        
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'productos');
+        if(!empty($verificar)){
+            if(empty($_SESSION["activo"])){
+                header("location: ".base_url);
+            }
+            $data['documentos'] = $this->model->getDocumentos();
+            $this->views->getView($this, "index", $data);
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
         }
-        $data['documentos'] = $this->model->getDocumentos();
-        $this->views->getView($this, "index", $data);
+  
     }
 
     public function listar()

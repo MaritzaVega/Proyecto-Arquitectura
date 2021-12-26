@@ -8,16 +8,39 @@ class Compras extends Controller{
     }
     public function index ()
     {
-        $this->views->getView($this, "index");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'nueva_compra');
+        if(!empty($verificar)){
+            $this->views->getView($this, "index");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+
+        
     }
     public function ventas ()
     {
-        $data = $this -> model ->getClientes();
-        $this->views->getView($this, "ventas", $data);
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'nueva_venta');
+        if(!empty($verificar)){
+            $data = $this -> model ->getClientes();
+            $this->views->getView($this, "ventas", $data);
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+
+        
     }
     public function reporte_venta()
     {
-        $this->views->getView($this, "reporte_venta");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'reporte_venta');
+        if(!empty($verificar)){
+            $this->views->getView($this, "reporte_venta");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     public function buscarCodigo($cod)
@@ -79,22 +102,33 @@ class Compras extends Controller{
         ///variable para aumentar la cant de un producto NuevaCompra
         $comprobar = $this->model->consultarDetalle('detalle_temp',$id_producto,$id_usuario);
         if (empty($comprobar)) {
-            $sub_total = $precio * $cantidad;
-            $data = $this->model->registrarDetalle('detalle_temp',$id_producto, $id_usuario, $precio, $cantidad, $sub_total);
-            if ($data == "ok") {
+            if ($datos['cantidad'] >= $cantidad) {
+                $sub_total = $precio * $cantidad;
+                $data = $this->model->registrarDetalle('detalle_temp',$id_producto, $id_usuario, $precio, $cantidad, $sub_total);
+                if ($data == "ok") {
                 $msg = array('msg'=> 'Producto ingresado a la venta', 'icono'=> 'success');
-            }else{
+                }else{
                 $msg = array('msg'=> 'Error al ingresar el producto a la venta', 'icono'=> 'error');
-            }
+                }
+                }else {
+                    $msg = array('msg'=> 'Stock no disponible: '. $datos['cantidad'], 'icono'=> 'warning');
+                }
+            
+            
         }else{
             $total_cantidad = $comprobar['cantidad'] + $cantidad;
             $sub_total = $total_cantidad * $precio;
-            $data = $this->model->actualizarDetalle('detalle_temp',$precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
-            if ($data == "modificado") {
-                $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
+            if ($datos['cantidad'] < $total_cantidad) {
+                $msg = array('msg'=> 'Stock no disponible', 'icono'=> 'warning');
             }else{
-                $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
+                $data = $this->model->actualizarDetalle('detalle_temp',$precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
+                if ($data == "modificado") {
+                    $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
+                }else{
+                    $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
+                }
             }
+            
         }
         
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
@@ -270,7 +304,14 @@ class Compras extends Controller{
     ///ReporteCompras donde ..Historial... = Reporte
     public function reporte()
     {
-        $this->views->getView($this, "reporte");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'reporte_compra');
+        if(!empty($verificar)){
+            $this->views->getView($this, "reporte");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     public function listar_reporte()

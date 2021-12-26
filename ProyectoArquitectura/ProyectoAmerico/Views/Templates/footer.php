@@ -26,14 +26,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="frmCambiarPerfil" onsubmit="frmCambiarPerfil(event);">
+                        <form id="frmCambiarPerfil">
                             <div class="form-group">
                                 <label for="clave_actual">Nombre</label>
-                                <input id="clave_actual" class="form-control" type="text" name="perfil_nombre" placeholder="Nombre">
+                                <input id="clave_actual" class="form-control" type="text" name="perfil_nombre" value="<?php echo $data['nombre'];?>>">
                             </div>
                             <div class="form-group">
                                 <label for="clave_nueva">N° documento</label>
-                                <input id="clave_nueva" class="form-control" type="text" name="perfil_doc" placeholder="N° documento">
+                                <input id="clave_nueva" class="form-control" type="text" name="perfil_doc" value="<?php echo $data['mensaje'];?>">
                             </div>
                             <div class="form-group">
                                 <label for="confirmar_clave">Usuario</label>

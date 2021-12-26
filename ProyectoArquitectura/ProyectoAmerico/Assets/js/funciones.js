@@ -1202,6 +1202,30 @@ function modificarEmpresa() {
         } 
     }
 }
+
+function modificarPerfil() {
+    const frm = document.getElementById('frmCambiarPerfil');
+    const url = base_url + "Usuarios/modificar";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send(new FormData(frm));
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            if(res == 'ok'){
+                //alert('Modificado');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Modificado exitosamente',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
+        } 
+    }
+}
+
 function alertas(mensaje, icono){
          Swal.fire({
              position: 'center',

@@ -168,6 +168,13 @@ class ComprasModel extends Query{
         return $data;
     }
 
+    public function getReporteVentas()
+    { 
+        $sql = "SELECT c.id, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON v.id_cliente = c.id";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+
     public function actualizarStock(int $cantidad, int $id_pro)
     {
         $sql ="update productos set cantidad = ? where id=?";
@@ -196,6 +203,12 @@ class ComprasModel extends Query{
         return $data;
     }
 
+    public function verificarPermiso(int $id_user, string $nombre)
+    {
+        $sql = "SELECT p.id, p.permiso, d.id, d.id_usuario, d.id_permiso FROM permisos p INNER JOIN detalle_permisos d ON p.id = d.id_permiso WHERE d.id_usuario =$id_user AND p.permiso ='$nombre'";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 }
 
 

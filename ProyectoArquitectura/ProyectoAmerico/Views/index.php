@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,8 +19,11 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                  
-                                    <img src="Assets/imagenes/logo.jpg">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <img src="<?php echo base_url;?>Assets/imagenes/logo.jpg" class="img-fluid-rounded" alt="logo" width="150">
+                                        </div>
+                                    </div>
                                     <div class="card-body">
                                         <form id="frmLogin">
                                             <div class="form-group">

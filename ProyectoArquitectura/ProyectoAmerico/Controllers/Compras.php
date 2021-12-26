@@ -8,16 +8,39 @@ class Compras extends Controller{
     }
     public function index ()
     {
-        $this->views->getView($this, "index");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'nueva_compra');
+        if(!empty($verificar)){
+            $this->views->getView($this, "index");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+
+        
     }
     public function ventas ()
     {
-        $data = $this -> model ->getClientes();
-        $this->views->getView($this, "ventas", $data);
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'nueva_venta');
+        if(!empty($verificar)){
+            $data = $this -> model ->getClientes();
+            $this->views->getView($this, "ventas", $data);
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+
+        
     }
-    public function reporte_ventas ()
+    public function reporte_venta()
     {
-        $this->views->getView($this, "reporte_ventas");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'reporte_venta');
+        if(!empty($verificar)){
+            $this->views->getView($this, "reporte_venta");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     public function buscarCodigo($cod)
@@ -242,22 +265,25 @@ class Compras extends Controller{
         //Encabezado de productos
         $pdf->SetFillColor(133, 0, 0);
         $pdf->SetTextColor(255, 255, 255);
-        $pdf->Cell(10, 5, 'Cant', 0, 0, 'L', true);
-        $pdf->Cell(27, 5, utf8_decode('Descripción'), 0, 0, 'L', true);
-        $pdf->Cell(12, 5, 'Precio', 0, 0, 'L', true);
-        $pdf->Cell(17, 5, 'Sub Total', 0, 1, 'L', true);
+        $pdf->SetFont('Arial','B',9);
+        $pdf->Cell(10, 5, 'Cant', 0, 0, 'C', true);
+        $pdf->Cell(27, 5, utf8_decode('Descripción'), 0, 0, 'C', true);
+        $pdf->Cell(12, 5, 'Precio', 0, 0, 'C', true);
+        $pdf->Cell(17, 5, 'Sub Total', 0, 1, 'C', true);
         
         $pdf->SetTextColor(0, 0, 0);
         $total = 0.00;
+        $pdf->SetFont('Arial','',9);
         foreach($productos as $row){
             $total = $total + $row['sub_total'];
-            $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'L');
-            $pdf->Cell(27, 5, utf8_decode($row['descripcion']), 0, 0, 'L');
-            $pdf->Cell(12, 5, $row['precio'], 0, 0, 'L');
-            $pdf->Cell(17, 5, number_format( $row['sub_total'], 2, '.', '.'), 0, 1, 'L');
+            $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'C');
+            $pdf->Cell(27, 5, utf8_decode($row['descripcion']), 0, 0, 'C');
+            $pdf->Cell(12, 5, $row['precio'], 0, 0, 'C');
+            $pdf->Cell(17, 5, number_format( $row['sub_total'], 2, '.', '.'), 0, 1, 'C');
 
         }
         $pdf->Ln();
+        $pdf->SetFont('Arial','B',9);
         $pdf->Cell(65, 5, 'Total a pagar', 0, 1, 'R');
         $pdf->Cell(65, 5, number_format($total, 2, '.', ','), 0, 0, 'R');
 
@@ -267,7 +293,14 @@ class Compras extends Controller{
     ///ReporteCompras donde ..Historial... = Reporte
     public function reporte()
     {
-        $this->views->getView($this, "reporte");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'reporte_compra');
+        if(!empty($verificar)){
+            $this->views->getView($this, "reporte");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     public function listar_reporte()
@@ -283,6 +316,18 @@ class Compras extends Controller{
         die();
     }
 
+    public function listar_reporte_venta()
+    {
+        $data = $this->model->getReporteVentas();
+        for ($i=0; $i < count($data) ; $i++) { 
+                $data[$i]['acciones'] = '<div>
+                <a class="btn btn-danger" href="'.base_url. "Compras/generarPdfVenta/".$data[$i]['id'].'" target = "_blank"><i class="fas fa-file-pdf"></i></a>
+                </div>';
+        }
+        
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
     public function generarPdfVenta($id_venta)
     {
         $empresa = $this->model->getEmpresa();
@@ -324,17 +369,17 @@ class Compras extends Controller{
         //Encabezado de clientes
         $pdf->SetFillColor(133, 0, 0);
         $pdf->SetTextColor(255, 255, 255);
-        $pdf->SetFont('Arial','B',7);
-        $pdf->Cell(25, 5, 'Nombre', 0, 0, 'L', true);
-        $pdf->Cell(20, 5, utf8_decode('Teléfono'), 0, 0, 'L', true);
-        $pdf->Cell(25, 5, utf8_decode('Dirección'), 0, 1, 'L', true);
+        $pdf->SetFont('Arial','B',9);
+        $pdf->Cell(15, 5, 'Nombre', 0, 0, 'C', true);
+        $pdf->Cell(15, 5, utf8_decode('Teléfono'), 0, 0, 'C', true);
+        $pdf->Cell(35, 5, utf8_decode('Dirección'), 0, 1, 'C', true);
         $pdf->SetTextColor(0, 0, 0);
         $clientes=$this->model->clientesVenta($id_venta);
-        $pdf->SetFont('Arial','',7);
+        $pdf->SetFont('Arial','',8);
                         
-            $pdf->Cell(25, 5, utf8_decode($clientes['nombre']), 0, 0, 'L');
-            $pdf->Cell(20, 5, utf8_decode($clientes['telefono']), 0, 0, 'L');
-            $pdf->Cell(25, 5, utf8_decode($clientes['direccion']), 0, 1, 'L');
+            $pdf->Cell(15, 5, utf8_decode($clientes['nombre']), 0, 0, 'C');
+            $pdf->Cell(15, 5, utf8_decode($clientes['telefono']), 0, 0, 'C');
+            $pdf->Cell(35, 5, utf8_decode($clientes['direccion']), 0, 1, 'C');
 
 
         $pdf->Ln();
@@ -342,22 +387,25 @@ class Compras extends Controller{
         //Encabezado de productos
         $pdf->SetFillColor(133, 0, 0);
         $pdf->SetTextColor(255, 255, 255);
-        $pdf->Cell(10, 5, 'Cant', 0, 0, 'L', true);
-        $pdf->Cell(27, 5, utf8_decode('Descripción'), 0, 0, 'L', true);
-        $pdf->Cell(12, 5, 'Precio', 0, 0, 'L', true);
-        $pdf->Cell(17, 5, 'Sub Total', 0, 1, 'L', true);
+        $pdf->SetFont('Arial','B',9);
+        $pdf->Cell(10, 5, 'Cant', 0, 0, 'C', true);
+        $pdf->Cell(25, 5, utf8_decode('Descripción'), 0, 0, 'C', true);
+        $pdf->Cell(15, 5, 'Precio', 0, 0, 'C', true);
+        $pdf->Cell(15, 5, 'Sub Total', 0, 1, 'C', true);
         
         $pdf->SetTextColor(0, 0, 0);
         $total = 0.00;
+        $pdf->SetFont('Arial','',9);
         foreach($productos as $row){
             $total = $total + $row['sub_total'];
-            $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'L');
-            $pdf->Cell(27, 5, utf8_decode($row['descripcion']), 0, 0, 'L');
-            $pdf->Cell(12, 5, $row['precio'], 0, 0, 'L');
-            $pdf->Cell(17, 5, number_format( $row['sub_total'], 2, '.', '.'), 0, 1, 'L');
+            $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'C');
+            $pdf->Cell(25, 5, utf8_decode($row['descripcion']), 0, 0, 'C');
+            $pdf->Cell(15, 5, $row['precio'], 0, 0, 'C');
+            $pdf->Cell(15, 5, number_format( $row['sub_total'], 2, '.', '.'), 0, 1, 'C');
 
         }
         $pdf->Ln();
+        $pdf->SetFont('Arial','B',9);
         $pdf->Cell(65, 5, 'Total a pagar', 0, 1, 'R');
         $pdf->Cell(65, 5, number_format($total, 2, '.', ','), 0, 0, 'R');
 

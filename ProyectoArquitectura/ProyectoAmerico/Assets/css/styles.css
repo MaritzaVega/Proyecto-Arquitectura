@@ -6174,6 +6174,15 @@ a.close.disabled {
   vertical-align: text-top !important;
 }
 
+/*otros colores*/ 
+.bg-vine{
+  background-color: #880e4f !important;
+}
+.bg-sunwdark{
+  background-color: #fb8c00 !important;
+}
+
+
 .bg-primary {
   background-color: #007bff !important;
 }

@@ -1261,6 +1261,7 @@ function productosVendidos(){
             }
             // Grafico Corona 
             var ctx = document.getElementById("ProductosVendidos");
+            
             var myPieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -1271,7 +1272,6 @@ function productosVendidos(){
     }],
   },
 });
-
         }
     }
 }

@@ -8,16 +8,39 @@ class Compras extends Controller{
     }
     public function index ()
     {
-        $this->views->getView($this, "index");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'nueva_compra');
+        if(!empty($verificar)){
+            $this->views->getView($this, "index");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+
+        
     }
     public function ventas ()
     {
-        $data = $this -> model ->getClientes();
-        $this->views->getView($this, "ventas", $data);
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'nueva_venta');
+        if(!empty($verificar)){
+            $data = $this -> model ->getClientes();
+            $this->views->getView($this, "ventas", $data);
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+
+        
     }
     public function reporte_venta()
     {
-        $this->views->getView($this, "reporte_venta");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'reporte_venta');
+        if(!empty($verificar)){
+            $this->views->getView($this, "reporte_venta");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     public function buscarCodigo($cod)
@@ -270,7 +293,14 @@ class Compras extends Controller{
     ///ReporteCompras donde ..Historial... = Reporte
     public function reporte()
     {
-        $this->views->getView($this, "reporte");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'reporte_compra');
+        if(!empty($verificar)){
+            $this->views->getView($this, "reporte");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     public function listar_reporte()

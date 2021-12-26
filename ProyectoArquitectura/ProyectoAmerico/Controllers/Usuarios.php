@@ -8,11 +8,18 @@ class Usuarios extends Controller{
     }
     public function index()
     {
-        if(empty($_SESSION["activo"])){
-            header("location: ".base_url);
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'usuarios');
+        if(!empty($verificar)){
+            if(empty($_SESSION["activo"])){
+                header("location: ".base_url);
+            }
+            $data['documentos'] = $this->model->getDocumentos();
+            $this->views->getView($this, "index", $data);
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
         }
-        $data['documentos'] = $this->model->getDocumentos();
-        $this->views->getView($this, "index", $data);
+        
     }
 
     public function listar()
@@ -179,13 +186,34 @@ class Usuarios extends Controller{
             header("location: ".base_url);
         }
         $data['datos'] = $this->model->getPermisos();
+        $permisos = $this->model->getDetallePermisos($id);
+        $data['asignados'] = array();
+        foreach ($permisos as $permiso) {
+            $data['asignados'][$permiso['id_permiso']] = true;
+        }
         $data['id_usuario'] = $id;
         $this->views->getView($this, "permisos", $data);
     }
 
     public function registrarPermiso()
     {
-        print_r($_POST);
+        $msg='';
+        $id_user = $_POST['id_usuario'];
+        $eliminar = $this->model->eliminarPermisos($id_user);
+        if($eliminar == 'ok'){
+            foreach($_POST['permisos'] as $id_permiso){
+                $msg = $this->model->registrarPermisos($id_user,$id_permiso);
+            }
+            if($msg == 'ok'){
+                $msg = array('msg' => 'Permisos Asignados', 'icono' => 'success');
+            }else{
+                $msg = array('msg' => 'Error al asignar permisos', 'icono' => 'error');
+            }
+        }else{
+            $msg = array('msg' => 'Error al eliminar los permisos anteriores', 'icono' => 'error');
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        
     }
 
     public function salir()

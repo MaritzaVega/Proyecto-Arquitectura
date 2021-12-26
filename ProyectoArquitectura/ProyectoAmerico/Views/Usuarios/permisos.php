@@ -10,10 +10,10 @@
                     <?php foreach ($data['datos'] as $row) { ?>
                         <div class="col-md-4 text-center text-capitalize p-2">
                             <label for=""><?php echo $row['permiso']; ?></label><br>
-                            <input type="checkbox" name="permisos[]" value="<?php echo $row['id'];?>">
+                            <input type="checkbox" name="permisos[]" value="<?php echo $row['id'];?>" <?php echo isset($data['asignados'][$row['id']]) ? 'checked' : '' ;?>>
                         </div>
                     <?php } ?>
-                    <input type="hidden" value="<?php echo $data['id_usuario'];?>">
+                    <input type="hidden" value="<?php echo $data['id_usuario'];?>" name="id_usuario">
                 </div>
                 <div class="d-grid gap-2">
                     <button class="btn btn-outline-primary" type="submit">Asignar Permisos</button>

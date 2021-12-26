@@ -108,6 +108,47 @@ class UsuariosModel extends Query{
         $data = $this->selectAll($sql);
         return $data; 
     }
+
+    public function registrarPermisos(int $id_user, int $id_permiso)
+    {
+        $sql = "insert into detalle_permisos (id_usuario,id_permiso) values (?,?)";
+        $datos = array($id_user, $id_permiso);
+        $data = $this->save($sql, $datos);
+        if($data == 1){
+            $res = 'ok';
+        }else{
+            $res = 'error';
+        }
+        return $res;
+    }
+
+    
+    public function eliminarPermisos(int $id_user)
+    {
+        $sql = "delete from detalle_permisos where id_usuario = ?";
+        $datos = array($id_user);
+        $data = $this->save($sql, $datos);
+        if($data == 1){
+            $res = 'ok';
+        }else{
+            $res = 'error';
+        }
+        return $res;
+    }
+    
+    public function getDetallePermisos(int $id_user)
+    {
+        $sql = "select * from detalle_permisos where id_usuario = $id_user";
+        $data = $this->selectAll($sql);
+        return $data; 
+    }
+
+    public function verificarPermiso(int $id_user, string $nombre)
+    {
+        $sql = "SELECT p.id, p.permiso, d.id, d.id_usuario, d.id_permiso FROM permisos p INNER JOIN detalle_permisos d ON p.id = d.id_permiso WHERE d.id_usuario =$id_user AND p.permiso ='$nombre'";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 }
 
 

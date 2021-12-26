@@ -1286,8 +1286,12 @@ function registrarPermisos(e) {
     http.send(new FormData(frm));
     http.onreadystatechange = function(){//se ejecutara cada vez que cambia
         if(this.readyState == 4 && this.status == 200){
-            //const res = JSON.parse(this.responseText);
-            console.log(this.responseText);
+            const res = JSON.parse(this.responseText);
+            if(res != ''){
+                alertas(res.msg, res.icono)
+            }else{
+                alertas('Error no identificado','error');
+            }
         }
     }
 }

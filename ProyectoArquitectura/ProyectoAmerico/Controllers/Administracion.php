@@ -9,8 +9,15 @@ class Administracion extends Controller{
     }
     public function index()
     {
-        $data = $this->model->getEmpresa();
-        $this->views->getView($this, "index", $data);
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'institucion');
+        if(!empty($verificar)){
+            $data = $this->model->getEmpresa();
+            $this->views->getView($this, "index", $data);
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     //Vista de Administrador

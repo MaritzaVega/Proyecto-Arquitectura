@@ -216,6 +216,13 @@ class ComprasModel extends Query{
         $data = $this->selectAll($sql);
         return $data;
     }
+
+    public function getRangoFechaCompra()
+    {
+        $sql = "";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 }
 
 

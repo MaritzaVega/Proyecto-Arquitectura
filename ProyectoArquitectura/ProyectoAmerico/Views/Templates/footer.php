@@ -91,6 +91,7 @@
         </script>
         <script src="<?php echo base_url; ?>Assets/js/sweetalert2.all.min.js"></script>        
         <script src="<?php echo base_url; ?>Assets/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
         <script src="<?php echo base_url; ?>Assets/js/chart.min.js"></script>
         <script src="<?php echo base_url; ?>Assets/js/funciones.js"></script>
     </body>

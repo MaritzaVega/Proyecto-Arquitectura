@@ -209,6 +209,27 @@ class ComprasModel extends Query{
         $data = $this->selectAll($sql);
         return $data;
     }
+
+    public function getRangoFechas(string $desde, string $hasta)
+    {
+        $sql = "SELECT c.id, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON v.id_cliente = c.id WHERE (v.fecha BETWEEN '$desde' AND '$hasta 23:59:59')";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+
+    public function getReporteCompra2()
+    {
+        $sql = "SELECT c.id, c.total, c.fecha FROM compras c";
+        $data = $this->selectAll($sql);
+        return $data;
+    } 
+
+    public function getRangoFechaCompra(string $desde, string $hasta)
+    {
+        $sql = "SELECT c.id, c.total, c.fecha FROM compras c WHERE (c.fecha BETWEEN '$desde' AND '$hasta 23:59:59')";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 }
 
 

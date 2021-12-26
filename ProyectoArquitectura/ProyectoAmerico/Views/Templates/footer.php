@@ -14,6 +14,39 @@
                 </footer>
             </div>
         </div>
+
+        <!-- Modal Perfil -->
+        <div id="cambiarPerfil" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title"> Perfil </h5>
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="frmCambiarPerfil" onsubmit="frmCambiarPerfil(event);">
+                            <div class="form-group">
+                                <label for="clave_actual">Nombre</label>
+                                <input id="clave_actual" class="form-control" type="text" name="perfil_nombre" placeholder="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="clave_nueva">N° documento</label>
+                                <input id="clave_nueva" class="form-control" type="text" name="perfil_doc" placeholder="N° documento">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmar_clave">Usuario</label>
+                                <input id="confirmar_clave" class="form-control" type="text" name="perfil_user" placeholder="Usuario">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Modificar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Cambiar Contraseña -->
         <div id="cambiarPass" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

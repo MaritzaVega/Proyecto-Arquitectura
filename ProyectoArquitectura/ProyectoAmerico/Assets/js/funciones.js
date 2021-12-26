@@ -1261,6 +1261,7 @@ function productosVendidos(){
             }
             // Grafico Corona 
             var ctx = document.getElementById("ProductosVendidos");
+            
             var myPieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -1271,15 +1272,26 @@ function productosVendidos(){
     }],
   },
 });
-
         }
     }
 }
-    
+   
 
-
-
-
-
-
-
+function registrarPermisos(e) {
+    e.preventDefault();
+    const url = base_url + "Usuarios/registrarPermiso";
+    const frm = document.getElementById('formulario'); 
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send(new FormData(frm));
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            if(res != ''){
+                alertas(res.msg, res.icono)
+            }else{
+                alertas('Error no identificado','error');
+            }
+        }
+    }
+}

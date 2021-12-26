@@ -8,16 +8,39 @@ class Compras extends Controller{
     }
     public function index ()
     {
-        $this->views->getView($this, "index");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'nueva_compra');
+        if(!empty($verificar)){
+            $this->views->getView($this, "index");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+
+        
     }
     public function ventas ()
     {
-        $data = $this -> model ->getClientes();
-        $this->views->getView($this, "ventas", $data);
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'nueva_venta');
+        if(!empty($verificar)){
+            $data = $this -> model ->getClientes();
+            $this->views->getView($this, "ventas", $data);
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+
+        
     }
     public function reporte_venta()
     {
-        $this->views->getView($this, "reporte_venta");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'reporte_venta');
+        if(!empty($verificar)){
+            $this->views->getView($this, "reporte_venta");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     public function buscarCodigo($cod)
@@ -79,22 +102,33 @@ class Compras extends Controller{
         ///variable para aumentar la cant de un producto NuevaCompra
         $comprobar = $this->model->consultarDetalle('detalle_temp',$id_producto,$id_usuario);
         if (empty($comprobar)) {
-            $sub_total = $precio * $cantidad;
-            $data = $this->model->registrarDetalle('detalle_temp',$id_producto, $id_usuario, $precio, $cantidad, $sub_total);
-            if ($data == "ok") {
+            if ($datos['cantidad'] >= $cantidad) {
+                $sub_total = $precio * $cantidad;
+                $data = $this->model->registrarDetalle('detalle_temp',$id_producto, $id_usuario, $precio, $cantidad, $sub_total);
+                if ($data == "ok") {
                 $msg = array('msg'=> 'Producto ingresado a la venta', 'icono'=> 'success');
-            }else{
+                }else{
                 $msg = array('msg'=> 'Error al ingresar el producto a la venta', 'icono'=> 'error');
-            }
+                }
+                }else {
+                    $msg = array('msg'=> 'Stock no disponible: '. $datos['cantidad'], 'icono'=> 'warning');
+                }
+            
+            
         }else{
             $total_cantidad = $comprobar['cantidad'] + $cantidad;
             $sub_total = $total_cantidad * $precio;
-            $data = $this->model->actualizarDetalle('detalle_temp',$precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
-            if ($data == "modificado") {
-                $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
+            if ($datos['cantidad'] < $total_cantidad) {
+                $msg = array('msg'=> 'Stock no disponible', 'icono'=> 'warning');
             }else{
-                $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
+                $data = $this->model->actualizarDetalle('detalle_temp',$precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
+                if ($data == "modificado") {
+                    $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
+                }else{
+                    $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
+                }
             }
+            
         }
         
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
@@ -270,7 +304,14 @@ class Compras extends Controller{
     ///ReporteCompras donde ..Historial... = Reporte
     public function reporte()
     {
-        $this->views->getView($this, "reporte");
+        $id_user = $_SESSION['id_usuario'];
+        $verificar = $this->model->verificarPermiso($id_user,'reporte_compra');
+        if(!empty($verificar)){
+            $this->views->getView($this, "reporte");
+        }else{
+            header('Location: '.base_url.'Errors/permisos');
+        }
+        
     }
 
     public function listar_reporte()
@@ -379,6 +420,81 @@ class Compras extends Controller{
         $pdf->Cell(65, 5, 'Total a pagar', 0, 1, 'R');
         $pdf->Cell(65, 5, number_format($total, 2, '.', ','), 0, 0, 'R');
 
+        $pdf->Output();
+    }
+
+    ///Reporte de pdf con fechas reporteVenta
+    public function pdf()
+    {
+        $desde = $_POST['desde'];
+        $hasta = $_POST['hasta'];
+
+        if (empty($desde) || empty($hasta)) {
+            $data = $this->model->getReporteVentas();
+        }else {
+            $data = $this->model->getRangoFechas($desde,$hasta);
+        }
+
+        require('Libraries/fpdf/fpdf.php');
+
+        $pdf = new FPDF('P', 'mm', 'A4');
+        $pdf->AddPage();
+        $pdf->SetMargins(10, 0, 0);
+        $pdf->SetTitle('Reporte de Ventas');
+        $pdf->SetFont('Arial','B',12);
+        $pdf->SetFillColor(133, 0, 0);
+        $pdf->SetTextColor(255, 255, 255);
+        $pdf->Cell(15, 5, 'Id', 0, 0, 'C',true);
+            $pdf->Cell(35, 5, 'Cliente', 0, 0, 'C',true);
+            $pdf->Cell(30, 5, 'Fecha', 0, 0, 'C',true);
+            $pdf->Cell(30, 5, 'Hora', 0, 0, 'C',true);
+            $pdf->Cell(30, 5, 'Total', 0, 1, 'C',true);
+            
+        $pdf->SetFont('Arial','',10);
+        $pdf->SetTextColor(0, 0, 0);
+        foreach($data as $row){
+            $pdf->Cell(20, 5, $row['id'], 0, 0, 'C');
+            $pdf->Cell(30, 5, $row['nombre'], 0, 0, 'C');
+            $pdf->Cell(50, 5, $row['fecha'], 0, 0, 'C');
+            $pdf->Cell(50, 5, $row['total'], 0, 1, 'C');
+        }
+        
+        $pdf->Output();
+    }
+
+    ///Reporte de pdf con fechas reporteCompra
+    public function pdfcompra()
+    {
+        $desde = $_POST['desde'];
+        $hasta = $_POST['hasta'];
+
+        if (empty($desde) || empty($hasta)) {
+            $data = $this->model->getReporteCompra2();
+        }else {
+            $data = $this->model->getRangoFechaCompra($desde,$hasta);
+        }
+
+        require('Libraries/fpdf/fpdf.php');
+
+        $pdf = new FPDF('P', 'mm', 'A4');
+        $pdf->AddPage();
+        $pdf->SetMargins(10, 0, 0);
+        $pdf->SetTitle('Reporte de Compra');
+        $pdf->SetFont('Arial','B',12);
+        $pdf->SetFillColor(133, 0, 0);
+        $pdf->SetTextColor(255, 255, 255);
+        $pdf->Cell(15, 5, 'Id', 0, 0, 'C',true);
+            $pdf->Cell(35, 5, 'Total', 0, 0, 'C',true);
+            $pdf->Cell(50, 5, 'Fecha', 0, 1, 'C',true);
+            
+        $pdf->SetFont('Arial','',10);
+        $pdf->SetTextColor(0, 0, 0);
+        foreach($data as $row){
+            $pdf->Cell(15, 5, $row['id'], 0, 0, 'C');
+            $pdf->Cell(35, 5, $row['total'], 0, 0, 'C');
+            $pdf->Cell(50, 5, $row['fecha'], 0, 1, 'C');
+        }
+        
         $pdf->Output();
     }
 }

@@ -133,7 +133,7 @@ class ComprasModel extends Query{
         $data = $this->select($sql);
         return $data;
     }
-
+//..
     public function vaciarDetalle(string $table, int $id_usuario)
     {
         $sql ="DELETE FROM $table WHERE id_usuario = ?";
@@ -203,6 +203,33 @@ class ComprasModel extends Query{
         return $data;
     }
 
+    public function verificarPermiso(int $id_user, string $nombre)
+    {
+        $sql = "SELECT p.id, p.permiso, d.id, d.id_usuario, d.id_permiso FROM permisos p INNER JOIN detalle_permisos d ON p.id = d.id_permiso WHERE d.id_usuario =$id_user AND p.permiso ='$nombre'";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+
+    public function getRangoFechas(string $desde, string $hasta)
+    {
+        $sql = "SELECT c.id, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON v.id_cliente = c.id WHERE (v.fecha BETWEEN '$desde' AND '$hasta 23:59:59')";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+
+    public function getReporteCompra2()
+    {
+        $sql = "SELECT c.id, c.total, c.fecha FROM compras c";
+        $data = $this->selectAll($sql);
+        return $data;
+    } 
+
+    public function getRangoFechaCompra(string $desde, string $hasta)
+    {
+        $sql = "SELECT c.id, c.total, c.fecha FROM compras c WHERE (c.fecha BETWEEN '$desde' AND '$hasta 23:59:59')";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 }
 
 

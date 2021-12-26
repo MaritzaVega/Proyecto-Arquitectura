@@ -469,9 +469,9 @@ class Compras extends Controller{
         $hasta = $_POST['hasta'];
 
         if (empty($desde) || empty($hasta)) {
-            $data = $this->model->getReporteCompra();
+            $data = $this->model->getReporteCompra2();
         }else {
-            $data = $this->model->getRangoFechas($desde,$hasta);
+            $data = $this->model->getRangoFechaCompra($desde,$hasta);
         }
 
         require('Libraries/fpdf/fpdf.php');
@@ -484,18 +484,15 @@ class Compras extends Controller{
         $pdf->SetFillColor(133, 0, 0);
         $pdf->SetTextColor(255, 255, 255);
         $pdf->Cell(15, 5, 'Id', 0, 0, 'C',true);
-            $pdf->Cell(35, 5, 'Cliente', 0, 0, 'C',true);
-            $pdf->Cell(30, 5, 'Fecha', 0, 0, 'C',true);
-            $pdf->Cell(30, 5, 'Hora', 0, 0, 'C',true);
-            $pdf->Cell(30, 5, 'Total', 0, 1, 'C',true);
+            $pdf->Cell(35, 5, 'Total', 0, 0, 'C',true);
+            $pdf->Cell(50, 5, 'Fecha', 0, 1, 'C',true);
             
         $pdf->SetFont('Arial','',10);
         $pdf->SetTextColor(0, 0, 0);
         foreach($data as $row){
-            $pdf->Cell(20, 5, $row['id'], 0, 0, 'C');
-            $pdf->Cell(30, 5, $row['nombre'], 0, 0, 'C');
-            $pdf->Cell(50, 5, $row['fecha'], 0, 0, 'C');
-            $pdf->Cell(50, 5, $row['total'], 0, 1, 'C');
+            $pdf->Cell(15, 5, $row['id'], 0, 0, 'C');
+            $pdf->Cell(35, 5, $row['total'], 0, 0, 'C');
+            $pdf->Cell(50, 5, $row['fecha'], 0, 1, 'C');
         }
         
         $pdf->Output();

@@ -217,9 +217,16 @@ class ComprasModel extends Query{
         return $data;
     }
 
-    public function getRangoFechaCompra()
+    public function getReporteCompra2()
     {
-        $sql = "";
+        $sql = "SELECT c.id, c.total, c.fecha FROM compras c";
+        $data = $this->selectAll($sql);
+        return $data;
+    } 
+
+    public function getRangoFechaCompra(string $desde, string $hasta)
+    {
+        $sql = "SELECT c.id, c.total, c.fecha FROM compras c WHERE (c.fecha BETWEEN '$desde' AND '$hasta 23:59:59')";
         $data = $this->selectAll($sql);
         return $data;
     }

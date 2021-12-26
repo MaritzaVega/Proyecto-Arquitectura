@@ -102,22 +102,33 @@ class Compras extends Controller{
         ///variable para aumentar la cant de un producto NuevaCompra
         $comprobar = $this->model->consultarDetalle('detalle_temp',$id_producto,$id_usuario);
         if (empty($comprobar)) {
-            $sub_total = $precio * $cantidad;
-            $data = $this->model->registrarDetalle('detalle_temp',$id_producto, $id_usuario, $precio, $cantidad, $sub_total);
-            if ($data == "ok") {
+            if ($datos['cantidad'] >= $cantidad) {
+                $sub_total = $precio * $cantidad;
+                $data = $this->model->registrarDetalle('detalle_temp',$id_producto, $id_usuario, $precio, $cantidad, $sub_total);
+                if ($data == "ok") {
                 $msg = array('msg'=> 'Producto ingresado a la venta', 'icono'=> 'success');
-            }else{
+                }else{
                 $msg = array('msg'=> 'Error al ingresar el producto a la venta', 'icono'=> 'error');
-            }
+                }
+                }else {
+                    $msg = array('msg'=> 'Stock no disponible: '. $datos['cantidad'], 'icono'=> 'warning');
+                }
+            
+            
         }else{
             $total_cantidad = $comprobar['cantidad'] + $cantidad;
             $sub_total = $total_cantidad * $precio;
-            $data = $this->model->actualizarDetalle('detalle_temp',$precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
-            if ($data == "modificado") {
-                $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
+            if ($datos['cantidad'] < $total_cantidad) {
+                $msg = array('msg'=> 'Stock no disponible', 'icono'=> 'warning');
             }else{
-                $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
+                $data = $this->model->actualizarDetalle('detalle_temp',$precio, $total_cantidad, $sub_total, $id_producto, $id_usuario);
+                if ($data == "modificado") {
+                    $msg = array('msg'=> 'Producto actualizado', 'icono'=> 'success');
+                }else{
+                    $msg = array('msg'=> 'Error al actualizar el producto', 'icono'=> 'error');
+                }
             }
+            
         }
         
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);

@@ -32,9 +32,9 @@
             <div class="modal-body">
                 <form method="post" id="frmCliente">
                     <div class="form-group">
-                        <label for="dni">Número de documento</label>
+                        <label for="dni">Número de Documento</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="dni" class="form-control" type="number" name="dni" placeholder="Documento de Identidad">
+                        <input id="dni" class="form-control" type="number" name="dni" placeholder="Número de Documento">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>

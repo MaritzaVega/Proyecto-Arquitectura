@@ -582,20 +582,12 @@ function registrarCli(e){ // detiene que la página se cargue de nuevo
     if(numDocumento.value == "" || nombre.value == "" || telefono.value =="" || direccion.value == ""){
        //SwetAlert 
        alertas('Todos los campos son obligatorios','warning');
-<<<<<<< HEAD
-    }else if (dni.value.toString().length != 8){
-        alertas('Los digitos de Dni no son los correctos','warning');
-    }else if (telefono.value.toString().length !=9 || telefono.value.toString().length !=7 || telefono.value.toString().length == 8){
-        alertas('Los digitos de Teléfono no son los correctos','warning');
-    }else{
-=======
     }else if(numDocumento.value.toString().length !=8 &&  numDocumento.value.toString().length !=12 ){
         alertas('Número de  documento ingresado no es valido','warning');
     }else if(telefono.value.toString().length !=7 &&  telefono.value.toString().length !=9){
         alertas('Número de teléfono ingresado no es valido','warning');
     }
     else{
->>>>>>> 6f6c6569949bbb248ce9596ec8108661572f0a4a
         //peticion
         const url = base_url + "Clientes/registrar";
         const frm = document.getElementById("frmCliente");

@@ -30,24 +30,31 @@ class Usuarios extends Controller{
             //Estado del usuario
             if($data[$i]['estado'] == 1){
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
+                $data[$i]['acciones'] = '<div>
+                <a class="btn btn-dark" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'" ><i class="fas fa-key"></i></a>
+                <button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
+                </div>'; 
             }else{
                 $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
+                $data[$i]['acciones'] = '<div>
+                <button class="btn btn-success" type="button" onclick="btnReingresarUser('.$data[$i]['id'].');">Reingresar</button>
+                </div>'; 
             }
-
             //Botones modificar y eliminar
+           /*
             $data[$i]['acciones'] = '<div>
             <a class="btn btn-dark" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'" ><i class="fas fa-key"></i></a>
             <button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
             <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
             <button class="btn btn-success" type="button" onclick="btnReingresarUser('.$data[$i]['id'].');">Reingresar</button>
-            </div>'; 
-            
+            </div>'; */  
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
     
-
+    ////Logeo
     public function validar()
     {
         if(empty($_POST['usuario']) || empty($_POST['clave'])){
@@ -64,7 +71,7 @@ class Usuarios extends Controller{
                 $_SESSION['activo'] = true;
                 $msg = "ok";
             }else{
-                $msg = "Usario o constraseña incorrecta";
+                $msg = "Usuario o clave incorrecta";
             }   
         }
         echo json_encode($msg,JSON_UNESCAPED_UNICODE);
@@ -87,10 +94,8 @@ class Usuarios extends Controller{
 
         if(empty($usuario) || empty($nombre) || empty($documentos) || empty($numDocumento)){
             $msg= array('msg'=> 'Todos los campos son obligatorios','icono' => 'Warning');
-          
         }else{
             if($id==""){
-
                 if($clave != $confirmar){
                     $msg= array('msg'=> 'Las contraseñas no coinciden','icono' => 'Warning');
                 }else{

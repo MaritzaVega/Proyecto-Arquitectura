@@ -72,10 +72,10 @@
                             </div>
                         </div>
                     
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="nivel">Nivel de Stock</label>
                         <input id="nivel" class="form-control" type="text" minlength="8" maxlength="12" name="nivel" placeholder="Nivel de Stock">
-                    </div>
+                    </div>-->
                     <button class="btn btn-primary" type="button" onclick="registrarPro(event);" id="btnAccion">Registrar</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
                 </form>

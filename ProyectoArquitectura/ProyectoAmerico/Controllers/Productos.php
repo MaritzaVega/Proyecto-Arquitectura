@@ -61,7 +61,7 @@ class Productos extends Controller{
         $nombre = $_POST['nombre'];
         $precio_compra = $_POST['precio_compra'];
         $precio_venta = $_POST['precio_venta'];
-        $nivel = $_POST['nivel'];
+        //$nivel = $_POST['nivel'];
         $id = $_POST['id'];
         //imagen
         $img = $_FILES['imagen'];
@@ -70,7 +70,7 @@ class Productos extends Controller{
 
         //validación new fecha
         $fecha = date("YmdHis");
-        if(empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta) || empty($nivel)){
+        if(empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta)){
             $msg="Todos los campos son obligatorios";
         }else{
             //la validadcion fecha
@@ -85,7 +85,7 @@ class Productos extends Controller{
             
             if($id == ""){
                     //metodo
-                    $data = $this->model->registrarProducto($codigo, $nombre, $precio_compra, $precio_venta,$imgNombre, $nivel);
+                    $data = $this->model->registrarProducto($codigo, $nombre, $precio_compra, $precio_venta,$imgNombre);
                     if ($data == "ok"){
 
                           if (!empty($name)) {
@@ -111,7 +111,7 @@ class Productos extends Controller{
                     }
                 }
                 //metodo
-                $data = $this->model->modificarProducto($codigo, $nombre, $precio_compra, $precio_venta, $imgNombre,$nivel,$id);
+                $data = $this->model->modificarProducto($codigo, $nombre, $precio_compra, $precio_venta, $imgNombre,$id);
                 if ($data == "Modificado"){
 
                     if (!empty($name)) {

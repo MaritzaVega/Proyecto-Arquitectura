@@ -442,12 +442,18 @@ function registrarUser(e){ // detiene que la página se cargue de nuevo
     e.preventDefault();
     const usuario = document.getElementById("usuario");
     const nombre = document.getElementById("nombre");
-    const documentos = document.getElementById("documentos");
-    const numDocumento = document.getElementById("numDocumento");
+    const documentos = document.getElementById("documentos"); //id
+    const numDocumento = document.getElementById("numDocumento"); //valor
     //Valida campos vacio
     if(usuario.value == "" || nombre.value == "" || documentos =="" || numDocumento.value == ""){
-       //SwetAlert 
+       //SwetAlert
+       
        alertas('Todos los campos son obligatorios','warning');
+
+    }else if(documentos.value == 1 && numDocumento.value.toString().length != 8){
+        alertas('El Dni no coincide','warning');
+    }else if((documentos.value == 2 && numDocumento.value.toString().length != 12)){
+        alertas('El Pasaporte no coincide','warning');
     }else{
         //peticion
         const url = base_url + "Usuarios/registrar";

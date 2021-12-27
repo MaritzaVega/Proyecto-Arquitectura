@@ -46,10 +46,19 @@ class Productos extends Controller{
                     </div>';
                 }                
             }else{
-                $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
-                $data[$i]['acciones'] = '<div>
-                <button class="btn btn-success" type="button" onclick="btnReingresarPro('.$data[$i]['id'].');">Reingresar</button>
-                </div>';
+                if($data[$i]['cantidad'] >= 10){
+                    $data[$i]['nivel'] = '<span class="badge badge-primary">Alto</span>';
+                    $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
+                    $data[$i]['acciones'] = '<div>
+                    <button class="btn btn-success" type="button" onclick="btnReingresarPro('.$data[$i]['id'].');">Reingresar</button>
+                    </div>';
+                }else{
+                    $data[$i]['nivel'] = '<span class="badge badge-warning">Bajo</span>';
+                    $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
+                    $data[$i]['acciones'] = '<div>
+                    <button class="btn btn-success" type="button" onclick="btnReingresarPro('.$data[$i]['id'].');">Reingresar</button>
+                    </div>';
+                }                   
             }
 
             //Botones modificar y eliminar

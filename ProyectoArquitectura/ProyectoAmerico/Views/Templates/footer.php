@@ -15,7 +15,8 @@
             </div>
         </div>
 
-        <!-- Modal Perfil -->
+
+
         <div id="cambiarPerfil" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -26,6 +27,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+<<<<<<< HEAD
                         <form id="frmCambiarPerfil">
                             <div class="form-group">
                                 <label for="clave_actual">Nombre</label>
@@ -34,12 +36,21 @@
                             <div class="form-group">
                                 <label for="clave_nueva">N° documento</label>
                                 <input id="clave_nueva" class="form-control" type="text" name="perfil_doc" value="<?php echo $data['mensaje'];?>">
+=======
+                        <form>
+                            <div class="form-group">
+                                <label for="clave_actual">Nombre</label>
+                                <input id="clave_actual" class="form-control" type="text" name="perfil_nombre" placeholder="Nombre" value="<?php echo $_SESSION['nombre'];?>" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="clave_nueva">N° Documento</label>
+                                <input id="clave_nueva" class="form-control" type="text" name="perfil_doc" placeholder="N° Documento" value="<?php echo $_SESSION['doc'];?>" disabled>
+>>>>>>> 49500e13ace923f9dee4a9a787c61c470a9eb285
                             </div>
                             <div class="form-group">
                                 <label for="confirmar_clave">Usuario</label>
-                                <input id="confirmar_clave" class="form-control" type="text" name="perfil_user" placeholder="Usuario">
+                                <input id="confirmar_clave" class="form-control" type="text" name="perfil_user" placeholder="Usuario" value="<?php echo $_SESSION['usuario'];?>" disabled>
                             </div>
-                            <button class="btn btn-primary" type="submit">Modificar</button>
                         </form>
                     </div>
                 </div>

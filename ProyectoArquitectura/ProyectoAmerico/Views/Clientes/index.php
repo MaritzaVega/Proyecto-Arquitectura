@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label for="dni">Dni</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="dni" class="form-control" type="text" name="dni" placeholder="Docuemnto de Identidad">
+                        <input id="dni" class="form-control" type="text" name="dni" placeholder="Documento de Identidad">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>

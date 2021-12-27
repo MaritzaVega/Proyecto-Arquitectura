@@ -8,7 +8,7 @@
     <thead class="thead-darkR">
         <tr>
             <th>Id</th>
-            <th>Dni</th>
+            <th>Número de documento</th>
             <th>Nombre</th>
             <th>Teléfono</th>
             <th>Dirección</th>
@@ -32,9 +32,9 @@
             <div class="modal-body">
                 <form method="post" id="frmCliente">
                     <div class="form-group">
-                        <label for="dni">Dni</label>
+                        <label for="dni">Número de documento</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="dni" class="form-control" type="text" name="dni" placeholder="Documento de Identidad">
+                        <input id="dni" class="form-control" type="number" name="dni" placeholder="Documento de Identidad">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
-                        <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono">
+                        <input id="telefono" class="form-control" type="number" name="telefono" placeholder="Teléfono" >
                     </div>
                     <div class="form-group">
                         <label for="direccion">Dirección</label>

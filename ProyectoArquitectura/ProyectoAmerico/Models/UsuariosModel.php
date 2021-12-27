@@ -78,6 +78,7 @@ class UsuariosModel extends Query{
         return $data;
     }
 
+
     public function getPass(string $clave, int $id)
     {
         $sql = "SELECT * from usuarios where clave= '$clave' and id= $id";
@@ -149,6 +150,15 @@ class UsuariosModel extends Query{
         $data = $this->selectAll($sql);
         return $data;
     }
+
+    public function buscarUsuarios(int $id)
+    {
+        $sql = "select * from usuarios where id='$id'";
+        $data = $this->select($sql);
+        return $data; 
+    }
+
+
 }
 
 

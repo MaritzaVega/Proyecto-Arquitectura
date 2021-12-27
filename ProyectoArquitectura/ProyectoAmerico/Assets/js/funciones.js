@@ -494,6 +494,7 @@ function btnEditarUser(id){ // detiene que la página se cargue de nuevo
 
 } 
 
+
 function btnEliminarUser(id ){
     Swal.fire({
         title: 'Está seguro de eliminar?',

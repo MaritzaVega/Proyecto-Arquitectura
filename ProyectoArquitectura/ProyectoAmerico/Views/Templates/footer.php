@@ -27,16 +27,6 @@
                         </button>
                     </div>
                     <div class="modal-body">
-<<<<<<< HEAD
-                        <form id="frmCambiarPerfil">
-                            <div class="form-group">
-                                <label for="clave_actual">Nombre</label>
-                                <input id="clave_actual" class="form-control" type="text" name="perfil_nombre" value="<?php echo $data['nombre'];?>>">
-                            </div>
-                            <div class="form-group">
-                                <label for="clave_nueva">N° documento</label>
-                                <input id="clave_nueva" class="form-control" type="text" name="perfil_doc" value="<?php echo $data['mensaje'];?>">
-=======
                         <form>
                             <div class="form-group">
                                 <label for="clave_actual">Nombre</label>
@@ -45,7 +35,6 @@
                             <div class="form-group">
                                 <label for="clave_nueva">N° Documento</label>
                                 <input id="clave_nueva" class="form-control" type="text" name="perfil_doc" placeholder="N° Documento" value="<?php echo $_SESSION['doc'];?>" disabled>
->>>>>>> 49500e13ace923f9dee4a9a787c61c470a9eb285
                             </div>
                             <div class="form-group">
                                 <label for="confirmar_clave">Usuario</label>

@@ -567,15 +567,20 @@ function frmCliente(){
 //esta funcion trabaja con ->Clientes.php
 function registrarCli(e){ // detiene que la página se cargue de nuevo
     e.preventDefault();
-    const dni = document.getElementById("dni");
+    const numDocumento = document.getElementById("dni");
     const nombre = document.getElementById("nombre");
     const telefono = document.getElementById("telefono");
     const direccion = document.getElementById("direccion");
     //Valida campos vacio
-    if(dni.value == "" || nombre.value == "" || telefono.value =="" || direccion.value == ""){
+    if(numDocumento.value == "" || nombre.value == "" || telefono.value =="" || direccion.value == ""){
        //SwetAlert 
        alertas('Todos los campos son obligatorios','warning');
-    }else{
+    }else if(numDocumento.value.toString().length !=8 &&  numDocumento.value.toString().length !=12 ){
+        alertas('Número de  documento ingresado no es valido','warning');
+    }else if(telefono.value.toString().length !=7 &&  telefono.value.toString().length !=9){
+        alertas('Número de teléfono ingresado no es valido','warning');
+    }
+    else{
         //peticion
         const url = base_url + "Clientes/registrar";
         const frm = document.getElementById("frmCliente");

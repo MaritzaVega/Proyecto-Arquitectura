@@ -49,7 +49,7 @@
                         <div class="nav">
                             
                             <a href="#">
-                                <img  src=".../../Assets/imagenes/logo.jpg" width= "100%">
+                                <img  src=".../../../../Assets/imagenes/logo.jpg" width= "100%">
                             </a>
 
                             <a class="nav-link" href="<?php echo base_url; ?>Administracion/Home"> 

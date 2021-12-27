@@ -976,7 +976,7 @@ function calcularPrecio(e){
         e.preventDefault();
         const cant = document.getElementById("cantidad").value;
         const precio = document.getElementById("precio").value;
-        document.getElementById("sub_total").value = precio * cant;
+        document.getElementById("sub_total").value = (precio * cant).toFixed(2);
 
         if(e.which == 13){ //tecla ENTER = 13
             if(cant>0){
@@ -1008,7 +1008,7 @@ function calcularPrecioVenta(e){
     e.preventDefault();
     const cant = document.getElementById("cantidad").value;
     const precio = document.getElementById("precio").value;
-    document.getElementById("sub_total").value = precio * cant;
+    document.getElementById("sub_total").value = (precio * cant).toFixed(2);
 
     if(e.which == 13){ //tecla ENTER = 13
         if(cant>0){

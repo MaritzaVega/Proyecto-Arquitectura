@@ -35,9 +35,9 @@
             <div class="modal-body">
                 <form method="post" id="frmProducto">
                     <div class="form-group">
-                        <label for="codigo">Código de barras</label>
+                        <label for="codigo">Código de Producto</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras">
+                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de producto">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Descripción</label>

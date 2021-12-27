@@ -582,6 +582,10 @@ function registrarCli(e){ // detiene que la página se cargue de nuevo
     if(dni.value == "" || nombre.value == "" || telefono.value =="" || direccion.value == ""){
        //SwetAlert 
        alertas('Todos los campos son obligatorios','warning');
+    }else if (dni.value.toString().length != 8){
+        alertas('Los digitos de Dni no son los correctos','warning');
+    }else if (telefono.value.toString().length !=9 || telefono.value.toString().length !=7 || telefono.value.toString().length == 8){
+        alertas('Los digitos de Teléfono no son los correctos','warning');
     }else{
         //peticion
         const url = base_url + "Clientes/registrar";

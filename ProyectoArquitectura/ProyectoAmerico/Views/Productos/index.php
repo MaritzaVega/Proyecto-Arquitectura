@@ -1,6 +1,6 @@
 <?php include "Views/Templates/header.php";?>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Productos</li>
+    <li class="breadcrumb-item active">Gestión de Productos</li>
 </ol>
 <button class="btn btn-primary mb-4" type="button" onclick="frmProducto();">Nuevo <i class="fas fa-plus"></i></button>
 
@@ -35,12 +35,12 @@
             <div class="modal-body">
                 <form method="post" id="frmProducto">
                     <div class="form-group">
-                        <label for="codigo">Còdigo de barras</label>
+                        <label for="codigo">Código de barras</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Còdigo de barras">
+                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras">
                     </div>
                     <div class="form-group">
-                        <label for="nombre">Descripciòn</label>
+                        <label for="nombre">Descripción</label>
                         <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre del producto">
                     </div>
                     <div class="row" id="claves">
@@ -72,10 +72,11 @@
                             </div>
                         </div>
                     
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="nivel">Nivel de Stock</label>
                         <input id="nivel" class="form-control" type="text" minlength="8" maxlength="12" name="nivel" placeholder="Nivel de Stock">
-                    </div>
+                    </div>-->
+                    
                     <button class="btn btn-primary" type="button" onclick="registrarPro(event);" id="btnAccion">Registrar</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
                 </form>

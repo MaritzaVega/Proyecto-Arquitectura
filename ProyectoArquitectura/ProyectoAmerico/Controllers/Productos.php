@@ -33,15 +33,17 @@ class Productos extends Controller{
             //Estado del Producto
             if($data[$i]['estado'] == 1){
                 $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
+                //Botones modificar y eliminar
+                $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarPro('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger" type="button" onclick="btnEliminarPro('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
+                </div>'; 
             }else{
                 $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
+                $data[$i]['acciones'] = '<div><button class="btn btn-success" type="button" onclick="btnReingresarPro('.$data[$i]['id'].');">Reingresar</button>
+                </div>';
             }
 
-            //Botones modificar y eliminar
-            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarPro('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-danger" type="button" onclick="btnEliminarPro('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
-            <button class="btn btn-success" type="button" onclick="btnReingresarPro('.$data[$i]['id'].');">Reingresar</button>
-            </div>'; 
+            
             
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -55,7 +57,7 @@ class Productos extends Controller{
         $nombre = $_POST['nombre'];
         $precio_compra = $_POST['precio_compra'];
         $precio_venta = $_POST['precio_venta'];
-        $nivel = $_POST['nivel'];
+        $nivel = 'bajo';
         $id = $_POST['id'];
         //imagen
         $img = $_FILES['imagen'];

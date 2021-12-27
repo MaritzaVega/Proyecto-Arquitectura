@@ -117,7 +117,7 @@ class Compras extends Controller{
             
         }else{
             $total_cantidad = $comprobar['cantidad'] + $cantidad;
-            $sub_total = $total_cantidad * $precio;
+            $sub_total = ($total_cantidad * $precio);
             if ($datos['cantidad'] < $total_cantidad) {
                 $msg = array('msg'=> 'Stock no disponible', 'icono'=> 'warning');
             }else{

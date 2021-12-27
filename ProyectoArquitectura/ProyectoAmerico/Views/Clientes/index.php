@@ -1,6 +1,6 @@
 <?php include "Views/Templates/header.php";?>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Clientes</li>
+    <li class="breadcrumb-item active">Gestión de Clientes</li>
 </ol>
 <button class="btn btn-primary mb-4" type="button" onclick="frmCliente();">Nuevo <i class="fas fa-plus"></i></button>
 
@@ -8,7 +8,7 @@
     <thead class="thead-darkR">
         <tr>
             <th>Id</th>
-            <th>Número de documento</th>
+            <th>N° de documento</th>
             <th>Nombre</th>
             <th>Teléfono</th>
             <th>Dirección</th>

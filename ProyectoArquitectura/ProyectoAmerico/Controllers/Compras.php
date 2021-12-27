@@ -185,7 +185,12 @@ class Compras extends Controller{
                 //ACTUALIZAR EL STOCK DE LOS PRODUCTOS
                 $stock_actual = $this->model->getProductos($id_pro);
                 $stock = $stock_actual['cantidad'] + $cantidad;
-                $this->model->actualizarStock($stock, $id_pro); //Adquirir de los proveedores
+                if($stock >= 10){
+                    $nivel = "Alto";
+                }else{
+                    $nivel = "Bajo";
+                }
+                $this->model->actualizarStock($stock, $nivel, $id_pro); //Adquirir de los proveedores
 
             }
             $vaciar = $this->model->vaciarDetalle('detalle', $id_usuario);
@@ -218,7 +223,12 @@ class Compras extends Controller{
                 //ACTUALIZAR EL STOCK DE LOS PRODUCTOS
                 $stock_actual = $this->model->getProductos($id_pro);
                 $stock = $stock_actual['cantidad'] - $cantidad;
-                $this->model->actualizarStock($stock, $id_pro); //Adquirir de los proveedores
+                if($stock >= 10){
+                    $nivel = "Alto";
+                }else{
+                    $nivel = "Bajo";
+                }
+                $this->model->actualizarStock($stock, $nivel, $id_pro); //Adquirir de los proveedores
 
             }
             $vaciar = $this->model->vaciarDetalle('detalle_temp', $id_usuario);
@@ -284,7 +294,7 @@ class Compras extends Controller{
         
         $pdf->SetTextColor(0, 0, 0);
         $total = 0.00;
-        $pdf->SetFont('Arial','',9);
+        $pdf->SetFont('Arial','',8);
         foreach($productos as $row){
             $total = $total + $row['sub_total'];
             $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'C');

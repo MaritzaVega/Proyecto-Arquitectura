@@ -227,6 +227,22 @@ class Usuarios extends Controller{
             session_destroy();
             header("location: ".base_url);
         }
+
+    public function modificar()
+    {
+        $nombre = $_POST['perfil_nombre'];
+        $tel = $_POST['perfil_doc'];
+        $dir = $_POST['perfil_user'];
+        $data = $this->model->modificar($nombre,$tel,$dir);
+        if($data == 'ok'){
+            $msg = 'ok';
+        }else{
+            $msg = 'error';
+        }
+        echo json_encode($msg);
+        die();
+    }
+
 }
 
 ?>

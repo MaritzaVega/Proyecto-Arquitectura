@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
-                <label for="min">Desde</label>
+                <label for="min">Desde: </label>
                 <input type="date" value="<?php echo date ('Y-m-d'); ?>" name="desde" id="min">
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="hasta">Hasta</label>
+                <label for="hasta">Hasta: </label>
                 <input type="date" value="<?php echo date ('Y-m-d'); ?>" name="hasta" id = "hasta">
             </div>
         </div>

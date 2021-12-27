@@ -1,4 +1,4 @@
-<?php include "Views/Templates/headermetodo.php";?>
+<?php include "Views/Templates/headerpermiso.php";?>
 <div class="col-md-8 mx-auto">
     <div class="cardcampo">
         <div class="card-header text-center bg-primary text-white">

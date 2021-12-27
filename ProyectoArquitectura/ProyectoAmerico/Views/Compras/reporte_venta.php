@@ -39,7 +39,7 @@
             <th>#</th>
             <th>Clientes</th>
             <th>Total</th>
-            <th>Fecha de Compra </th>
+            <th>Fecha de Venta </th>
             <th>Reporte</th>
         </tr>
     </thead>

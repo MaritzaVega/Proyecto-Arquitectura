@@ -709,9 +709,9 @@ function registrarPro(e){ // detiene que la página se cargue de nuevo
     const nombre = document.getElementById("nombre");
     const precio_compra = document.getElementById("precio_compra");
     const precio_venta = document.getElementById("precio_venta");
-    const nivel = document.getElementById("nivel");
+    //const nivel = document.getElementById("nivel");
     //Valida campos vacio
-    if(codigo.value == "" || nombre.value == "" || precio_compra =="" || precio_venta.value == "" || nivel ==""){
+    if(codigo.value == "" || nombre.value == "" || precio_compra =="" || precio_venta.value == ""){
        //SwetAlert 
         Swal.fire({
             position: 'top-end',
@@ -796,7 +796,7 @@ function btnEditarPro(id){ // detiene que la página se cargue de nuevo
             document.getElementById("icon-image").classList.add("d-none");
             document.getElementById("foto_actual").value = res.foto;
 
-            document.getElementById("nivel").value = res.nivel;
+            //document.getElementById("nivel").value = res.nivel;
             $("#nuevo-producto").modal("show");
         } 
     }
@@ -1214,6 +1214,30 @@ function modificarEmpresa() {
         } 
     }
 }
+
+function modificarPerfil() {
+    const frm = document.getElementById('frmCambiarPerfil');
+    const url = base_url + "Usuarios/modificar";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send(new FormData(frm));
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            if(res == 'ok'){
+                //alert('Modificado');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Modificado exitosamente',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
+        } 
+    }
+}
+
 function alertas(mensaje, icono){
          Swal.fire({
              position: 'center',

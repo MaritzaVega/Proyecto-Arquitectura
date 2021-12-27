@@ -1,6 +1,6 @@
 <?php include "Views/Templates/header.php";?>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Usuarios</li>
+    <li class="breadcrumb-item active">Gestión de Usuarios</li>
 </ol>
 <button class="btn btn-primary mb-4" type="button" onclick="frmUsuario();">Nuevo <i class="fas fa-plus"></i></button>
 

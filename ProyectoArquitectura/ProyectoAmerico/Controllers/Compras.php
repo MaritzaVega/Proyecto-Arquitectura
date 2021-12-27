@@ -391,16 +391,16 @@ class Compras extends Controller{
         $pdf->SetFillColor(133, 0, 0);
         $pdf->SetTextColor(255, 255, 255);
         $pdf->SetFont('Arial','B',9);
-        $pdf->Cell(15, 5, 'Nombre', 0, 0, 'C', true);
+        $pdf->Cell(27, 5, 'Nombre', 0, 0, 'C', true);
         $pdf->Cell(15, 5, utf8_decode('Teléfono'), 0, 0, 'C', true);
-        $pdf->Cell(35, 5, utf8_decode('Dirección'), 0, 1, 'C', true);
+        $pdf->Cell(25, 5, utf8_decode('Dirección'), 0, 1, 'C', true);
         $pdf->SetTextColor(0, 0, 0);
         $clientes=$this->model->clientesVenta($id_venta);
         $pdf->SetFont('Arial','',8);
                         
-            $pdf->Cell(15, 5, utf8_decode($clientes['nombre']), 0, 0, 'C');
+            $pdf->Cell(27, 5, utf8_decode($clientes['nombre']), 0, 0, 'C');
             $pdf->Cell(15, 5, utf8_decode($clientes['telefono']), 0, 0, 'C');
-            $pdf->Cell(35, 5, utf8_decode($clientes['direccion']), 0, 1, 'C');
+            $pdf->Cell(25, 5, utf8_decode($clientes['direccion']), 0, 1, 'C');
 
 
         $pdf->Ln();
@@ -412,7 +412,7 @@ class Compras extends Controller{
         $pdf->Cell(10, 5, 'Cant', 0, 0, 'C', true);
         $pdf->Cell(25, 5, utf8_decode('Descripción'), 0, 0, 'C', true);
         $pdf->Cell(15, 5, 'Precio', 0, 0, 'C', true);
-        $pdf->Cell(15, 5, 'Sub Total', 0, 1, 'C', true);
+        $pdf->Cell(17, 5, 'Sub Total', 0, 1, 'C', true);
         
         $pdf->SetTextColor(0, 0, 0);
         $total = 0.00;
@@ -422,7 +422,7 @@ class Compras extends Controller{
             $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'C');
             $pdf->Cell(25, 5, utf8_decode($row['descripcion']), 0, 0, 'C');
             $pdf->Cell(15, 5, $row['precio'], 0, 0, 'C');
-            $pdf->Cell(15, 5, number_format( $row['sub_total'], 2, '.', '.'), 0, 1, 'C');
+            $pdf->Cell(17, 5, number_format( $row['sub_total'], 2, '.', '.'), 0, 1, 'C');
 
         }
         $pdf->Ln();

@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="numDocumento">Número de Documento</label>
-                        <input id="numDocumento" class="form-control" type="number" maxlength="12" name="numDocumento" placeholder="N° Documento" onkeydown="if(this.value.length == 12) return false;">
+                        <input id="numDocumento" class="form-control" type="number" name="numDocumento" placeholder="N° Documento">
                     </div>
                     <button class="btn btn-primary" type="button" onclick="registrarUser(event);" id="btnAccion">Registrar</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>

@@ -98,7 +98,7 @@ class Usuarios extends Controller{
             if($id==""){
                 if($clave != $confirmar){
                     $msg= array('msg'=> 'Las contraseñas no coinciden','icono' => 'Warning');
-                }else{
+                    } else{
                     $data = $this->model->registrarUsuario($usuario, $nombre, $hash, $documentos, $numDocumento);
                     if ($data == "ok"){
                         $msg= array('msg'=> 'Usuario registrado con èxito','icono' => 'success');

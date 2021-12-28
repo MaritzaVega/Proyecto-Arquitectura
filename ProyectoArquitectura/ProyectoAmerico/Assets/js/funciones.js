@@ -1137,7 +1137,7 @@ function deleteDetalle(id, accion){
 }  
 function procesar(accion){
     Swal.fire({
-        title: 'Está seguro de realizar la compra?',
+        title: 'Está seguro de realizar la operación?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

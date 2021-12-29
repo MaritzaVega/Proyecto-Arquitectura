@@ -32,16 +32,40 @@ class Productos extends Controller{
             $data[$i]['imagen'] = '<img class="img-thumbnail" src="'.base_url."Assets/img/".$data[$i]['foto'].'" width="100">';
             //Estado del Producto
             if($data[$i]['estado'] == 1){
-                $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
+                if($data[$i]['cantidad'] >= 10){
+                    $data[$i]['nivel'] = '<span class="badge badge-primary">Alto</span>';
+                    $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
+                    $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarPro('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="btnEliminarPro('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
+                    </div>';
+                }else{
+                    $data[$i]['nivel'] = '<span class="badge badge-warning">Bajo</span>';
+                    $data[$i]['estado'] = '<span class="badge badge-success">Activo</span>';
+                    $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarPro('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="btnEliminarPro('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
+                    </div>';
+                }                
             }else{
-                $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
+                if($data[$i]['cantidad'] >= 10){
+                    $data[$i]['nivel'] = '<span class="badge badge-primary">Alto</span>';
+                    $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
+                    $data[$i]['acciones'] = '<div>
+                    <button class="btn btn-success" type="button" onclick="btnReingresarPro('.$data[$i]['id'].');">Reingresar</button>
+                    </div>';
+                }else{
+                    $data[$i]['nivel'] = '<span class="badge badge-warning">Bajo</span>';
+                    $data[$i]['estado'] = '<span class="badge badge-danger">Inactivo</span>';
+                    $data[$i]['acciones'] = '<div>
+                    <button class="btn btn-success" type="button" onclick="btnReingresarPro('.$data[$i]['id'].');">Reingresar</button>
+                    </div>';
+                }                   
             }
 
             //Botones modificar y eliminar
-            $data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarPro('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
+            /*$data[$i]['acciones'] = '<div><button class="btn btn-primary" type="button" onclick="btnEditarPro('.$data[$i]['id'].');"><i class="fas fa-edit"></i></button>
             <button class="btn btn-danger" type="button" onclick="btnEliminarPro('.$data[$i]['id'].');"><i class="fas fa-trash-alt"></i></button>
             <button class="btn btn-success" type="button" onclick="btnReingresarPro('.$data[$i]['id'].');">Reingresar</button>
-            </div>'; 
+            </div>';*/
             
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -55,7 +79,7 @@ class Productos extends Controller{
         $nombre = $_POST['nombre'];
         $precio_compra = $_POST['precio_compra'];
         $precio_venta = $_POST['precio_venta'];
-        $nivel = $_POST['nivel'];
+        //$nivel = $_POST['nivel'];
         $id = $_POST['id'];
         //imagen
         $img = $_FILES['imagen'];
@@ -64,7 +88,7 @@ class Productos extends Controller{
 
         //validación new fecha
         $fecha = date("YmdHis");
-        if(empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta) || empty($nivel)){
+        if(empty($codigo) || empty($nombre) || empty($precio_compra) || empty($precio_venta)){
             $msg="Todos los campos son obligatorios";
         }else{
             //la validadcion fecha
@@ -79,7 +103,7 @@ class Productos extends Controller{
             
             if($id == ""){
                     //metodo
-                    $data = $this->model->registrarProducto($codigo, $nombre, $precio_compra, $precio_venta,$imgNombre, $nivel);
+                    $data = $this->model->registrarProducto($codigo, $nombre, $precio_compra, $precio_venta,$imgNombre);
                     if ($data == "ok"){
 
                           if (!empty($name)) {
@@ -105,7 +129,7 @@ class Productos extends Controller{
                     }
                 }
                 //metodo
-                $data = $this->model->modificarProducto($codigo, $nombre, $precio_compra, $precio_venta, $imgNombre,$nivel,$id);
+                $data = $this->model->modificarProducto($codigo, $nombre, $precio_compra, $precio_venta, $imgNombre,$id);
                 if ($data == "Modificado"){
 
                     if (!empty($name)) {

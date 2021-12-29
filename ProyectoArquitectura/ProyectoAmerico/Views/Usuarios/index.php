@@ -1,6 +1,6 @@
 <?php include "Views/Templates/header.php";?>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Usuarios</li>
+    <li class="breadcrumb-item active">Gestión de Usuarios</li>
 </ol>
 <button class="btn btn-primary mb-4" type="button" onclick="frmUsuario();">Nuevo <i class="fas fa-plus"></i></button>
 
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
                         <input type="hidden" id="id" name="id">
-                        <input id="usuario" class="form-control" type="text" name="usuario" placeholder="usuario">
+                        <input id="usuario" class="form-control" type="text" name="usuario" placeholder="Usuario">
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="numDocumento">Número de Documento</label>
-                        <input id="numDocumento" class="form-control" type="number" minlength="8" maxlength="12" name="numDocumento" placeholder="N° Documento">
+                        <input id="numDocumento" class="form-control" type="number" name="numDocumento" placeholder="N° Documento">
                     </div>
                     <button class="btn btn-primary" type="button" onclick="registrarUser(event);" id="btnAccion">Registrar</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>

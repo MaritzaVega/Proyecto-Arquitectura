@@ -33,7 +33,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1 text-white " for="inputPassword"><i class="fas fa-key"></i> Clave</label>
-                                                <input class="form-control1 py-4" id="clave" name="clave" type="password" placeholder="Ingrese contraseña" />
+                                                <input class="form-control1 py-4" id="clave" name="clave" type="password" placeholder="Ingrese clave" />
                                             </div>
                                             <!--Muestra cuando mensaje cuando los datos son invalidos--> 
                                             <div class="alert alert-danger text-center d-none" id="alerta" role="alert">
@@ -41,7 +41,7 @@
                                             </div>
                                         
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0 ">
-                                                <button class="btn btn-danger2" type="submit" onclick="frmLogin(event)">Login</button>
+                                                <button class="btn btn-danger2" type="submit" onclick="frmLogin(event)">Ingresar</button>
                                             </div>
                                         </form>
                                     </div>

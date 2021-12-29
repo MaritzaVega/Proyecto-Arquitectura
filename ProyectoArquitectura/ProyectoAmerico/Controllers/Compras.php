@@ -117,7 +117,7 @@ class Compras extends Controller{
             
         }else{
             $total_cantidad = $comprobar['cantidad'] + $cantidad;
-            $sub_total = $total_cantidad * $precio;
+            $sub_total = ($total_cantidad * $precio);
             if ($datos['cantidad'] < $total_cantidad) {
                 $msg = array('msg'=> 'Stock no disponible', 'icono'=> 'warning');
             }else{
@@ -185,7 +185,12 @@ class Compras extends Controller{
                 //ACTUALIZAR EL STOCK DE LOS PRODUCTOS
                 $stock_actual = $this->model->getProductos($id_pro);
                 $stock = $stock_actual['cantidad'] + $cantidad;
-                $this->model->actualizarStock($stock, $id_pro); //Adquirir de los proveedores
+                if($stock >= 10){
+                    $nivel = "Alto";
+                }else{
+                    $nivel = "Bajo";
+                }
+                $this->model->actualizarStock($stock, $nivel, $id_pro); //Adquirir de los proveedores
 
             }
             $vaciar = $this->model->vaciarDetalle('detalle', $id_usuario);
@@ -218,7 +223,12 @@ class Compras extends Controller{
                 //ACTUALIZAR EL STOCK DE LOS PRODUCTOS
                 $stock_actual = $this->model->getProductos($id_pro);
                 $stock = $stock_actual['cantidad'] - $cantidad;
-                $this->model->actualizarStock($stock, $id_pro); //Adquirir de los proveedores
+                if($stock >= 10){
+                    $nivel = "Alto";
+                }else{
+                    $nivel = "Bajo";
+                }
+                $this->model->actualizarStock($stock, $nivel, $id_pro); //Adquirir de los proveedores
 
             }
             $vaciar = $this->model->vaciarDetalle('detalle_temp', $id_usuario);
@@ -284,7 +294,7 @@ class Compras extends Controller{
         
         $pdf->SetTextColor(0, 0, 0);
         $total = 0.00;
-        $pdf->SetFont('Arial','',9);
+        $pdf->SetFont('Arial','',8);
         foreach($productos as $row){
             $total = $total + $row['sub_total'];
             $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'C');
@@ -381,16 +391,16 @@ class Compras extends Controller{
         $pdf->SetFillColor(133, 0, 0);
         $pdf->SetTextColor(255, 255, 255);
         $pdf->SetFont('Arial','B',9);
-        $pdf->Cell(15, 5, 'Nombre', 0, 0, 'C', true);
+        $pdf->Cell(27, 5, 'Nombre', 0, 0, 'C', true);
         $pdf->Cell(15, 5, utf8_decode('Teléfono'), 0, 0, 'C', true);
-        $pdf->Cell(35, 5, utf8_decode('Dirección'), 0, 1, 'C', true);
+        $pdf->Cell(25, 5, utf8_decode('Dirección'), 0, 1, 'C', true);
         $pdf->SetTextColor(0, 0, 0);
         $clientes=$this->model->clientesVenta($id_venta);
         $pdf->SetFont('Arial','',8);
                         
-            $pdf->Cell(15, 5, utf8_decode($clientes['nombre']), 0, 0, 'C');
+            $pdf->Cell(27, 5, utf8_decode($clientes['nombre']), 0, 0, 'C');
             $pdf->Cell(15, 5, utf8_decode($clientes['telefono']), 0, 0, 'C');
-            $pdf->Cell(35, 5, utf8_decode($clientes['direccion']), 0, 1, 'C');
+            $pdf->Cell(25, 5, utf8_decode($clientes['direccion']), 0, 1, 'C');
 
 
         $pdf->Ln();
@@ -402,7 +412,7 @@ class Compras extends Controller{
         $pdf->Cell(10, 5, 'Cant', 0, 0, 'C', true);
         $pdf->Cell(25, 5, utf8_decode('Descripción'), 0, 0, 'C', true);
         $pdf->Cell(15, 5, 'Precio', 0, 0, 'C', true);
-        $pdf->Cell(15, 5, 'Sub Total', 0, 1, 'C', true);
+        $pdf->Cell(17, 5, 'Sub Total', 0, 1, 'C', true);
         
         $pdf->SetTextColor(0, 0, 0);
         $total = 0.00;
@@ -412,7 +422,7 @@ class Compras extends Controller{
             $pdf->Cell(10, 5, $row['cantidad'], 0, 0, 'C');
             $pdf->Cell(25, 5, utf8_decode($row['descripcion']), 0, 0, 'C');
             $pdf->Cell(15, 5, $row['precio'], 0, 0, 'C');
-            $pdf->Cell(15, 5, number_format( $row['sub_total'], 2, '.', '.'), 0, 1, 'C');
+            $pdf->Cell(17, 5, number_format( $row['sub_total'], 2, '.', '.'), 0, 1, 'C');
 
         }
         $pdf->Ln();

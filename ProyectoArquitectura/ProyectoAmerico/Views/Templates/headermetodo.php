@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Panel de Administración</title>
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
-        <link href="<?php echo base_url; ?>Assets/css/estilos.css" rel="stylesheet" />     
+        <link href="<?php echo base_url; ?>Assets/css/estilos.css" rel="stylesheet" />         
         <link href="<?php echo base_url; ?>Assets/css/select2.min.css" rel="stylesheet"/>  
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
         <link href="<?php echo base_url; ?>Assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -27,11 +27,15 @@
                 </div>-->
             </form>
             <!-- Navbar-->
+
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Perfil</a>
+                        
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#cambiarPerfil">Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#cambiarPass">Cambiar Contraseña</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php echo base_url; ?>Usuarios/salir">Cerrar Sesión</a> <!-- Método salir-->
                     </div>
@@ -47,7 +51,7 @@
                             <a href="#">
                                 <img  src=".../../../Assets/imagenes/logo.jpg" width= "100%">
                             </a>
-                            
+
                             <a class="nav-link" href="<?php echo base_url; ?>Administracion/Home"> 
                                  <div class="sb-nav-link-icon"><i class="fas fa-home text-primary"></i></div>
                                  Inicio
@@ -55,7 +59,7 @@
 
                             <a class="nav-link" href="<?php echo base_url; ?>Administracion"> 
                                  <div class="sb-nav-link-icon"><i class="fas fa-university text-primary"></i></div>
-                                 Institución
+                                 Empresa
                             </a>
                             
                             <a class="nav-link" href="<?php echo base_url; ?>Usuarios"> 
@@ -66,15 +70,14 @@
                                  <div class="sb-nav-link-icon"><i class="fab fa-product-hunt text-primary"></i></div>
                                  Productos
                             </a>
-                            <!--<a class="nav-link" href="<?//php echo base_url; ?>Compras"> 
-                                 <div class="sb-nav-link-icon"></div>
-                                 Compras
-                            </a>!-->
                             <a class="nav-link" href="<?php echo base_url; ?>Clientes"> 
                                  <div class="sb-nav-link-icon"><i class="fas fa-users text-primary"></i></div>
                                  Clientes
                             </a>
-
+                            <!--<a class="nav-link" href="<?//php echo base_url; ?>Compras"> 
+                                 <div class="sb-nav-link-icon"></div>
+                                 Compras
+                            </a>!-->
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
                                 <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart text-primary"></i></div>
                                 Operaciones
@@ -87,19 +90,6 @@
                                 <a class="nav-link" href="<?php echo base_url; ?>Compras/ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a>
                                 </nav>
                             </div>
-
-                            <!---<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVenta" aria-expanded="false" aria-controls="collapseVenta">
-                                <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart text-primary"></i></div>
-                                Operaciones2
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseVenta" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<//?php echo base_url; ?>Compras/ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Nueva Venta</a> 
-                                !--><!---Compras/historial!
-                                <a class="nav-link" href="<//?php echo base_url; ?>Compras/reporte_ventas"><i class="fas fa-cart-plus mr-2 text-primary"></i> Reporte Ventas</a>
-                                </nav>
-                            </div> !-->
 
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReporte" aria-expanded="false" aria-controls="collapseCompras">
                                 <div class="sb-nav-link-icon"><i class="fa fa-file text-primary"></i></div>

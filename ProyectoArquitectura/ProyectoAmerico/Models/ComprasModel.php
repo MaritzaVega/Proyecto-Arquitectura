@@ -175,10 +175,10 @@ class ComprasModel extends Query{
         return $data;
     }
 
-    public function actualizarStock(int $cantidad, int $id_pro)
+    public function actualizarStock(int $cantidad, string $nivel, int $id_pro)
     {
-        $sql ="update productos set cantidad = ? where id=?";
-        $datos = array($cantidad, $id_pro);
+        $sql ="update productos set cantidad = ?, nivel=? where id=?";
+        $datos = array($cantidad, $nivel, $id_pro);
         $data = $this->save($sql,$datos);
         return $data;
     }

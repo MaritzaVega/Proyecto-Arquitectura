@@ -442,12 +442,18 @@ function registrarUser(e){ // detiene que la página se cargue de nuevo
     e.preventDefault();
     const usuario = document.getElementById("usuario");
     const nombre = document.getElementById("nombre");
-    const documentos = document.getElementById("documentos");
-    const numDocumento = document.getElementById("numDocumento");
+    const documentos = document.getElementById("documentos"); //id
+    const numDocumento = document.getElementById("numDocumento"); //valor
     //Valida campos vacio
     if(usuario.value == "" || nombre.value == "" || documentos =="" || numDocumento.value == ""){
-       //SwetAlert 
+       //SwetAlert
+       
        alertas('Todos los campos son obligatorios','warning');
+
+    }else if(documentos.value == 1 && numDocumento.value.toString().length != 8){
+        alertas('El Dni no coincide','warning');
+    }else if((documentos.value == 2 && numDocumento.value.toString().length != 12)){
+        alertas('El Pasaporte no coincide','warning');
     }else{
         //peticion
         const url = base_url + "Usuarios/registrar";
@@ -493,6 +499,7 @@ function btnEditarUser(id){ // detiene que la página se cargue de nuevo
     }
 
 } 
+
 
 function btnEliminarUser(id ){
     Swal.fire({
@@ -567,15 +574,20 @@ function frmCliente(){
 //esta funcion trabaja con ->Clientes.php
 function registrarCli(e){ // detiene que la página se cargue de nuevo
     e.preventDefault();
-    const dni = document.getElementById("dni");
+    const numDocumento = document.getElementById("dni");
     const nombre = document.getElementById("nombre");
     const telefono = document.getElementById("telefono");
     const direccion = document.getElementById("direccion");
     //Valida campos vacio
-    if(dni.value == "" || nombre.value == "" || telefono.value =="" || direccion.value == ""){
+    if(numDocumento.value == "" || nombre.value == "" || telefono.value =="" || direccion.value == ""){
        //SwetAlert 
        alertas('Todos los campos son obligatorios','warning');
-    }else{
+    }else if(numDocumento.value.toString().length !=8 &&  numDocumento.value.toString().length !=12 ){
+        alertas('Número de  documento ingresado no es valido','warning');
+    }else if(telefono.value.toString().length !=7 &&  telefono.value.toString().length !=9){
+        alertas('Número de teléfono ingresado no es valido','warning');
+    }
+    else{
         //peticion
         const url = base_url + "Clientes/registrar";
         const frm = document.getElementById("frmCliente");
@@ -697,9 +709,9 @@ function registrarPro(e){ // detiene que la página se cargue de nuevo
     const nombre = document.getElementById("nombre");
     const precio_compra = document.getElementById("precio_compra");
     const precio_venta = document.getElementById("precio_venta");
-    const nivel = document.getElementById("nivel");
+    //const nivel = document.getElementById("nivel");
     //Valida campos vacio
-    if(codigo.value == "" || nombre.value == "" || precio_compra =="" || precio_venta.value == "" || nivel ==""){
+    if(codigo.value == "" || nombre.value == "" || precio_compra =="" || precio_venta.value == ""){
        //SwetAlert 
         Swal.fire({
             position: 'top-end',
@@ -784,7 +796,7 @@ function btnEditarPro(id){ // detiene que la página se cargue de nuevo
             document.getElementById("icon-image").classList.add("d-none");
             document.getElementById("foto_actual").value = res.foto;
 
-            document.getElementById("nivel").value = res.nivel;
+            //document.getElementById("nivel").value = res.nivel;
             $("#nuevo-producto").modal("show");
         } 
     }
@@ -964,7 +976,7 @@ function calcularPrecio(e){
         e.preventDefault();
         const cant = document.getElementById("cantidad").value;
         const precio = document.getElementById("precio").value;
-        document.getElementById("sub_total").value = precio * cant;
+        document.getElementById("sub_total").value = (precio * cant).toFixed(2);
 
         if(e.which == 13){ //tecla ENTER = 13
             if(cant>0){
@@ -996,7 +1008,7 @@ function calcularPrecioVenta(e){
     e.preventDefault();
     const cant = document.getElementById("cantidad").value;
     const precio = document.getElementById("precio").value;
-    document.getElementById("sub_total").value = precio * cant;
+    document.getElementById("sub_total").value = (precio * cant).toFixed(2);
 
     if(e.which == 13){ //tecla ENTER = 13
         if(cant>0){
@@ -1071,7 +1083,7 @@ function cargarDetalleVenta(){
                 <td>${row['descripcion']}</td>
                 <td>${row['cantidad']}</td>
                 <td>${row['precio']}</td>
-                <td>${row['sub_total']}</td>
+                <td>${row['sub_total']}</p></td>
                 <td>
                 <button class="btn btn-danger" type="button" onclick="deleteDetalle(${row['id']}, 2)">
                 <i class="fas fa-trash-alt"></i></button>
@@ -1202,6 +1214,30 @@ function modificarEmpresa() {
         } 
     }
 }
+
+function modificarPerfil() {
+    const frm = document.getElementById('frmCambiarPerfil');
+    const url = base_url + "Usuarios/modificar";
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true); //ejecutar de forma asincrona
+    http.send(new FormData(frm));
+    http.onreadystatechange = function(){//se ejecutara cada vez que cambia
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText);
+            if(res == 'ok'){
+                //alert('Modificado');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Modificado exitosamente',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
+        } 
+    }
+}
+
 function alertas(mensaje, icono){
          Swal.fire({
              position: 'center',

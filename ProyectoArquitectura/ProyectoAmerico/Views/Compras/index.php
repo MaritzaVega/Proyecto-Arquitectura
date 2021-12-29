@@ -8,9 +8,9 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="codigo"><i class="fas fa-barcode"></i> Código de barras</label>
+                            <label for="codigo"><i class="fas fa-barcode"></i> Código de producto</label>
                            <input type="hidden" id="id" name="id">
-                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Codigo de Barras" onkeyup="buscarCodigo(event)">
+                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Codigo de producto" onkeyup="buscarCodigo(event)">
                             
                         </div>
                     </div>
